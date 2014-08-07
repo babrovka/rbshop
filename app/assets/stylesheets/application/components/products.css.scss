@@ -1,0 +1,6 @@
+$el: '.products';
+
+#{$el}__item{
+  @include inline-block(top);
+  width: 24.999%;
+}

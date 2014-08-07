@@ -1,0 +1,70 @@
+$el: '.header';
+$height: 100px;
+
+#{$el}{
+  background: transparent;
+  height: $height;
+}
+
+#{$el}__logo,
+#{$el}__search,
+#{$el}__links,
+#{$el}__contacts{
+  @include inline-block();
+}
+
+#{$el}__logo{ width: 19.999%; }
+#{$el}__search{ width: 24.999%; }
+#{$el}__links{ width: 24.999%; }
+#{$el}__contacts{ width: 24.999%; }
+
+#{$el}__logo__lg{
+  color: $color-orange;
+  font-size: 42px;
+}
+
+#{$el}__logo small{
+  color: $color-gray;
+  font-size: 13px;
+}
+
+// ПОИСКОВАЯ СТРОКА
+#{$el}__search{
+  position: relative;
+  $input-padding: 10px;
+  $icon-size: 16px;
+  $padding-right: 25px;
+  padding-right: $padding-right;
+
+  input{
+    @include border-radius(3px);
+    @include reset-focus;
+    border: 1px solid $color-gray;
+    background: rgba(255,255,255,0.5);
+    width: 100%;
+    padding: $input-padding;
+    padding-right: $icon-size*2;
+    font-size: $font-size-base;
+  }
+
+  .link{
+    border: none;
+    background: transparent;
+    color: $color-gray;
+    position: absolute;
+    right: $icon-size + $padding-right;
+    padding-top: $input-padding + 3px;
+    font-size: $icon-size;
+  }
+}
+
+// ССЫЛКИ КОРОТКОГО МЕНЮ
+#{$el}__links{
+  .link + .link{ margin-left: 20px; }
+}
+
+// БЛОК С КОНТАКТАМИ
+#{$el}__contacts__phone{
+  font-size: 32px;
+  color: $color-asphalt;
+}

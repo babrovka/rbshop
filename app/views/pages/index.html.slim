@@ -4,13 +4,29 @@
     small 27 шт
     p
       ' Отношение к современности оспособляет язык образов. Позитивизм, как принято считать, абстрактен. Гипотеза понимает под собой онтологический катарсис, учитывая опасность, которую представляли собой писания Дюринга для не окрепшего еще немецкого рабочего движения.
-      = link_to 'читать далее', '#', class: 'link link-read-more'
+      = link_to 'читать далее', '#', class: 'link link-dashed'
 
   .products__filter
-    .text-left
+    .text-left.b-inline
       ' сортировка по
       = sort_link_to 'цене'
+      = sort_link_to 'продажам'
+      = sort_link_to 'популярности'
+
+    .text-right.b-inline
+      ' товаров на странице
+      = link_to '20', '#', class: 'link'
+      = link_to '40', '#', class: 'link'
+      = link_to '60', '#', class: 'link'
+      = link_to '80', '#', class: 'link'
+      = link_to '100', '#', class: 'link'
+
 
   .products__list
     - 10.times do
-      = render 'product'
+      .products__item = render 'product'
+
+
+.pagination
+  .text-left.b-inline страницы
+  .text-left.b-inline тут будет пагинация

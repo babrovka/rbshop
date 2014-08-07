@@ -1,0 +1,18 @@
+header.header
+  .header__logo
+    .header__logo__lg RBSHOP
+    small Интернет-магазин проф косметики
+  .header__search
+    = form_tag '/search' do
+      = text_field_tag :q, nil, placeholder: 'Поиск по каталогу косметики', autofocus: true, autocomplete: false
+      = link_to '#', class: 'link' do
+        span.fa.fa-search
+  .header__links
+    = link_to 'Как купить?', '#', class: 'link'
+    = link_to 'Отзывы', '#', class: 'link'
+    = link_to 'Компания', '#', class: 'link'
+  .header__contacts.text-right
+    .header__contacts__phone 8 800 100 20 30
+    .header__contacts__links
+      = link_to 'Контактная информация', '#', class: 'link'
+      = link_to 'Обратный звонок', '#', class: 'link'

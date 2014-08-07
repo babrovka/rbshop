@@ -1,12 +1,13 @@
-.product
-  .product__border
-  .product__badge.m-sale скидка
+.card
+  .card__border
+  .card__badge.m-sale скидка
   = image_tag ''
   h3 Название продукта
   p Краткое описание с три строки
-  .product__rating
+  .card__rating
   small объем: 200мл
-  .product_price.m-new
-  .product_price.m-old
-  = link_to 'В корзину', '#', class: '#'
+  .card_price.m-new
+  .card_price.m-old
+  = link_to 'В корзину', '#', class: 'btn btn-primary'
+  = link_to 'добавить к сравнению', '#', class: 'link link-dashed'
 

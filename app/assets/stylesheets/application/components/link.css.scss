@@ -1,0 +1,9 @@
+$el: '.link';
+
+#{$el}{
+  @include inline-block(top);
+  @include unstyled-link;
+  color: $color-blue;
+  font-size: $font-size-base;
+  + #{$el}{ margin-left: 10px; }
+}
