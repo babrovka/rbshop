@@ -1,13 +1,20 @@
-.card
-  .card__border
-  .card__badge.m-sale скидка
-  = image_tag ''
-  h3 Название продукта
-  p Краткое описание с три строки
-  .card__rating
-  small объем: 200мл
-  .card_price.m-new
-  .card_price.m-old
-  = link_to 'В корзину', '#', class: 'btn btn-primary'
-  = link_to 'добавить к сравнению', '#', class: 'link link-dashed'
+- active ||= false
+- css_class = active ? 'm-active' : ''
+.card class=css_class
+  .card__badge.m-green скидка
+  = image_tag 'http://fakeimg.pl/150x150/ff0000,128/000,255'
+  h3 = Faker::Commerce.product_name
+  p = Faker::Lorem.sentence(5)
+
+  .card__footer
+    .card__rating
+    small объем: 200мл
+    hr
+    .card__price.m-new
+      .price = Faker::Number.number(4)
+    .card__price.m-old = Faker::Number.number(4)
+    = link_to '#', class: 'btn m-primary card__to-cart' do
+      span.fa.fa-shopping-cart
+      span В корзину
+    = link_to 'добавить к сравнению', '#', class: 'link m-dashed card__compare'
 

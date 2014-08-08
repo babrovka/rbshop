@@ -1,0 +1,17 @@
+// fonts icon with FontAwesome
+@mixin fa-icon($icon-code, $size: $base-font-size) {
+  &:after {
+    font-family: FontAwesome;
+    font-size: $size;
+    content: $icon-code;
+  }
+}
+
+
+@mixin button-variant($txt-color, $color-bg-bottom, $color-bg-top: $color-bg-bottom){
+  $color-bottom: darken($color-bg-bottom, 5%);
+  @include background-image(linear-gradient(bottom, $color-bg-bottom, $color-bg-top));
+  @include box-shadow(inset 0px 1px rgba(255, 255, 255, 0.3));
+  border: 1px solid darken($color-bottom, 5%);
+  color: $txt-color;
+}

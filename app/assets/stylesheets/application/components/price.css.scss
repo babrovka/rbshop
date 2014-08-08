@@ -1,0 +1,5 @@
+$el: '.price';
+#{$el}{
+  @include fa-icon('\f158', 0.9em);
+  &:after{ padding-left: .5em; }
+}

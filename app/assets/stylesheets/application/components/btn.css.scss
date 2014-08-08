@@ -1,0 +1,22 @@
+.btn{
+  display: inline-block;
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  @include border-radius(5px);
+  @include unstyled-link;
+
+  .fa + span,
+  span + .fa{
+    padding-left: .6em;
+  }
+
+  &.m-primary{
+    @include button-variant(white, $color-orange-d);
+    &:hover{ @include button-variant(white, darken($color-orange-d, 3%) ); }
+  }
+}
+
+
+
