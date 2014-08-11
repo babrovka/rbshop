@@ -4,3 +4,24 @@ $el: '.products';
   @include inline-block(top);
   width: 24.999%;
 }
+
+#{$el}__page-header{
+
+  h1{
+    font-size: 46px;
+    line-height: 1.2;
+    color: $color-asphalt;
+    padding-bottom: $font-size-base;
+  }
+
+  small{ font-size: $font-size-base; color: $color-gray; }
+
+  h1, small{ display: inline-block; }
+  h1 + small{ margin-left: 20px;}
+
+  p{
+    font-size: $font-size-base;
+    color: $color-gray;
+    line-height: 1.4;
+  }
+}
