@@ -37,7 +37,7 @@ gem 'thin'
 gem 'pg'
 
 gem 'compass-rails'
-gem 'simple_form'
+gem 'simple_form', '>= 3.1.0.rc1'
 gem 'slim-rails'
 gem 'execjs', '~> 2.2.1'
 gem 'therubyracer', '~> 0.12.1'
