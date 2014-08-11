@@ -32,6 +32,8 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
+    bootstrap-sass (3.2.0.1)
+      sass (~> 3.2)
     builder (3.2.2)
     capistrano (2.15.5)
       highline
@@ -241,6 +243,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  bootstrap-sass
   capistrano
   capybara (~> 2.4.1)
   coffee-rails (~> 4.0)
