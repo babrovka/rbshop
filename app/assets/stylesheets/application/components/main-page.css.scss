@@ -1,0 +1,63 @@
+$el: '.main-page';
+
+#{$el}{
+  padding: 0 $grid-cutter;
+}
+
+
+#{$el}__brands{ }
+
+// область описания одного бренда
+#{$el}__brand-info{
+
+  position: relative;
+  margin-bottom: $font-size-base;
+  width: $container - 4*$grid-cutter - $grid-cutter;
+
+  img{ float: left; }
+
+  p, .link{ margin-left: 290px; }
+  p{ color: $color-gray; }
+
+
+  // область фона и стрелок слева справа у активного элемента
+  $height: 140px;
+  $color-bg: white;
+  $border-width: 4px;
+  height: $height;
+  background-color: #fffcf1;
+  &.m-active, &:hover {
+    border: $border-width solid $color-orange;
+    background-color: $color-bg;
+    &:after, &:before {
+      left: 100%;
+      top: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    // стрелка фон
+    &:after {
+      border-color: transparent;
+      border-left-color: $color-bg;
+      border-width: $grid-cutter - $border-width/2;
+      margin-top: -$height/2 + $border-width;
+      border-bottom-width: $height/2 - $border-width;
+      border-top-width: $height/2 - $border-width;
+    }
+    // большая стрелка обрамление цветом рамки
+    &:before {
+      border-color: transparent;
+      border-left-color: $color-orange;
+      border-width: $grid-cutter;
+      margin-top: -$height/2;
+      border-bottom-width: $height/2;
+      border-top-width: $height/2;
+      margin-left: $border-width;
+    }
+  }
+}

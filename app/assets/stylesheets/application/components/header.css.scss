@@ -16,8 +16,8 @@ $height: 100px;
 
 #{$el}__logo{ width: 19.999%; }
 #{$el}__search{ width: 24.999%; }
-#{$el}__links{ width: 24.999%; }
-#{$el}__contacts{ width: 24.999%; }
+#{$el}__links{ width: 27.999%; }
+#{$el}__contacts{ width: 26.999%; }
 
 #{$el}__logo__lg {
   color: $color-orange;
@@ -76,20 +76,22 @@ $height: 100px;
 
 
 #{$el}.m-extra-header{
+  z-index: 99;
+
   #{$el}__bg{
-    $width: 1600px;
+    $width: 1200px;
 
     background-image: image-url('extra-header-bg.png');
     background-position: center top;
     background-repeat: no-repeat;
 
     position: absolute;
-    z-index: -10;
+    z-index: -1;
     top: 0;
 
     width: $width;
     height: 600px;
-    margin-left: ($container - $width)/2 - 25px;
+    margin-left: ($container - $width)/2 - $grid-cutter;
   }
 
   #{$el}__logo small{ color: white; }

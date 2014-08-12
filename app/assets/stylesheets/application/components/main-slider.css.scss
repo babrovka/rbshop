@@ -1,0 +1,27 @@
+$el: '.main-slider';
+$slider-height: 700px;
+$slider-offset-top: 150px;
+
+#{$el}{
+  height: $slider-height - $slider-offset-top;
+}
+
+// картинку сдвигаем вверх
+#{$el}__container img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+
+// внутри расположен текст слайда
+#{$el}__txt-area{
+  padding-top: 100px;
+
+  h4, p{ color: white; }
+  p{ font-size: 20px; }
+  h4{ font-size: 60px; }
+
+  .btn{ margin-top: 40px; }
+}

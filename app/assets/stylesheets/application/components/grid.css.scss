@@ -1,5 +1,6 @@
 .container{
   margin: 0 auto;
   width: $container;
-  padding: 0 25px;
+  padding: 0 $grid-cutter;
+  position: relative;
 }

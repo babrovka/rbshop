@@ -7,7 +7,7 @@ html
   body
     .container
       = render 'shared/layouts/application/header'
-      = render_navigation context: :main, expand_all: true
+      = render 'shared/layouts/application/main_menu'
 
       - if content_for? :body_content
         = yield :body_content

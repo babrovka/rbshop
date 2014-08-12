@@ -1,0 +1,8 @@
+$el: '.main-menu';
+
+#{$el}{
+  height: 50px;
+  width: $container;
+  margin-left: -$grid-cutter;
+  background: white;
+}
