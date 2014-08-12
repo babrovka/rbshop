@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'inherited_resources'
 gem 'devise'
+gem "paperclip", "~> 4.1"
 
 group :development do
   # Automatically adds annotations to models
