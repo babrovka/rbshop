@@ -1,12 +1,15 @@
 - css_class = @extra_header.blank? ? '' : 'm-extra-header'
 
 header.header class=css_class
+  .header__bg
   .header__logo
-    .header__logo__lg RBSHOP
+    = link_to root_path, class: 'header__logo__lg' do
+      = image_tag 'rbshop-logo.png', alt: 'интернет-магазин rbcos'
+
     small Интернет-магазин проф косметики
   .header__search
     = form_tag '/search' do
-      = text_field_tag :q, nil, placeholder: 'Поиск по каталогу косметики', autofocus: true, autocomplete: false
+      = text_field_tag :q, nil, placeholder: 'Поиск по каталогу красоты', autocomplete: false, autofocus: true
       = link_to '#', class: 'link' do
         span.fa.fa-search
   .header__links
@@ -14,7 +17,7 @@ header.header class=css_class
     = link_to 'Отзывы', '#', class: 'link'
     = link_to 'Компания', '#', class: 'link'
   .header__contacts.text-right
-    .header__contacts__phone 8 800 100 20 30
+    = link_to '8 800 100 20 30', 'tel:88001002030', class: 'header__contacts__phone'
     .header__contacts__links
       = link_to 'Контактная информация', '#', class: 'link'
       = link_to 'Обратный звонок', '#', class: 'link'

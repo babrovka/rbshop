@@ -4,6 +4,7 @@ $height: 100px;
 #{$el}{
   background: transparent;
   height: $height;
+  padding-top: 10px;
 }
 
 #{$el}__logo,
@@ -18,9 +19,12 @@ $height: 100px;
 #{$el}__links{ width: 24.999%; }
 #{$el}__contacts{ width: 24.999%; }
 
-#{$el}__logo__lg{
+#{$el}__logo__lg {
   color: $color-orange;
-  font-size: 42px;
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  img { margin-left: -2px; }// т.к.обрезаем картинку с плавными переходами и есть пустая область слева
 }
 
 #{$el}__logo small{
@@ -40,7 +44,7 @@ $height: 100px;
     @include border-radius(3px);
     @include reset-focus;
     border: 1px solid $color-gray;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.2);
     width: 100%;
     padding: $input-padding;
     padding-right: $icon-size*2;
@@ -65,6 +69,61 @@ $height: 100px;
 
 // БЛОК С КОНТАКТАМИ
 #{$el}__contacts__phone{
+  @include unstyled-link;
   font-size: 32px;
   color: $color-asphalt;
+}
+
+
+#{$el}.m-extra-header{
+  #{$el}__bg{
+    $width: 1600px;
+
+    background-image: image-url('extra-header-bg.png');
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    z-index: -10;
+    top: 0;
+
+    width: $width;
+    height: 600px;
+    margin-left: ($container - $width)/2 - 25px;
+  }
+
+  #{$el}__logo small{ color: white; }
+
+  #{$el}__search{
+    .link{ color: white; }
+    input{
+      border-color: white;
+      color: white;
+      &::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: white;
+      }
+      &:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: white;
+        opacity: 1;
+      }
+      &::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: white;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: white;
+      }
+    }
+  }
+
+  #{$el}__links,
+  #{$el}__contacts{
+    &,
+    .link,
+    #{$el}__contacts__phone{ color: white };
+  }
 }
