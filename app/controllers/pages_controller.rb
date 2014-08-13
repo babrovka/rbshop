@@ -4,4 +4,8 @@ class PagesController < ApplicationController
     @extra_header = true
   end
 
+  def product
+    render 'products/show'
+  end
+
 end

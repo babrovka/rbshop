@@ -1,0 +1,26 @@
+$el: '.product';
+
+$gallery-width: 256px;
+$meta-width: 200px;
+
+#{$el} { position: relative; }
+
+#{$el}__gallery, #{$el}__info{ @include inline-block(top); }
+#{$el}__gallery{ width: $gallery-width; }
+
+// основной блок с информацией о товаре
+#{$el}__info{ width: $container - 2*$grid-cutter - $gallery-width; }
+
+// блок с мета информацией,всякого рода артиклы и т.д.
+#{$el}__meta{
+  position: absolute;
+  width: $meta-width;
+  background: $color-gray;
+  right: 0;
+  top: 0;
+}
+
+// взаимное расположение блока с цифрами и кнопкой «купить»
+#{$el}__price, #{$el}__action{
+  @include inline-block(middle);
+}

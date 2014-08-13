@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'inherited_resources'
 gem 'devise'
-gem "paperclip", "~> 4.1"
+gem 'paperclip', '~> 4.1'
 
 group :development do
   # Automatically adds annotations to models
@@ -33,10 +33,11 @@ group :development, :test do
   gem 'zeus', '0.15.1'
   gem 'capistrano'
   gem 'rvm-capistrano'
+  gem 'pg'
 end
 
 group :production do
-  gem 'mysql2'
+  # gem 'mysql2'
 end
 
 gem 'thin'

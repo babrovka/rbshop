@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require underscore
+//= require_self
+//= require_directory ./application
+
+// область видимости приложения
+window.app || (window.app = {});
