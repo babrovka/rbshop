@@ -20,9 +20,14 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 
-task :copy_database_config do
+task :copy_config do
    db_config = "#{shared_path}/database.yml"
    run "cp #{db_config} #{latest_release}/config/database.yml"
+end
+
+task :copy_secret_config do
+   db_config = "#{shared_path}/secrets.yml"
+   run "cp #{db_config} #{latest_release}/config/secrets.yml"
 end
 
 # namespace :deploy do
@@ -38,20 +43,21 @@ end
 #   end
 # end
 
-namespace(:thin) do
+namespace(:deploy) do
   task :stop do
-    run "thin stop -C /etc/thin/royal.yml"
+    run %Q{cd #{latest_release} && bundle exec thin stop -C #{shared_path}/thin.yml}
    end
   
   task :start do
-    run "thin start -C /etc/thin/royal.yml"
+    run %Q{cd #{latest_release} && bundle exec thin start -C #{shared_path}/thin.yml}
   end
 
   task :restart do
-    run "thin restart -C /etc/thin/royal.yml"
+    stop
+    start
   end
 end
 
 
 before "deploy:assets:precompile", "copy_database_config"
-after "deploy", "deploy:cleanup"
+after "copy_database_config", "copy_secret_config"
