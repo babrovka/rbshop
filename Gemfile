@@ -16,7 +16,6 @@ gem "paperclip", "~> 4.1"
 group :development do
   # Automatically adds annotations to models
   gem 'annotate'
-  gem 'capobvious', '0.3.pre24'
 end
 
 group :test do
@@ -34,14 +33,13 @@ group :development, :test do
   gem 'zeus', '0.15.1'
   gem 'capistrano'
   gem 'rvm-capistrano'
-  gem 'thin'
-  gem 'pg'
 end
 
 group :production do
-  gem 'unicorn'
   gem 'mysql2'
 end
+
+gem 'thin'
 
 gem 'compass-rails'
 gem 'simple_form', '>= 3.1.0.rc1'

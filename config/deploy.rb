@@ -1,25 +1,25 @@
-# -*- encoding : utf-8 -*-
-set :ruby_version, '2.1.2'
-set :application, 'rbshop'
-set :user, "babrovka"
-set :serv, "109.120.165.36"
-set :port, 34511
+set :application, "set your application name here"
+set :repository,  "set your repository location here"
 
-set :repository,  'git@github.com:babrovka/rbshop.git'
-set :branch, 'dev'
-set :server_name, 'test.rbcos.ru'
-set :server_redirect, 'www.test.rbcos.ru'
+# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
+# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-set :backup_db, false
-set :backup_sys, false
+role :web, "your web-server here"                          # Your HTTP server, Apache/etc
+role :app, "your app-server here"                          # This may be the same as your `Web` server
+role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
+role :db,  "your slave db-server here"
 
-set :deploy_to, "/home/#{user}/projects/#{application}"
+# if you want to clean up old releases on each deploy uncomment this:
+# after "deploy:restart", "deploy:cleanup"
 
-set :keep_releases, 5
-set :use_sudo, false
+# if you're still using the script/reaper helper you will need
+# these http://github.com/rails/irs_process_scripts
 
-set :scm, :git
-
-role :app, serv
-role :web, serv
-role :db, serv, :primary => true
+# If you are using Passenger mod_rails uncomment this:
+# namespace :deploy do
+#   task :start do ; end
+#   task :stop do ; end
+#   task :restart, :roles => :app, :except => { :no_release => true } do
+#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+#   end
+# end
