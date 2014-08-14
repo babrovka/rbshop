@@ -1,0 +1,45 @@
+$el: '.counter';
+
+$size: 40px;
+
+#{$el}{
+  @include reset-focus;
+  @include inline-block(middle);
+  position: relative;
+
+  width: $size*1.5;
+  margin-right: $size/2;
+
+  input{
+    @include border-radius(4px);
+    border: $color-gray 1px solid;
+    color: $color-asphalt;
+    font-size: 16px;
+    height: $size;
+    width: $size;
+    text-align: center;
+  }
+}
+
+#{$el}__btn{
+  $btn-size: $size/2.5;
+  @include unstyled-link;
+  @include border-radius(2px);
+  display: block;
+
+  font-size: $font-size-base;
+  line-height: $btn-size;
+  width: $btn-size;
+  text-align: center;
+  font-weight: bold;
+
+  background: $color-gray;
+  color: white;
+
+  position: absolute;
+  right: 0;
+  &.m-up{ top: 0; }
+  &.m-down{ bottom: 0; }
+
+  &:hover{ background: darken($color-gray, 10%); }
+}
