@@ -30,18 +30,28 @@ task :copy_secret_config do
    run "cp #{db_config} #{latest_release}/config/secrets.yml"
 end
 
-# namespace :deploy do
-#   namespace :assets do
-#     task :precompile, :roles => :web, :except => { :no_release => true } do
-#       from = source.next_revision(current_revision)
-#       if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
-#         run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
-#       else
-#         logger.info "Skipping asset pre-compilation because there were no asset changes"
-#       end
-#     end
-#   end
-# end
+namespace :deploy do
+  namespace :assets do
+    task :precompile, :roles => :web, :except => { :no_release => true } do
+      from = source.next_revision(current_revision)
+      if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
+        run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
+      else
+        logger.info "Skipping asset pre-compilation because there were no asset changes"
+      end
+    end
+  end
+end
+
+namespace(:log) do
+  task :rails do
+    run %Q{cd #{shared_path} && tailf -n 50 log/production.log }
+  end
+  
+  task :thin do
+    run %Q{cd #{shared_path} && tailf -n 50 log/thin.log }
+  end
+end
 
 namespace(:deploy) do
   task :stop do
