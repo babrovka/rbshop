@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products, :taxons, :taxonomies, except: [:show]
   end
+  
+  resources :products, only: [:index, :show]
 
   root 'pages#index'
 
