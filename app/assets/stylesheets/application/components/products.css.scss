@@ -25,3 +25,10 @@ $el: '.products';
     line-height: 1.4;
   }
 }
+
+
+// с модификатором скроллера
+#{$el}.m-scroller{
+  #{$el}__item{ width: 250px; }
+}
+

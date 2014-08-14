@@ -1,6 +1,10 @@
 $ ->
   tabs = new window.app.Tabs(['#description', '#payment', '#ingredients'])
 
+  new window.app.Scroller()
+
+  # работа счетчика.
+  # инпут с кнопками «больше» и «меньше»
   $('.js-counter a').on('click', (e) ->
     console.log 'aaa'
     e.preventDefault()

@@ -23,9 +23,9 @@
           = link_to 'ингридиенты', '#ingredients', class: 'tabs__tab'
           = link_to 'оплата', '#payment', class: 'tabs__tab'
         .tabs__content
-          p#description = Faker::Lorem.sentence(20)
-          p#ingredients = Faker::Lorem.sentence(4)
-          p#payment = Faker::Lorem.sentence(10)
+          p#description = Faker::Lorem.sentence(200)
+          p#ingredients = Faker::Lorem.sentence(80)
+          p#payment = Faker::Lorem.sentence(100)
 
     .product__meta
       p
@@ -35,3 +35,12 @@
       p
         ' Параметр 2
         b 12namsd
+
+
+
+
+.scroller
+  .scroller__list.js-scroller
+    .products.m-scroller.js-scroller-container
+      - 40.times do
+        .products__item.js-scroller-item = render 'products/product'

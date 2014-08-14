@@ -1,0 +1,27 @@
+$el: '.scroller';
+$js-el: '.js-scroller';
+
+
+
+#{$js-el}{
+  width: 100%;
+  overflow-x: scroll;
+}
+
+#{$el}{
+  position: relative;
+  padding: 0 3*$grid-cutter;
+}
+
+#{$el}__btn{
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: red;
+
+  position: absolute;
+
+  &.m-next, &.m-prev{ top: 50%; }
+  &.m-next{ right: 0; }
+  &.m-prev{ left: 0; }
+}
