@@ -9,7 +9,17 @@ $meta-width: 200px;
 #{$el}__gallery{ width: $gallery-width; }
 
 // основной блок с информацией о товаре
-#{$el}__info{ width: $container - 2*$grid-cutter - $gallery-width; }
+#{$el}__info{
+  width: $container - 2*$grid-cutter - $gallery-width;
+  .h2, h2{ font-size: 46px; line-height: 1; }
+  small { color: $color-gray; font-size: 16px; line-height: 1.4; display: block; }
+}
+
+
+// блок с описанием товара
+// на данный момент состоит из вкладок
+// пока нет других элементов товаров, сдвигаем вниз этот блок
+#{$el}__description { margin-top: 180px; }
 
 // блок с мета информацией,всякого рода артиклы и т.д.
 #{$el}__meta{
@@ -23,4 +33,9 @@ $meta-width: 200px;
 // взаимное расположение блока с цифрами и кнопкой «купить»
 #{$el}__price, #{$el}__action{
   @include inline-block(middle);
+}
+
+#{$el}__price{
+  font-size: 36px;
+  color: $color-asphalt;
 }

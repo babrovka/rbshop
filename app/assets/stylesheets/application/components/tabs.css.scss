@@ -1,0 +1,29 @@
+$el: '.tabs';
+
+// область под контент
+#{$el}__content{
+  p{ font-size: 17px; color: $color-gray; line-height: 1.5; }
+}
+
+
+// область под кнопки-табы
+#{$el}__group{
+  margin-bottom: $font-size-base;
+}
+
+// сам таб-кнопка
+#{$el}__tab{
+  @include unstyled-link;
+
+  display: inline-block;
+  border: $color-gray 1px solid;
+  padding: .2em .4em;
+  @include border-radius(4px 4px 0 0);
+
+  &.m-active, &:hover{
+    background: $color-gray;
+    color: white;
+  }
+
+  + #{$el}__tab{ margin-left: 5px; }
+}

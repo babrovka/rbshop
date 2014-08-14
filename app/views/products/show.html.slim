@@ -2,26 +2,30 @@
   .product__gallery = image_tag 'http://fakeimg.pl/256x256/ff0000,128/000,255'
   .product__info
     h2 = Faker::Commerce.product_name
-    p = Faker::Lorem.sentence(5)
+    small = Faker::Lorem.sentence(5)
     .product__price
       .price = Faker::Number.number(4)
 
     .product__action
-      = text_field_tag :count
+      .counter.js-counter
+        = text_field_tag :count, 0, size: 3, maxlength: 3
+        = link_to '+', '#', class: 'counter__btn m-up js-counter-up'
+        = link_to '-', '#', class: 'counter__btn m-down js-counter-down'
       = link_to '#', class: 'btn m-primary product__to-cart' do
         span.fa.fa-shopping-cart
         span В корзину
 
 
     .product__description
-      .tab-group
-        = link_to 'описание', '#description', class: 'tab m-active'
-        = link_to 'ингридиенты', '#ingredients', class: 'tab'
-        = link_to 'оплата', '#payment', class: 'tab'
-      .tab-content
-        #description = Faker::Lorem.sentence(20)
-        #ingredients = Faker::Lorem.sentence(4)
-        #payment = Faker::Lorem.sentence(10)
+      .tabs
+        .tabs__group
+          = link_to 'описание', '#description', class: 'tabs__tab m-active'
+          = link_to 'ингридиенты', '#ingredients', class: 'tabs__tab'
+          = link_to 'оплата', '#payment', class: 'tabs__tab'
+        .tabs__content
+          p#description = Faker::Lorem.sentence(20)
+          p#ingredients = Faker::Lorem.sentence(4)
+          p#payment = Faker::Lorem.sentence(10)
 
     .product__meta
       p
