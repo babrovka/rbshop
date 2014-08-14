@@ -30,6 +30,10 @@ task :copy_secret_config do
    run "cp #{db_config} #{latest_release}/config/secrets.yml"
 end
 
+task :public_system_symlink do
+   run "rm -rf -- #{latest_release}/public/system && ln -s -- /shared_images #{latest_release}/public/system"
+end
+
 namespace :deploy do
   namespace :assets do
     task :precompile, :roles => :web, :except => { :no_release => true } do
@@ -71,3 +75,4 @@ end
 
 before "deploy:assets:precompile", "copy_database_config"
 after "copy_database_config", "copy_secret_config"
+after "copy_secret_config", "public_system_symlink"
