@@ -14,36 +14,53 @@ $el: '.main-page';
   margin-bottom: $font-size-base;
   width: $container - 4*$grid-cutter - $grid-cutter;
 
-  img{ float: left; }
+  p{ color: $color-gray; margin-left: 290px; }
 
-  p, .link{ margin-left: 290px; }
-  p{ color: $color-gray; }
+  // особые стили для позиционирования брендов
+  img{ float: left; }
+  img#brand1{ }
 
 
   // область фона и стрелок слева справа у активного элемента
   $height: 140px;
-  $color-bg: white;
+  $active-color-bg: white;
+  $color-bg: #fffcf1;
   $border-width: 4px;
   height: $height;
-  background-color: #fffcf1;
+  background-color: $color-bg;
+  border: $border-width solid $color-bg;
+
+  // главные настройки для стрелок у блока
+  &:after, &:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  // большая стрелка цвета фона
+  &:before {
+    border-color: transparent;
+    border-left-color: $color-bg;
+    border-width: $grid-cutter;
+    margin-top: -$height/2;
+    border-bottom-width: $height/2;
+    border-top-width: $height/2;
+    margin-left: $border-width;
+  }
+
   &.m-active, &:hover {
     border: $border-width solid $color-orange;
-    background-color: $color-bg;
-    &:after, &:before {
-      left: 100%;
-      top: 50%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-    }
+    background-color: $active-color-bg;
 
     // стрелка фон
     &:after {
       border-color: transparent;
-      border-left-color: $color-bg;
+      border-left-color: $active-color-bg;
       border-width: $grid-cutter - $border-width/2;
       margin-top: -$height/2 + $border-width;
       border-bottom-width: $height/2 - $border-width;
