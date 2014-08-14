@@ -12,6 +12,5 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
-  get 'product', to: 'pages#product'
 
 end

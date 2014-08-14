@@ -1,11 +1,19 @@
 class ProductsController < ApplicationController
 
+  helper_method :resource, :collection
+
   def index
-    @products = Product.all
   end
 
   def show
-    @product = Product.where(id: params[:id])
+  end
+
+  def resource
+    @product ||= Product.where(id: params[:id])
+  end
+
+  def collection
+    @collection ||= Product.order('title ASC')
   end
 
 end

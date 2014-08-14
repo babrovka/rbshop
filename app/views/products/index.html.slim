@@ -1,19 +1,19 @@
 .products
   .products__page-header
     h1 Название категории продукта
-    small 27 шт
+    small = "#{collection.count} шт"
     p
-      ' Отношение к современности оспособляет язык образов. Позитивизм, как принято считать, абстрактен. Гипотеза понимает под собой онтологический катарсис, учитывая опасность, которую представляли собой писания Дюринга для не окрепшего еще немецкого рабочего движения.
+      ' SEO TEXT
       = link_to 'читать далее', '#', class: 'link link-dashed'
 
-  .products__filter
+  /.products__filter
     .text-left.b-inline
       ' сортировка по
       = sort_link_to 'цене'
       = sort_link_to 'продажам'
       = sort_link_to 'популярности'
 
-    .text-right.b-inline
+    /.text-right.b-inline
       ' товаров на странице
       = link_to '20', '#', class: 'link'
       = link_to '40', '#', class: 'link'
@@ -24,10 +24,10 @@
 
   .products__list
     .products__item = render 'product', active: true
-    - 10.times do
-      .products__item = render 'product'
+    - collection.each do |product|
+      .products__item = render 'product', product: product
 
 
-.pagination
+/.pagination
   .text-left.b-inline страницы
   .text-left.b-inline тут будет пагинация
