@@ -9,20 +9,23 @@ $el: '.main-page';
 
 // область описания одного бренда
 #{$el}__brand-info{
+  $height: 130px;
 
   position: relative;
   margin-bottom: $font-size-base;
   width: $container - 4*$grid-cutter - $grid-cutter;
 
-  p{ color: $color-gray; margin-left: 290px; }
+  p, .link{ display: block; margin-left: 290px; line-height: 1.5; }
+  p{ color: $color-gray; padding-top: 15px; }
 
   // особые стили для позиционирования брендов
   img{ float: left; }
-  img#brand1{ }
+  img#brand1{ padding-top: 20px; padding-left: 30px;}
+  img#brand2{ padding-top: 20px; padding-left: 40px;}
+  img#brand3{ padding-top: 40px; padding-left: 20px;}
 
 
   // область фона и стрелок слева справа у активного элемента
-  $height: 140px;
   $active-color-bg: white;
   $color-bg: #fffcf1;
   $border-width: 4px;
