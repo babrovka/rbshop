@@ -20,7 +20,7 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 
-task :copy_config do
+task :copy_database_config do
    db_config = "#{shared_path}/database.yml"
    run "cp #{db_config} #{latest_release}/config/database.yml"
 end
