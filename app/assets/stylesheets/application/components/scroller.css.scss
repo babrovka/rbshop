@@ -5,23 +5,33 @@ $js-el: '.js-scroller';
 
 #{$js-el}{
   width: 100%;
-  overflow-x: scroll;
+  overflow: hidden;
 }
+
+#{$js-el}-container{
+  position: relative;
+  left: 0;
+}
+
 
 #{$el}{
   position: relative;
+  overflow: hidden;
   padding: 0 3*$grid-cutter;
 }
 
 #{$el}__btn{
+  $height: 100px;
+  $width: 20px;
+
   display: block;
-  width: 100px;
-  height: 100px;
+  width: $width;
+  height: $height;
   background: red;
 
   position: absolute;
 
-  &.m-next, &.m-prev{ top: 50%; }
+  &.m-next, &.m-prev{ top: 50%; margin-top: -$height/2;}
   &.m-next{ right: 0; }
   &.m-prev{ left: 0; }
 }

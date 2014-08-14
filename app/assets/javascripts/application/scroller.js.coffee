@@ -3,7 +3,6 @@ class window.app.Scroller
     el: '.js-scroller'
     container: '.js-scroller-container'
     item: '.js-scroller-item'
-    width: '250px'
     next_btn: "<a href='#' class='scroller__btn m-next'></a>"
     prev_btn: "<a href='#' class='scroller__btn m-prev'></a>"
 
@@ -19,9 +18,11 @@ class window.app.Scroller
 
 
   _init_sizes: ->
-    sum_width = 0
-    sum_width = @.$items.eq(0).width() * @.$items.length
-    @.$container.width(sum_width)
+    @.item_width = @.$items.eq(0).width()
+    @.max_width = 0
+    @.max_width = @.item_width * @.$items.length
+    @.$container.width(@.max_width)
+    @.$el.height(@.$items.eq(0).height())
 
 
   _render_elems: ->
@@ -44,5 +45,16 @@ class window.app.Scroller
 
 
   scroll_next: (n=1) ->
-    @.$el
+    new_offset = @.$container.position().left - n*@.item_width
+    new_offset = @.max_width if new_offset <= -@.max_width
+    @.set_new_offset(new_offset)
 
+
+  scroll_prev: (n=1) ->
+    new_offset = @.$container.position().left + n*@.item_width
+    new_offset = 0 if new_offset >= 0
+    @.set_new_offset(new_offset)
+
+
+  set_new_offset: (offset) ->
+    @.$container.animate({left: offset}, 300)
