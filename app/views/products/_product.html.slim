@@ -2,14 +2,19 @@
 - css_class = active ? 'm-active' : ''
 .card class=css_class
   .card__badge.m-green скидка
-  = link_to product_path(product) do
-    = image_tag 'http://fakeimg.pl/150x150/ff0000,128/000,255'
+
+  = link_to product_path(product), class: 'card__img' do
+    - if product.product_images.any?
+      = image_tag product.product_images.first.image.url(:catalog)
+    - else
+      = image_tag 'noimage.png'
+
   h3 = link_to product.title, product_path(product)
   small = product.short_description.truncate(50)
 
   .card__footer
     .card__rating
-    small = "объем: #{product.packing}мл"
+    small = "объем: #{product.packing}"
     hr
     .card__price.m-new
       .price = product.price_dealer1

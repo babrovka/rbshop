@@ -47,10 +47,13 @@ $active-inset: $inset-offset-vert + $tap-vert $inset-offset-hor + $tap-hor;
 
   // семантика карточки
   h3, p{ font-size: $font-size-base; }
+  h3{ font-family: $font-family-proxima-nova-bold; }
+  p{ font-family: $font-family-proxima-nova-regular; }
   small {
     font-size: 11px;
     color: $color-gray;
     text-transform: uppercase;
+    font-family: $font-family-proxima-nova-semibold;
   }
 
   hr{ margin: 10px 3px; width: 70%; }
@@ -154,4 +157,13 @@ $active-inset: $inset-offset-vert + $tap-vert $inset-offset-hor + $tap-hor;
     // т.к.он равняется по границам карточки
     #{$el}__footer{ padding: $active-inset; padding-top: 0; padding-bottom: 0;  }
   }
+}
+
+
+#{$el}__img{
+  @include unstyled-link;
+  display: block;
+  width: 100%;
+
+  img{ max-width: 100%; }
 }

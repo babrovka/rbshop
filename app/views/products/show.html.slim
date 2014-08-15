@@ -1,10 +1,15 @@
 .product
-  .product__gallery = image_tag 'http://fakeimg.pl/256x256/ff0000,128/000,255'
+  .product__gallery
+    - if resource.product_images.any?
+      = image_tag resource.product_images.first.image.url(:product)
+    - else
+      = image_tag 'noimage.png'
+
   .product__info
-    h2 = Faker::Commerce.product_name
-    small = Faker::Lorem.sentence(5)
+    h2 = resource.title
+    small = resource.short_description
     .product__price
-      .price = Faker::Number.number(4)
+      .price = resource.price_dealer1
 
     .product__action
       .counter.js-counter
@@ -23,18 +28,14 @@
           = link_to 'ингридиенты', '#ingredients', class: 'tabs__tab'
           = link_to 'оплата', '#payment', class: 'tabs__tab'
         .tabs__content
-          p#description = Faker::Lorem.sentence(200)
-          p#ingredients = Faker::Lorem.sentence(80)
+          p#description = resource.text
+          p#ingredients = resource.ingredients
           p#payment = Faker::Lorem.sentence(100)
 
     .product__meta
       p
-        ' Параметр 1
-        b 1234
-
-      p
-        ' Параметр 2
-        b 12namsd
+        ' Объем:
+        b = resource.packing
 
 
 

@@ -15,10 +15,12 @@ class window.app.Tab
   _enable_events: ->
     if @.$tab.length
       @.$tab.on('click', (e) =>
+        e.preventDefault()
         $(document).trigger('tabs.click', [@])
       )
 
       $(document).on('tabs.active', (e, id) =>
+        e.preventDefault()
         if id == "##{@.$content.attr('id')}"
           @.show()
         else
@@ -46,6 +48,7 @@ class window.app.Tabs
     @._init_elems(ids)
 
     $(document).on('tabs.click', (e, tab) =>
+      e.preventDefault()
       @._switch_tabs(tab)
     )
 

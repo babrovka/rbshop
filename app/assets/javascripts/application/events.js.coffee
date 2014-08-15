@@ -17,6 +17,7 @@ $ ->
       --current_val
 
     current_val = 0 if current_val < 0
+    current_val = 999 if current_val >= 999 # потому что по дизайну вмещается 3 символа
 
     $target.val(current_val)
   )

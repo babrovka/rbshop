@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def resource
-    @product ||= Product.where(id: params[:id])
+    @product ||= Product.where(id: params[:id]).first
   end
 
   def collection

@@ -1,5 +1,7 @@
 $el: '.price';
 #{$el}{
   @include fa-icon('\f158', 0.9em);
+  font-family: $font-family-proxima-nova-extrabold;
+  line-height: 1;
   &:after{ padding-left: .5em; }
 }
