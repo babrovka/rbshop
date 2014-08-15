@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def collection
-    @collection ||= Product.order('title ASC')
+    @collection ||= Product.order('title ASC').limit(20)
   end
 
 end

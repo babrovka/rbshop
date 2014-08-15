@@ -5,6 +5,8 @@ $height: 100px;
   background: transparent;
   height: $height;
   padding-top: 10px;
+
+  font-family: $font-family-proxima-nova-semibold;
 }
 
 #{$el}__logo,
@@ -49,6 +51,7 @@ $height: 100px;
     padding: $input-padding;
     padding-right: $icon-size*2;
     font-size: $font-size-base;
+    font-family: $font-family-proxima-nova-semibold;
   }
 
   .link{
