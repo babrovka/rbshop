@@ -2,19 +2,20 @@
 - css_class = active ? 'm-active' : ''
 .card class=css_class
   .card__badge.m-green скидка
-  = image_tag 'http://fakeimg.pl/150x150/ff0000,128/000,255'
-  h3 = Faker::Commerce.product_name
-  small = Faker::Lorem.sentence(5)
+  = link_to product_path(product) do
+    = image_tag 'http://fakeimg.pl/150x150/ff0000,128/000,255'
+  h3 = link_to product.title, product_path(product)
+  small = product.short_description.truncate(50)
 
   .card__footer
     .card__rating
-    small объем: 200мл
+    small = "объем: #{product.packing}мл"
     hr
     .card__price.m-new
-      .price = Faker::Number.number(4)
-    .card__price.m-old = Faker::Number.number(4)
+      .price = product.price_dealer1
+    .card__price.m-old = product.price_professional
     = link_to '#', class: 'btn m-primary card__to-cart' do
       span.fa.fa-shopping-cart
       span В корзину
-    = link_to 'добавить к сравнению', '#', class: 'link m-dashed card__compare'
+    /= link_to 'добавить к сравнению', '#', class: 'link m-dashed card__compare'
 

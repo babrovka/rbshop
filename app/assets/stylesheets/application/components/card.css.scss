@@ -25,7 +25,6 @@ $active-output: $output-offset-vert - $tap-vert - $border-diff $output-offset-ho
 $active-inset: $inset-offset-vert + $tap-vert $inset-offset-hor + $tap-hor;
 
 #{$el}{
-
   position: relative;
   margin: $output-offset-hor $output-offset-vert;
   padding: $inset-offset-hor $inset-offset-vert;
@@ -33,6 +32,8 @@ $active-inset: $inset-offset-vert + $tap-vert $inset-offset-hor + $tap-hor;
 
   height: 270px;
   box-sizing: content-box;
+
+  a { @include unstyled-link; }
 
   &.m-active, &:hover{
     border: 1px + $border-diff solid $color-orange;
@@ -103,7 +104,7 @@ $active-inset: $inset-offset-vert + $tap-vert $inset-offset-hor + $tap-hor;
 // стоимость и цена у карточки
 #{$el}__price{
   font-weight: bold;
-  display: inline-block;
+  display: block;
   position: relative;
 
   &.m-new{
@@ -116,7 +117,7 @@ $active-inset: $inset-offset-vert + $tap-vert $inset-offset-hor + $tap-hor;
     padding: 0 5px;
     position: absolute;
     right: 20px;
-    margin-top: -10px;
+    margin-top: -30px;
 
 
     // полоса зачеркивающая текст
