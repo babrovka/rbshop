@@ -1,0 +1,29 @@
+ru:
+  activerecord:
+    attributes:
+      product:
+        id:
+        title: заголовок
+        packing:
+        text:
+        ingredients:
+        brand_id:
+        visible_professional:
+        visible_dealer1:
+        visible_dealer2:
+        visible_dealer3:
+        price_professional:
+        price_dealer1:
+        price_dealer2:
+        price_dealer3:
+        created_at:
+        updated_at:
+        short_description:
+        product_category_id:
+        latest:
+        slug:
+        seo_title:
+        seo_description:
+        seo_text:
+        taxon_id:
+        position:
