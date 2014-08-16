@@ -6,6 +6,7 @@ html
     = csrf_meta_tags
   body
     .container
+      = render 'layouts/admin/main_menu'
       = yield
 
     = javascript_include_tag 'admin'
