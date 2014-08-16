@@ -1,4 +1,4 @@
-= simple_form_for([:super_user, resource],
+= simple_form_for([:admin, resource],
                         html: {class: 'form-horizontal'},
                         wrapper: :horizontal_form,
                         wrapper_mappings: {} \
@@ -19,13 +19,13 @@
   = f.input :price_dealer2
   = f.input :price_dealer3
   = f.input :short_description
-  = f.association :product_category
+  /= f.association :product_category
   = f.input :latest
   = f.input :slug
   = f.input :seo_title
   = f.input :seo_description
   = f.input :seo_text
-  = f.association :taxon
+  /= f.association :taxon
   = f.input :position
 
   .btn-group
