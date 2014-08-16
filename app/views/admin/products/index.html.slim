@@ -1,24 +1,39 @@
 .row
   .col-sm-12
-    h1 Cписок товаров
+    h1
+      ' Cписок товаров
+      small
+        = link_to new_admin_product_path, class: 'btn btn-default' do
+          span.fa.fa-plus
+          span создать новый
+
 
 
 .row
   .col-sm-12
-    = link_to 'Создать товар', new_admin_product_path, class: 'btn btn-primary'
-
-.row
-  .col-sm-12
-    table
+    table.table.table-striped
       thead
         tr
           th №
           th Название
           th Цена
+          th
       tbody
         - collection.each_with_index do |product, i|
-          tr
-            td = i+1
-            td = product.title
+          tr.js-item-row
+            td = number_in_list i
+            td = link_to product.title, edit_admin_product_path(product), title: 'редактировать товар'
             td = product.price_professional
+            td
+              .btn-group.js-item-row-btns
+                = link_to product_path(product), class: 'btn btn-success btn-sm', title: 'публичная страница товара' do
+                  span.fa.fa-eye
+                = link_to edit_admin_product_path(product), class: 'btn btn-warning btn-sm', title: 'редактировать товар' do
+                  span.fa.fa-pencil
+
+
+.row
+  .col-sm-12
+    .text-center
+      = paginate collection, theme: 'admin'
 
