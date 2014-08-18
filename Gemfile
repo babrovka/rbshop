@@ -12,6 +12,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'inherited_resources'
 gem 'devise'
 gem 'paperclip', '~> 4.1'
+gem 'friendly_id', '~> 5.0.0'
+gem 'awesome_nested_set'
 
 group :development do
   # Automatically adds annotations to models
