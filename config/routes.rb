@@ -7,10 +7,15 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products, :taxons, :taxonomies, except: [:show]
   end
-  
-  resources :products, only: [:index, :show]
 
   root 'pages#index'
-
-
+  
+  # products
+  resources :products, only: [:index]
+  # taxonomy
+  get '/products/:id' => 'products#taxonomy', :as => :taxonomy
+  #taxon
+  get '/:taxonomy/:id', to: 'products#taxon', :as => :taxon
+  # product
+  get '/:id' => 'products#show', as: :product
 end
