@@ -4,14 +4,10 @@ header.header class=css_class
   .header__bg
   .header__logo
     = link_to root_path, class: 'header__logo__lg' do
-      = image_tag 'rbshop-logo.png', alt: 'интернет-магазин rbcos'
+      = image_tag 'rbshop-logo.png', alt: 'интернет-магазин профессиональной косметики'
 
     small Интернет-магазин проф косметики
-  .header__search
-    = form_tag '/search' do
-      = text_field_tag :q, nil, placeholder: 'Поиск по каталогу красоты', autocomplete: false, autofocus: true
-      = link_to '#', class: 'link' do
-        span.fa.fa-search
+  .header__search = render 'shared/search_form'
   .header__links
     = link_to 'Как купить?', '#', class: 'link'
     = link_to 'Отзывы', '#', class: 'link'
