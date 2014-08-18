@@ -1,4 +1,6 @@
 class Admin::ProductsController < Admin::ApplicationController
+  layout 'admin/application'
+  
   inherit_resources
   
   defaults resource_class: Product.friendly
