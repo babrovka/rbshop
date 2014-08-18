@@ -22,7 +22,22 @@ $el: '.footer';
   @include inline-block(top);
   width: 24.999%;
 
-  .link{ display: block; & + .link{ margin-left: 0; padding-left: 0; }}
+  // ссылки идущие одна под другой
+  .link{
+    display: block;
+    margin-bottom: 1em;
+    & + .link{ margin-left: 0; padding-left: 0; }
+  }
+}
+
+#{$el}__menu__header{
+  @include inline-block(top);
+  color: $color-red;
+  border-bottom: 3px solid $color-red;
+  font-size: 16px;
+  line-height: 1.625;
+  font-weight: 700;
+  margin-bottom: .8em;
 }
 
 
@@ -33,4 +48,21 @@ $el: '.footer';
 
 #{$el}__left-block{
   width: 66.999%;
+}
+
+
+// блок с оплатой и иконками оплаты
+#{$el}__payment{
+  color: $color-gray;
+  font-family: $font-family-proxima-nova-regular;
+  font-size: $font-size-base;
+  a{ @include unstyled-link; }
+}
+
+
+// блок с контактами
+#{$el}__contacts{
+  color: $color-gray;
+  font-family: $font-family-proxima-nova-regular;
+  font-size: $font-size-base;
 }
