@@ -1,0 +1,15 @@
+$el: '.footer';
+
+#{$el}__logo, #{$el}__meta p, #{$el}__search{
+  @include inline-block(middle);
+}
+
+#{$el}__logo{ width: 16.999%;}
+#{$el}__meta p{ width: 49.999%;}
+#{$el}__search{ width: 32.999%;}
+
+#{$el}__meta p{
+  color: $color-gray;
+  font-size: $font-size-base;
+  font-family: $font-family-proxima-nova-regular;
+}
