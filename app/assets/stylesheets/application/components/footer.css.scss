@@ -1,5 +1,7 @@
 $el: '.footer';
 
+
+// логотип, текст и поисковая строка в футере
 #{$el}__logo, #{$el}__meta p, #{$el}__search{
   @include inline-block(middle);
 }
@@ -12,4 +14,23 @@ $el: '.footer';
   color: $color-gray;
   font-size: $font-size-base;
   font-family: $font-family-proxima-nova-regular;
+}
+
+// =====
+// один столбец пункта меню в футере
+#{$el}__menu__item{
+  @include inline-block(top);
+  width: 24.999%;
+
+  .link{ display: block; & + .link{ margin-left: 0; padding-left: 0; }}
+}
+
+
+// колонки под пункты меню и виджет соц.сети
+#{$el}__left-block, #{$el}__right-block{
+  @include inline-block(top);
+}
+
+#{$el}__left-block{
+  width: 66.999%;
 }
