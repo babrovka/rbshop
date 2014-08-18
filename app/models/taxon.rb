@@ -9,4 +9,9 @@ class Taxon < ActiveRecord::Base
   
   extend FriendlyId
   friendly_id :seo_url, use: :slugged
+  
+  enum taxon_type: [ :by_product_type, :by_care_type, :by_age ]
+  
+  scope :with_type, -> { where(taxon_type: nil) }
+  
 end
