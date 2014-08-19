@@ -2,6 +2,9 @@ $el: '.main-page';
 
 #{$el}{
   padding: 0 $grid-cutter;
+
+
+  h3{ margin: 1.4em 0 .7em; }
 }
 
 
@@ -11,18 +14,21 @@ $el: '.main-page';
 #{$el}__brand-info{
   $height: 130px;
 
+  @include unstyled-link;
+
   position: relative;
+  display: block;
   margin-bottom: $font-size-base;
   width: $container - 4*$grid-cutter - $grid-cutter;
 
   p, .link{ display: block; margin-left: 290px; line-height: 1.5; }
-  p{ color: $color-gray; padding-top: 15px; }
+  p{ color: $color-gray-d; padding-top: 15px; margin-bottom: .7em; }
 
   // особые стили для позиционирования брендов
   img{ float: left; }
   img#brand1{ padding-top: 20px; padding-left: 30px;}
   img#brand2{ padding-top: 20px; padding-left: 40px;}
-  img#brand3{ padding-top: 40px; padding-left: 20px;}
+  img#brand3{ padding-top: 30px; padding-left: 20px;}
 
 
   // область фона и стрелок слева справа у активного элемента

@@ -2,7 +2,7 @@ $el: '.footer';
 
 
 #{$el}{
-  margin-bottom: $font-size-base*3;
+  margin: $font-size-base*3 0;
 }
 
 // логотип, текст и поисковая строка в футере

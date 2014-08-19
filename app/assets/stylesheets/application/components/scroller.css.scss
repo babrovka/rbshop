@@ -17,7 +17,8 @@ $js-el: '.js-scroller';
 #{$el}{
   position: relative;
   overflow: hidden;
-  padding: 0 3*$grid-cutter;
+  padding: 0 $grid-cutter;
+  margin: 0 -$grid-cutter;
 }
 
 #{$el}__btn{

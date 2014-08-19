@@ -1,0 +1,22 @@
+footer.footer
+  hr
+  .footer__meta
+    = link_to root_path, class: 'footer__logo' do
+      = image_tag 'rbshop-logo.png', alt: 'интернет-магазин профессиональной косметики'
+    p Интернет-магазин профессиональной косметики Alissi bronte, Dr. Belter, Thalissi
+    .footer__search = render 'shared/search_form'
+  hr
+  .footer__left-block
+    = render 'shared/layouts/application/footer_menu'
+
+    .footer__payment
+      ' Мы принимаем к оплате
+      = image_tag 'payments.png', alt: 'способы оплаты'
+
+    .footer__contacts
+      p Служба поддержки, круглосуточно и без выходных
+      = link_to '8 800 100 20 30', 'tel:88001002030', class:'link'
+      = link_to 'Заказать обратный звонок', '#', class: 'link'
+
+  .footer__right-block
+    = render 'shared/vk_widget'
