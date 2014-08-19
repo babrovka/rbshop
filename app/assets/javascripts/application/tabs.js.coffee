@@ -1,9 +1,10 @@
 class window.app.Tab
   constructor: (el) ->
     @._init_elems(el)
-    @._enable_events()
-    @._init_state()
-    @
+    if @.$el.length
+      @._enable_events()
+      @._init_state()
+      @
 
   _init_elems: (el) ->
     @.$el = $(el)
