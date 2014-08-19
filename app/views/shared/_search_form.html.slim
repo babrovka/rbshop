@@ -1,5 +1,5 @@
 .search-form
-  = form_tag '/search' do
-    = text_field_tag :q, nil, placeholder: 'Поиск по каталогу красоты', autocomplete: false, autofocus: true
+  = form_tag '' do
+    = text_field_tag :q, nil, placeholder: 'Поиск по каталогу красоты', autocomplete: false, autofocus: true, disabled: :disabled
     = link_to '#', class: 'search-form__btn' do
       span.fa.fa-search

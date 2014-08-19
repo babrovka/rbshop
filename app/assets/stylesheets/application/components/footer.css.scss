@@ -1,14 +1,18 @@
 $el: '.footer';
 
 
+#{$el}{
+  margin-bottom: $font-size-base*3;
+}
+
 // логотип, текст и поисковая строка в футере
 #{$el}__logo, #{$el}__meta p, #{$el}__search{
   @include inline-block(middle);
 }
 
-#{$el}__logo{ width: 16.999%;}
-#{$el}__meta p{ width: 49.999%;}
-#{$el}__search{ width: 32.999%;}
+#{$el}__logo{ width: 185px;}
+#{$el}__meta p{ width: 555px;}
+#{$el}__search{ width: 410px;}
 
 #{$el}__meta p{
   color: $color-gray;
@@ -46,9 +50,8 @@ $el: '.footer';
   @include inline-block(top);
 }
 
-#{$el}__left-block{
-  width: 66.999%;
-}
+#{$el}__left-block{ width: 740px; }
+#{$el}__right-block{ width: 410px; padding-top: $font-size-base; }
 
 
 // блок с оплатой и иконками оплаты
@@ -56,7 +59,10 @@ $el: '.footer';
   color: $color-gray;
   font-family: $font-family-proxima-nova-regular;
   font-size: $font-size-base;
-  a{ @include unstyled-link; }
+  margin-top: $font-size-base*0.7;
+  margin-bottom: $font-size-base*1.4;
+
+  img{ vertical-align: middle; padding-left: 20px; margin-top: -4px;}
 }
 
 
@@ -65,4 +71,18 @@ $el: '.footer';
   color: $color-gray;
   font-family: $font-family-proxima-nova-regular;
   font-size: $font-size-base;
+
+  .link{ display: block;}
+  p{ margin-bottom: .4em; }
+
+  p + .link{
+    font-family: $font-family-proxima-nova-semibold;
+    font-size: 32px;
+    color: $color-asphalt;
+    margin-bottom: $font-size-base*0.7;
+  }
+
+  .link + .link{
+    padding-left: 0; margin-left: 0;
+  }
 }

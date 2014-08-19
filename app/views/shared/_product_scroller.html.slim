@@ -1,0 +1,6 @@
+- if collection
+  .scroller
+    .scroller__list.js-scroller
+      .products.m-scroller.js-scroller-container
+        - collection.limit(10).each do |product|
+          .products__item.js-scroller-item = render 'products/product', product: product

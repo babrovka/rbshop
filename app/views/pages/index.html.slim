@@ -9,7 +9,12 @@
 
 
 
+
+
 .main-page
+  h3 Новинки и акции
+  = render 'shared/product_scroller', collection: @extra_products
+
   h3 Бренды
 
   .main-page__brands
@@ -48,11 +53,7 @@ footer.footer
 
     .footer__payment
       ' Мы принимаем к оплате
-      = link_to nil, '#', class: 'icon-ya-dengi'
-      = link_to nil, '#', class: 'icon-qiwi'
-      = link_to nil, '#', class: 'icon-webmoney'
-      = link_to nil, '#', class: 'icon-visa'
-      = link_to nil, '#', class: 'icon-mastercard'
+      = image_tag 'payments.png', alt: 'способы оплаты'
 
     .footer__contacts
       p Служба поддержки, круглосуточно и без выходных
@@ -60,3 +61,4 @@ footer.footer
       = link_to 'Заказать обратный звонок', '#', class: 'link'
 
   .footer__right-block
+    = render 'shared/vk_widget'

@@ -5,6 +5,7 @@ $el: '.link';
   @include unstyled-link;
   color: $color-blue;
   font-size: $font-size-base;
+  font-family: $font-family-proxima-nova-regular;
   + #{$el}{ margin-left: 10px; }
 
   span + .fa,
