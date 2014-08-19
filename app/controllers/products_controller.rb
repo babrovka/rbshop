@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
   end
 
   def resource
-    @product ||= Product.where(id: params[:id]).first
+    @product ||= Product.friendly.find(params[:id])
   end
 
   def collection
