@@ -1,7 +1,7 @@
 $el: '.scroller';
 $js-el: '.js-scroller';
 
-
+@import "scroller/*.png";
 
 #{$js-el}{
   width: 100%;
@@ -17,22 +17,22 @@ $js-el: '.js-scroller';
 #{$el}{
   position: relative;
   overflow: hidden;
-  padding: 0 $grid-cutter;
-  margin: 0 -$grid-cutter;
+  padding: 0 $grid-cutter*1.5;
+  margin: 0 -$grid-cutter*1.5;
 }
 
 #{$el}__btn{
-  $height: 100px;
-  $width: 20px;
+  $height: 38px;
+  $width: 21px;
 
   display: block;
   width: $width;
   height: $height;
-  background: red;
 
   position: absolute;
 
   &.m-next, &.m-prev{ top: 50%; margin-top: -$height/2;}
-  &.m-next{ right: 0; }
-  &.m-prev{ left: 0; }
+  &.m-next { right: 0; @include scroller-sprite(arrow-right); }
+  &.m-prev{ left: 0; @include scroller-sprite(arrow-left);}
+
 }

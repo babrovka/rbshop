@@ -19,6 +19,7 @@ class window.app.Scroller
 
   _init_sizes: ->
     @.item_width = @.$items.eq(0).width()
+    @.el_width = @.$el.width()
     @.max_width = 0
     @.max_width = @.item_width * @.$items.length
     @.$container.width(@.max_width)
@@ -45,8 +46,10 @@ class window.app.Scroller
 
 
   scroll_next: (n=1) ->
+    max_offset = -@.max_width + @.el_width
     new_offset = @.$container.position().left - n*@.item_width
-    new_offset = @.max_width if new_offset <= -@.max_width
+    new_offset
+    new_offset = max_offset if new_offset <= max_offset
     @.set_new_offset(new_offset)
 
 
@@ -57,4 +60,4 @@ class window.app.Scroller
 
 
   set_new_offset: (offset) ->
-    @.$container.animate({left: offset}, 300)
+    @.$container.stop().animate({left: offset}, 600, 'swing')
