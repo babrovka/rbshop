@@ -5,8 +5,8 @@ class PagesController < ApplicationController
     @extra_products = Product.limit 10
   end
 
-  def product
-    render 'products/show'
+  def menu
+
   end
 
 end

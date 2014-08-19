@@ -1,6 +1,39 @@
 # -*- coding: utf-8 -*-
 # Configures your navigation
 SimpleNavigation::Configuration.run do |navigation|
+  navigation.auto_highlight = true
+  navigation.active_leaf_class = 'active-leaf'
+
+  navigation.items do |taxonomies|
+    taxonomies.dom_class = ''
+    Taxonomy.all.each do |taxonomy|
+      taxonomies.item "taxonomy-#{taxonomy.id}", taxonomy.title, '#' do |taxons|
+        taxons.dom_class = ''
+
+        taxons.item "taxon-type-by-age", 'by_age', '#'
+        taxonomy.taxons.by_age.roots.each do |taxon|
+          taxons.item "taxon-#{taxon.id}", taxon.title, '#'
+        end
+
+        taxons.item "taxon-type-by-care-type", 'by_care_type', '#'
+        taxonomy.taxons.by_care_type.roots.each do |taxon|
+          taxons.item "taxon-#{taxon.id}", taxon.title, '#'
+        end
+
+        taxons.item "taxon-type-by-product-type", 'by_product_type', '#'
+        taxonomy.taxons.by_product_type.roots.each do |taxon|
+          taxons.item "taxon-#{taxon.id}", taxon.title, taxon_seo_path(taxon) do |subtaxons|
+            subtaxons.dom_class = '_left-menu-second-level js-left-menu-node'
+            taxon.children.each do |subtaxon|
+              subtaxons.item "taxon-#{subtaxon.id}", subtaxon.title, taxon_seo_path(subtaxon), class: 'empty'
+            end
+          end
+        end
+
+
+      end
+    end
+  end
   # Specify a custom renderer if needed.
   # The default renderer is SimpleNavigation::Renderer::List which renders HTML lists.
   # The renderer can also be specified as option in the render_navigation call.
@@ -35,7 +68,7 @@ SimpleNavigation::Configuration.run do |navigation|
   # navigation.consider_item_names_as_safe = false
 
   # Define the primary navigation
-  navigation.items do |primary|
+  # navigation.items do |primary|
     # Add an item to the primary navigation. The following params apply:
     # key - a symbol which uniquely defines your navigation item in the scope of the primary_navigation
     # name - will be displayed in the rendered navigation. This can also be a call to your I18n-framework.
@@ -73,5 +106,5 @@ SimpleNavigation::Configuration.run do |navigation|
 
     # You can turn off auto highlighting for a specific level
     # primary.auto_highlight = false
-  end
+  # end
 end

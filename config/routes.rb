@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   end
 
   root 'pages#index'
+
+  get 'menu', to: 'pages#menu'
   
   # products
   resources :products, only: [:index]
