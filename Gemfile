@@ -61,3 +61,6 @@ gem 'faker'
 gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'has_scope'
+
+# Fast js animations
+gem 'velocityjs-rails'

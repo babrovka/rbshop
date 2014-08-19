@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require underscore
+//= require velocity
 //= require_self
 //= require_directory ./application
 

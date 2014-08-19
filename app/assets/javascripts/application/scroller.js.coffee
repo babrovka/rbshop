@@ -5,6 +5,8 @@ class window.app.Scroller
     item: '.js-scroller-item'
     next_btn: "<a href='#' class='scroller__btn m-next'></a>"
     prev_btn: "<a href='#' class='scroller__btn m-prev'></a>"
+    shadow_left: "<span class='scroller__shadow m-left'></span>"
+    shadow_right: "<span class='scroller__shadow m-right'></span>"
 
   constructor : () ->
     @.$el = $(@.params.el)
@@ -28,7 +30,9 @@ class window.app.Scroller
 
   _render_elems: ->
     @.$next_btn = $(@.params.next_btn).appendTo(@.$el)
+    $(@.params.shadow_right).appendTo(@.$el)
     @.$prev_btn = $(@.params.prev_btn).appendTo(@.$el)
+    $(@.params.shadow_left).appendTo(@.$el)
 
 
   _init_events: ->
@@ -60,4 +64,6 @@ class window.app.Scroller
 
 
   set_new_offset: (offset) ->
-    @.$container.stop().animate({left: offset}, 600, 'swing')
+#    @.$container.stop().animate({left: offset}, 600, 'swing')
+    @.$container.velocity('stop').velocity( { translateX : offset }, { easing: 'easeInOut', duration: 200 } )
+

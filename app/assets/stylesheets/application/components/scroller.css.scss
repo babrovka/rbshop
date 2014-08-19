@@ -3,6 +3,8 @@ $js-el: '.js-scroller';
 
 @import "scroller/*.png";
 
+$actions-width: $grid-cutter*1.5;
+
 #{$js-el}{
   width: 100%;
   overflow: hidden;
@@ -17,10 +19,12 @@ $js-el: '.js-scroller';
 #{$el}{
   position: relative;
   overflow: hidden;
-  padding: 0 $grid-cutter*1.5;
-  margin: 0 -$grid-cutter*1.5;
+  padding: 0 $actions-width;
+  margin: 0 -$actions-width;
 }
 
+
+// кнопки ВЛЕВО и ВПРАВО
 #{$el}__btn{
   $height: 38px;
   $width: 21px;
@@ -30,9 +34,30 @@ $js-el: '.js-scroller';
   height: $height;
 
   position: absolute;
+  z-index: 99;
 
   &.m-next, &.m-prev{ top: 50%; margin-top: -$height/2;}
   &.m-next { right: 0; @include scroller-sprite(arrow-right); }
   &.m-prev{ left: 0; @include scroller-sprite(arrow-left);}
+}
 
+
+// тень наступающая на карточки в скроллере
+#{$el}__shadow{
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: $actions-width/2;
+  background: red;
+  top: 0;
+  z-index: 90;
+
+  &.m-left{
+    left: $actions-width;
+    @include background( linear-gradient(left, #fff, transparent) );
+  }
+  &.m-right{
+    right: $actions-width;
+    @include background(linear-gradient(right, #fff, transparent));
+  }
 }
