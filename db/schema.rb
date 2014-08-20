@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820072542) do
+ActiveRecord::Schema.define(version: 20140820080817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -324,6 +324,7 @@ ActiveRecord::Schema.define(version: 20140820072542) do
     t.string   "sku"
     t.integer  "price"
     t.integer  "new_price"
+    t.string   "applying"
   end
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
@@ -355,6 +356,20 @@ ActiveRecord::Schema.define(version: 20140820072542) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "related_products", id: false, force: true do |t|
+    t.integer  "product_id"
+    t.integer  "related_product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "same_taxon_products", id: false, force: true do |t|
+    t.integer  "product_id"
+    t.integer  "same_product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "seo_data", force: true do |t|
