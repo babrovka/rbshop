@@ -1,0 +1,14 @@
+ru:
+  activerecord:
+    attributes:
+      order:
+        id: номер
+        created_at: создан
+        updated_at: изменен
+        user_id: клиент
+        name: имя
+        email: email
+        phone: телефон
+        city: город
+        address: адрес
+        comment: комментарий
