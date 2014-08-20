@@ -19,5 +19,27 @@ module Rbshop
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ru
+    
+    mail_conf_path = 'config/mail.yml'
+    mail_config = File.exists?(mail_conf_path) ? YAML::load_file(mail_conf_path).symbolize_keys : {}
+    
+    config.action_mailer.default_url_options = { host: "krasivopodano.ru" }
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = mail_config
+    
+    # config.action_mailer.default_url_options = { host: "krasivopodano.ru" }
+    # config.action_mailer.delivery_method = :smtp
+    # 
+    # config.action_mailer.smtp_settings = {
+    #   address:        "smtp.locum.ru",
+    #   port:           25, 
+    #   domain:         "locum.ru",
+    #   authentication: "login",
+    #   user_name:      "iam@babrovka.ru",
+    #   password:       "111715",
+    #   enable_starttls_auto: false,
+    #   openssl_verify_mode: false 
+    # }
+    
   end
 end
