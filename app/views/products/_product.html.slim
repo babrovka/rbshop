@@ -19,8 +19,7 @@
     .card__price.m-new
       .price = product.price_dealer1
     .card__price.m-old = product.price_professional
-    = link_to '#', class: 'btn m-primary card__to-cart' do
-      span.fa.fa-shopping-cart
-      span В корзину
+
+    = add_to_cart_btn product
     /= link_to 'добавить к сравнению', '#', class: 'link m-dashed card__compare'
 

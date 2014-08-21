@@ -18,6 +18,19 @@ class Cart < ActiveRecord::Base
   end
   
   def total_price
-    line_items.to_a.sum { |item| item.total_price }
+    self.line_items.to_a.sum { |item| item.total_price }
   end
+
+  # кол-во всех единиц продукции с учетом того, что некоторых добавлено по 2-3 штуки
+  def product_count
+    self.line_items.to_a.sum { |item| item.quantity }
+  end
+
+  # кол-во уникальных товаров в корзине, будто каждых только по 1 штуке
+  def items_count
+    self.line_items.try(:count) || 0
+  end
+
+
+
 end

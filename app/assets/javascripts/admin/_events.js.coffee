@@ -8,3 +8,4 @@ $ ->
   ).on('mouseleave', ->
     $(@).closest('.js-item-row').find('.js-item-row-btns').animate({opacity: 0.1}, 50)
   )
+
