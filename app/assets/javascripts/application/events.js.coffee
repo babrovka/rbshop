@@ -21,3 +21,10 @@ $ ->
 
     $target.val(current_val)
   )
+
+
+  # кнопка автоматически подтверждает форму внутри которой она находится
+  $(document).on('click', '.js-form-submitter', (e)->
+    e.preventDefault()
+    $(@).closest('form').submit()
+  )
