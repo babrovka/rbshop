@@ -21,8 +21,16 @@ $el: '.main-page';
   margin-bottom: $font-size-base;
   width: $container - 4*$grid-cutter - $grid-cutter;
 
-  p, .link{ display: block; margin-left: 290px; line-height: 1.5; }
-  p{ color: $color-gray-d; padding-top: 15px; margin-bottom: .7em; }
+  p{
+    color: $color-gray-d;
+    display: block;
+    padding-top: 15px;
+    margin-bottom: .7em;
+    margin-left: 290px;
+    line-height: 1.5;
+
+    .link { padding-top: .5em; }
+  }
 
   // особые стили для позиционирования брендов
   img{ float: left; }
