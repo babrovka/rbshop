@@ -20,7 +20,8 @@ $actions-width: $grid-cutter*1.5;
   position: relative;
   overflow: hidden;
   padding: 0 $actions-width;
-  margin: 0 -$actions-width;
+  margin-left: -$actions-width;
+  margin-right: -$actions-width;
 }
 
 
