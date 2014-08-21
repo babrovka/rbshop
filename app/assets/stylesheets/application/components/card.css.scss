@@ -148,10 +148,11 @@ $active-inset: $inset-offset-vert + $tap-vert $inset-offset-hor + $tap-hor;
 
     // что-то скрываем,что-то показываем
     #{$el}__to-cart, #{$el}__compare { display: inherit; }
-    small,
-    hr,
+
     #{$el}__rating,
-    #{$el}__price{ display: none; }
+    #{$el}__price,
+    small,
+    hr{ display: none; }
 
     // у футера меняем отступы в соответствии с отступами активной карточки
     // т.к.он равняется по границам карточки

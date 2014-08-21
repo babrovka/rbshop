@@ -6,7 +6,6 @@ $ ->
   # работа счетчика.
   # инпут с кнопками «больше» и «меньше»
   $('.js-counter a').on('click', (e) ->
-    console.log 'aaa'
     e.preventDefault()
     $link = $(@)
     $target = $link.closest('.js-counter').find('input')
@@ -23,8 +22,18 @@ $ ->
   )
 
 
-  # кнопка автоматически подтверждает форму внутри которой она находится
+  # клик по ссылке автоматически подтверждает форму
+  # может быть две схемы работы
+  # 1. ссылка внутри формы
+  # 2. ссылка где-то рядом с формой в dom
   $(document).on('click', '.js-form-submitter', (e)->
     e.preventDefault()
-    $(@).closest('form').submit()
+    $form = $(@).closest('form')
+    if $form.length
+      $form.submit()
+      return
+    else
+      $form = $(@).parent().find('.js-form-submitting')
+      $form.submit()
+      return
   )

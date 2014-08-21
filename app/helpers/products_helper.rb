@@ -11,12 +11,12 @@ module ProductsHelper
 
   # кнопка добавить в корзину
   # сложная структура и поэтому вынесена в хэлпер
-  def add_to_cart_btn(product)
-    form_tag(line_items_path(product_id: product.id), remote: true, class: 'inline' ) do
-      link_to('#', class: 'btn m-primary js-form-submitter') do
-        content_tag(:span, nil, class: 'fa fa-shopping-cart') +
-        content_tag(:span, 'в корзину')
-      end.html_safe
+  def add_to_cart_btn(product, extra_css=nil)
+    link_to('#', class: "btn m-primary js-form-submitter #{extra_css}") do
+      content_tag(:span, nil, class: 'fa fa-shopping-cart') +
+      content_tag(:span, 'в корзину')
+    end.html_safe +
+    form_tag(line_items_path(product_id: product.id), remote: true, class: 'hidden js-form-submitting' ) do
     end
   end
 
