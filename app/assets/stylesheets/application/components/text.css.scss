@@ -1,3 +1,11 @@
 .text-right{ text-align: right; }
 
 .text-orange{ color: $color-orange; }
+
+.text-phone{
+  @include unstyled-link;
+  font-family: $font-family-proxima-nova-semibold;
+  color: $color-asphalt;
+  font-size: 32px;
+  letter-spacing: -1px;
+}

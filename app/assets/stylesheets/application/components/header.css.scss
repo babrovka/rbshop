@@ -75,8 +75,7 @@ $height: 100px;
 
   #{$el}__links,
   #{$el}__contacts{
-    &,
-    .link,
-    #{$el}__contacts__phone{ color: white };
+    &, #{$el}__contacts__phone{ color: white };
+    .link{ @include link-variant(white)}
   }
 }

@@ -27,11 +27,7 @@ $el: '.footer';
   width: 24.999%;
 
   // ссылки идущие одна под другой
-  .link{
-    display: block;
-    margin-bottom: 1em;
-    & + .link{ margin-left: 0; padding-left: 0; }
-  }
+  li{ display: block; margin-bottom: 1em; }
 }
 
 #{$el}__menu__header{
@@ -72,17 +68,6 @@ $el: '.footer';
   font-family: $font-family-proxima-nova-regular;
   font-size: $font-size-base;
 
-  .link{ display: block;}
   p{ margin-bottom: .4em; }
-
-  p + .link{
-    font-family: $font-family-proxima-nova-semibold;
-    font-size: 32px;
-    color: $color-asphalt;
-    margin-bottom: $font-size-base*0.7;
-  }
-
-  .link + .link{
-    padding-left: 0; margin-left: 0;
-  }
+  .link{ margin-top: 0.7em; }
 }

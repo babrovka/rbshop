@@ -15,3 +15,16 @@
   border: 1px solid darken($color-bottom, 5%);
   color: $txt-color;
 }
+
+
+@mixin link-variant($color, $active-color: mix(#000, $color, 10)){
+  @include inline-block(top);
+  @include unstyled-link;
+  color: $color;
+  border-bottom: 1px solid $color;
+
+  &:active, &:focus, &:hover, &.m-active{
+    color: $active-color;
+    border-color: $active-color;
+  }
+}
