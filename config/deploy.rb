@@ -30,6 +30,11 @@ task :copy_secret_config do
    run "cp #{db_config} #{latest_release}/config/secrets.yml"
 end
 
+task :copy_mail_config do
+   db_config = "#{shared_path}/mail.yml"
+   run "cp #{db_config} #{latest_release}/config/mail.yml"
+end
+
 task :public_system_symlink do
    run "rm -rf -- #{latest_release}/public/system && ln -s -- /shared_images #{latest_release}/public/system"
 end
@@ -75,4 +80,5 @@ end
 
 before "deploy:assets:precompile", "copy_database_config"
 after "copy_database_config", "copy_secret_config"
-after "copy_secret_config", "public_system_symlink"
+after "copy_secret_config", "copy_mail_config"
+after "copy_mail_config", "public_system_symlink"

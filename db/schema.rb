@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818143315) do
+ActiveRecord::Schema.define(version: 20140821071345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -324,6 +324,7 @@ ActiveRecord::Schema.define(version: 20140818143315) do
     t.string   "sku"
     t.integer  "price"
     t.integer  "new_price"
+    t.string   "applying"
   end
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
@@ -357,6 +358,20 @@ ActiveRecord::Schema.define(version: 20140818143315) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "related_products", id: false, force: true do |t|
+    t.integer  "product_id"
+    t.integer  "related_product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "same_taxon_products", id: false, force: true do |t|
+    t.integer  "product_id"
+    t.integer  "same_product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "seo_data", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -364,6 +379,33 @@ ActiveRecord::Schema.define(version: 20140818143315) do
     t.string   "page"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "shop_carts", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shop_line_items", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.integer  "order_id"
+    t.integer  "quantity",   default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shop_orders", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "city"
+    t.string   "address"
+    t.text     "comment"
   end
 
   create_table "shop_product_taxons", force: true do |t|
@@ -397,7 +439,7 @@ ActiveRecord::Schema.define(version: 20140818143315) do
     t.string   "seo_url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "taxon_type"
+    t.integer  "taxon_type",      default: 0
   end
 
   create_table "stage_images", force: true do |t|

@@ -8,7 +8,27 @@ Rails.application.routes.draw do
     get '/' => 'products#index', :as => :root
     resources :products, :taxons, :taxonomies, except: [:show]
   end
-
+  
+  
+  
+  # управляем товарами в корзине
+  resources :line_items, only: [:create, :destroy] do
+    member do 
+      get 'increase'
+      get 'decrease'
+    end
+  end
+  
+  # смотрим корзину
+  get '/cart' => 'checkout#cart', :as => :cart
+  
+  # заполняем форму для оформления заказа
+  get '/checkout' => 'checkout#checkout', :as => :checkout
+  
+  # создаем заказ
+  get '/order' => 'checkout#order', :as => :order
+  
+  # главная страница
   root 'pages#index'
 
   get 'menu', to: 'pages#menu'
