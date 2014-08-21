@@ -1,5 +1,5 @@
-.cart
-  .cart__txt
+.cart-widget
+  .cart-widget__txt
     p в корзине
-    = link_to "#{current_cart.product_count} товаров", cart_path
-  .cart__img
+    = link_to "#{current_cart.product_count} товаров", cart_path, class: 'link'
+  .cart-widget__img

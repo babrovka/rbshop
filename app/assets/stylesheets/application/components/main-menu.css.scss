@@ -1,8 +1,18 @@
 $el: '.main-menu';
 
 #{$el}{
-  height: 50px;
+  @include box-shadow(0 16px 30px -25px);
+  height: 55px;
   width: $container;
   margin-left: -$grid-cutter;
-  background: white;
+  margin-bottom: 30px;
+  background: #f2f2f2;
+
 }
+
+#{$el}__left, #{$el}__right{
+  @include inline-block(middle);
+}
+
+#{$el}__left { width: 84.999%; }
+#{$el}__right{ width: 14.999%; padding-top: 10px; }

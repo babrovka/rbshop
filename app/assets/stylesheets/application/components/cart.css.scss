@@ -1,0 +1,12 @@
+$el: '.cart-widget';
+
+#{$el}{
+  font-family: $font-family-proxima-nova-semibold;
+}
+
+#{$el}__txt {
+  .link {
+    @include link-variant($color-green-d);
+    font-family: $font-family-proxima-nova-semibold;
+  }
+}
