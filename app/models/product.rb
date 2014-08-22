@@ -18,4 +18,12 @@ class Product < ActiveRecord::Base
   
   extend FriendlyId
   friendly_id :short_description, use: :slugged
+  
+  def current_price
+    if new_price
+      new_price
+    else
+      price
+    end
+  end
 end
