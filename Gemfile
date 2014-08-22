@@ -18,7 +18,6 @@ gem 'awesome_nested_set'
 group :development do
   # Automatically adds annotations to models
   gem 'annotate'
-  gem 'populator'
 end
 
 group :test do
@@ -64,3 +63,5 @@ gem 'has_scope'
 
 # Fast js animations
 gem 'velocityjs-rails'
+
+gem 'populator'
