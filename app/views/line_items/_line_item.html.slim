@@ -1,27 +1,29 @@
 - product = line_item.product
-tr.cart-table-card id="line-item-#{line_item.id}"
-  td
-    = link_to product_path(product), class: 'card__img' do
-      - if product.product_images.any?
-        = image_tag product.product_images.first.image.url(:catalog)
-      - else
-        = image_tag 'noimage.png'
+td
+  = link_to product_path(product), class: 'card__img' do
+    - if product.product_images.any?
+      = image_tag product.product_images.first.image.url(:catalog)
+    - else
+      = image_tag 'noimage.png'
 
-  td
-    h3 = link_to product.title, product_path(product)
-    p = product.short_description.truncate(50)
-    small = "объем: #{product.packing}"
+td
+  h3 = link_to product.title, product_path(product)
+  p = product.short_description.truncate(50)
+  small = "объем: #{product.packing}"
+  h5
+    ' Код товара:
+    = product.sku || '—'
 
-  td
-    .counter.js-counter
-      = text_field_tag :count, line_item.quantity, size: 3, maxlength: 3
-      = link_to '+', increase_line_item_path(line_item), class: 'counter__btn m-up js-counter-up', remote: true
-      = link_to '-', decrease_line_item_path(line_item), class: 'counter__btn m-down js-counter-down', remote: true
+td
+  .counter.js-counter
+    = text_field_tag :count, line_item.quantity, size: 3, maxlength: 3
+    = link_to '+', increase_line_item_path(line_item), class: 'counter__btn m-up js-counter-up', remote: true
+    = link_to '-', decrease_line_item_path(line_item), class: 'counter__btn m-down js-counter-down', remote: true
 
-  td
-    .price = product.price
-  td
-    .price = line_item.total_price
-  td
-    = link_to line_item_path(line_item), class: 'link m-red cart-table-card__remove-btn', remote: true, method: :delete do
-      span.fa.fa-times
+td
+  .price = product.price
+td
+  .price = line_item.total_price
+td
+  = link_to line_item_path(line_item), class: 'link m-red cart-table-card__remove-btn', remote: true, method: :delete do
+    span.fa.fa-times

@@ -1,2 +1,3 @@
-<%- element_id = "#line-item-#{@line_item.id}" %>
+<%= render 'checkout/update_cart' %>
+<%- element_id = "#js-line-item-#{@line_item.id}" %>
 $('<%= element_id %>').remove();

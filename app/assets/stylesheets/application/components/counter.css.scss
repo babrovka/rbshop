@@ -38,8 +38,15 @@ $size: 40px;
 
   position: absolute;
   right: 0;
-  &.m-up{ top: 0; }
-  &.m-down{ bottom: 0; }
-
   &:hover{ background: darken($color-gray, 10%); }
+
+  &.m-up{
+    top: 0;
+    &:hover { background: $color-green-d; }
+  }
+  &.m-down{
+    bottom: 0;
+    &:hover { background: $color-orange; }
+  }
+
 }

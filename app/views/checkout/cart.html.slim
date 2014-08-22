@@ -12,6 +12,8 @@
         th отменить
 
     tbody
-      = render current_cart.items
+      - current_cart.items.each do |line_item|
+        tr.cart-table-card id="js-line-item-#{line_item.id}"
+          = render 'line_items/line_item', line_item: line_item
 
 

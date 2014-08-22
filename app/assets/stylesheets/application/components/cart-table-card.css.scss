@@ -1,5 +1,7 @@
 $el: '.cart-table-card';
 
+
+// строка в таблице с товарами в корзине
 #{$el}{
   img{
     max-width: 128px;
@@ -15,13 +17,22 @@ $el: '.cart-table-card';
     a{ @include link-variant($color-asphalt); border-color: transparent; }
   }
 
-  p{ margin-bottom: 10px; }
+  h5{
+    font-family: $font-family-proxima-nova-semibold;
+    color: $color-gray;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  p{ margin-bottom: 10px; line-height: 1.5}
 
   small {
     font-family: $font-family-proxima-nova-semibold;
+    color: $color-gray-d;
+    margin-bottom: $font-size-base;
+    display: block;
     font-size: 11px;
     text-transform: uppercase;
-    color: $color-gray;
   }
 
 }

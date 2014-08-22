@@ -4,6 +4,7 @@ $cell-padding: 20px;
 
 #{$el}{
   margin-top: 30px;
+  width: 100%;
 
   th, td{ @include reset-table-cell; }
 
