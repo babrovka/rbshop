@@ -1,0 +1,8 @@
+$el: '.page';
+
+#{$el}{
+  @include reset-float;
+}
+#{$el}__right{
+  @include float-right;
+}
