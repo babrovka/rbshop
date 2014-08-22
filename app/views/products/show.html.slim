@@ -13,7 +13,7 @@
 
     .product__action
       .counter.js-counter
-        = text_field_tag :count, 0, size: 3, maxlength: 3
+        = text_field_tag :count, 1, size: 3, maxlength: 3
         = link_to '+', '#', class: 'counter__btn m-up js-counter-up'
         = link_to '-', '#', class: 'counter__btn m-down js-counter-down'
       = add_to_cart_btn resource

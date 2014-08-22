@@ -1,0 +1,26 @@
+$el: '.cart-table-card';
+
+#{$el}{
+  img{
+    max-width: 128px;
+    max-height: 128px;
+    width: auto;
+    height: auto;
+    border: 1px solid $color-gray;
+  }
+
+  h3{
+    font-family: $font-family-proxima-nova-bold;
+    font-size: 18px;
+    a{ @include link-variant($color-asphalt); border-color: transparent; }
+  }
+
+  p{ margin-bottom: 10px; }
+
+  small {
+    font-family: $font-family-proxima-nova-semibold;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: $color-gray;
+  }
+}

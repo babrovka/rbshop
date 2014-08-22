@@ -1,0 +1,43 @@
+.page
+  h3 Корзина
+
+  table.cart-table
+    thead
+      tr
+        th наименование
+        th
+        th количество
+        th цена
+        th сумма
+        th отменить
+
+    tbody
+      - current_cart.line_items.each do |line_item|
+        - product = line_item.product
+        tr.cart-table-card
+          td
+            = link_to product_path(product), class: 'card__img' do
+              - if product.product_images.any?
+                = image_tag product.product_images.first.image.url(:catalog)
+              - else
+                = image_tag 'noimage.png'
+
+          td
+            h3 = link_to product.title, product_path(product)
+            p = product.short_description.truncate(50)
+            small = "объем: #{product.packing}"
+
+          td
+            .counter.js-counter
+              = text_field_tag :count, line_item.quantity, size: 3, maxlength: 3
+              = link_to '+', '#', class: 'counter__btn m-up js-counter-up'
+              = link_to '-', '#', class: 'counter__btn m-down js-counter-down'
+
+          td
+            .price = product.price
+          td
+            .price = line_item.total_price
+          td
+            = link_to '#', class: 'link m-red' do
+              span.fa.fa-times
+

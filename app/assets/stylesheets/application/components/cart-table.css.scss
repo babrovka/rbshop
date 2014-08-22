@@ -1,0 +1,30 @@
+$el: '.cart-table';
+
+$cell-padding: 20px;
+
+#{$el}{
+  margin-top: 30px;
+
+  th, td{ @include reset-table-cell; }
+
+  th{
+    font-family: $font-family-proxima-nova-regular;
+    color: $color-gray;
+    font-size: 12px;
+    font-weight: 100;
+    text-align: left;
+    text-transform: uppercase;
+    padding: $cell-padding $cell-padding $cell-padding/2;
+
+    &:first-child{ padding-left: 0; }
+  }
+
+  td{
+    border-top: 1px solid $color-red;
+  }
+
+  td{
+    padding: $cell-padding;
+    &:first-child{ padding-left: 0; }
+  }
+}
