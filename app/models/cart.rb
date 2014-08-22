@@ -6,7 +6,8 @@ class Cart < ActiveRecord::Base
   # belongs_to :user
   has_many :line_items, dependent: :destroy
   accepts_nested_attributes_for :line_items, allow_destroy: true
-  
+
+
   def add_product(product_id)
     current_item = line_items.find_by_product_id(product_id)
     if current_item
@@ -18,19 +19,22 @@ class Cart < ActiveRecord::Base
   end
   
   def total_price
-    self.line_items.to_a.sum { |item| item.total_price }
+    line_items.to_a.sum { |item| item.total_price }
   end
 
   # кол-во всех единиц продукции с учетом того, что некоторых добавлено по 2-3 штуки
   def product_count
-    self.line_items.to_a.sum { |item| item.quantity }
+    line_items.to_a.sum { |item| item.quantity }
   end
 
   # кол-во уникальных товаров в корзине, будто каждых только по 1 штуке
   def items_count
-    self.line_items.try(:count) || 0
+    line_items.try(:count) || 0
   end
 
+  def items
+    line_items.order('created_at DESC')
+  end
 
 
 end

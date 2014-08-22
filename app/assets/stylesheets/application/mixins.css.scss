@@ -28,3 +28,7 @@
     border-color: $active-color;
   }
 }
+
+@mixin link-without-border{
+  &, &:active, &:focus, &:hover, &.m-active{ border-color: transparent; }
+}

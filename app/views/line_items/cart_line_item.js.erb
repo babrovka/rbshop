@@ -1,0 +1,2 @@
+<%- element_id = "#line-item-#{@line_item.id}" %>
+$('<%= element_id %>').html("<%= j render 'line_items/line_item', line_item: @line_item %>").effect('highlight');

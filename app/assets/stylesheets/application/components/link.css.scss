@@ -17,3 +17,8 @@ $el: '.link';
 }
 
 
+#{$el}.m-red{
+  @include link-variant($color-red);
+  @include link-without-border;
+}
+

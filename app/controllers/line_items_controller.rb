@@ -14,25 +14,37 @@ class LineItemsController < ApplicationController
   
   # удаляем товар из корзины
   def destroy
-    line_item = LineItem.find(params[:id])
-    line_item.destroy
+    @line_item = LineItem.find(params[:id])
+    @line_item.destroy
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render layout: false }
+    end
   end
 
   # увеличиваем кол-во товаров
   def increase 
-    line_item = LineItem.find(params[:id])
-    line_item.quantity += 1
-    line_item.save
+    @line_item = LineItem.find(params[:id])
+    @line_item.quantity += 1
+    @line_item.save
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'cart_line_item', layout: false }
+    end
   end
   
   # уменьшаем кол-во товаров
   def decrease 
-    line_item = LineItem.find(params[:id])
-    if line_item.quantity <= 1
-      destroy
+    @line_item = LineItem.find(params[:id])
+    if @line_item.quantity <= 1
+      @line_item.quantity = 1
     else
-      line_item.quantity -= 1
-      line_item.save
+      @line_item.quantity -= 1
+      @line_item.save
+    end
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js { render 'cart_line_item', layout: false }
     end
   end
   

@@ -23,4 +23,9 @@ $el: '.cart-table-card';
     text-transform: uppercase;
     color: $color-gray;
   }
+
+}
+
+#{$el}__remove-btn{
+  font-size: 20px;
 }
