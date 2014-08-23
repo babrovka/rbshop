@@ -1,6 +1,6 @@
 .page
   h3 Контактная информация
-  = form_for @order, url: order_path, html: { class: 'checkout-form' } do |f|
+  = form_for @order, url: order_path, html: { class: 'checkout-form js-checkout-form' } do |f|
     .checkout-form__row
       = f.label :name
       = f.text_field :name, size: 23
@@ -24,7 +24,7 @@
         | улица, дом и номер помещения/квартиры
 
     .checkout-form__row.m-checkout
-      = link_to '#', class: 'btn m-primary' do
+      = link_to '#', class: 'btn m-disactive' do
         span.fa.fa-check
         span Все готово, можно отправлять
       .checkout-form__help

@@ -13,9 +13,13 @@
     padding-left: .6em;
   }
 
-  &.m-primary{
+  &.m-primary, &.m-active{
     @include button-variant(white, $color-orange-d);
     &:hover{ @include button-variant(white, darken($color-orange-d, 3%) ); }
+  }
+
+  &.m-disactive{
+    @include button-variant(white, $color-gray);
   }
 }
 
