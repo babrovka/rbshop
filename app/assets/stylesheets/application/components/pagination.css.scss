@@ -1,0 +1,29 @@
+$el: '.pagination';
+
+#{$el}{
+  @include inline-block(middle);
+  font-family: $font-family-proxima-nova-semibold;
+  color: $color-asphalt;
+
+  .page, .last, .next, .prev, .first{
+    @include inline-block(middle);
+    color: $color-gray;
+    margin-left: 1em;
+
+    a {
+      @include unstyled-link;
+      @include link-variant($color-gray);
+      @include link-without-border;
+      @include inline-block(middle);
+    }
+
+    &.current{
+      @include border-radius(50%);
+      background: $color-red;
+      color: white;
+      width: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+  }
+}

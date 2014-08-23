@@ -26,5 +26,19 @@ $el: '.page';
     font-size: 16px;
     width: 580px;
   }
+
+  // встречаются на странице списка продукта
+  .m-product-list{
+    margin-top: $font-size-base*2;
+
+    small{
+      @include inline-block(middle);
+      font-family: $font-family-proxima-nova-semibold;
+      color: $color-asphalt;
+      margin-right: $font-size-base*2;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+  }
 }
 

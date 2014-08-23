@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     @meta_description = selected_taxonomy.try(:seo_description) || ''
     @seo_text = selected_taxonomy.try(:seo_text) || ''
     session[:taxon_id] = nil
-    render :template => "/products/index"
+    render :template => '/products/index'
   end
   
   def taxon
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
     @title = selected_taxon.seo_title
     @meta_description = selected_taxon.try(:seo_description) || ''
     @seo_text = selected_taxon.try(:seo_text) || ''
-    render :template => "/products/index"
+    render :template => '/products/index'
   end
 
   def resource
@@ -35,14 +35,11 @@ class ProductsController < ApplicationController
   end
 
   def collection
-    @collection ||= Product.order('title ASC').limit(20)
+    @products ||= Product.where(brand_id: params[:brand_ids]).page(params[:page]).per(20)
   end
   
   private
 
-  def selected_brands
-    @selected_brands ||= Brand.where(id: params[:brand_ids])
-  end
   
   def selected_taxon
     @selected_taxon ||= @taxon ||  Taxon.find(params[:id])
