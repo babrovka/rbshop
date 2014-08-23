@@ -10,7 +10,7 @@ html
       = render 'shared/layouts/application/header'
       .main-menu
         .main-menu__left
-          /= render_navigation context: :main, expand_all: true
+          = render_navigation context: :main, expand_all: true
         .main-menu__right.js-main-menu-cart-widget = render 'shared/layouts/application/shopping_cart'
 
 
