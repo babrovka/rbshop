@@ -6,9 +6,9 @@ ru:
         created_at: создан
         updated_at: изменен
         user_id: клиент
-        name: имя
-        email: email
+        name: ваше имя
+        email: эл. почта
         phone: телефон
         city: город
-        address: адрес
+        address: адрес доставки
         comment: комментарий

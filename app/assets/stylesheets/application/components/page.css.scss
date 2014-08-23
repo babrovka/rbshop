@@ -3,7 +3,11 @@ $el: '.page';
 #{$el}{
   @include reset-float;
   overflow: hidden;
+
+  > h1, > h2, > h3, > h4{ margin-bottom: 1em; }
 }
+
+
 #{$el}__right{ @include float-right; }
 #{$el}__left{ @include float-left; }
 

@@ -3,7 +3,7 @@
   span.cart-checkout__total-price.price = current_cart.total_price
 
   .cart-checkout__btn
-    = link_to '#', class: 'btn m-primary' do
+    = link_to checkout_path, class: 'btn m-primary' do
       span.fa.fa-check
       span Оформить заказ в один клик
 

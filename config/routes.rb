@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get '/checkout' => 'checkout#checkout', :as => :checkout
   
   # создаем заказ
-  get '/order' => 'checkout#order', :as => :order
+  post '/order' => 'checkout#order', :as => :order
   
   # главная страница
   root 'pages#index'
