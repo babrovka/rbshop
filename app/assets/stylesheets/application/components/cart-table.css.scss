@@ -20,8 +20,8 @@ $cell-padding: 20px;
     &:first-child{ padding-left: 0; }
   }
 
-  td{
-    border-top: 1px solid $color-red;
+  td, th{
+    border-bottom: 1px solid $color-red;
   }
 
   td{

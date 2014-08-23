@@ -17,6 +17,7 @@
           = render 'line_items/line_item', line_item: line_item
 
 
-
-  .page__right = render 'cart_checkout'
+  .page__left.m-page-cart-checkout-txt
+    | Будьте внимательны! Сейчас оплата возможна только наличными деньгамии в пределах Санкт-Петербурга
+  .page__right.m-page-cart-checkout = render 'cart_checkout'
 

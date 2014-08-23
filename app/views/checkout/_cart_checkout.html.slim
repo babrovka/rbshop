@@ -1,10 +1,10 @@
 .cart-checkout
-  p Итого к оплате
+  small Итого к оплате:
   span.cart-checkout__total-price.price = current_cart.total_price
 
   .cart-checkout__btn
     = link_to '#', class: 'btn m-primary' do
-      span.fa.fa-times
+      span.fa.fa-check
       span Оформить заказ в один клик
 
-  small От вас потребуется указать только контакнтные данные и заказ готов
+  em От вас потребуется указать только контактные данные и заказ готов

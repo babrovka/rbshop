@@ -2,7 +2,25 @@ $el: '.page';
 
 #{$el}{
   @include reset-float;
+  overflow: hidden;
 }
-#{$el}__right{
-  @include float-right;
+#{$el}__right{ @include float-right; }
+#{$el}__left{ @include float-left; }
+
+
+// определенные модификаторы, для специальных страниц
+#{$el} {
+
+  // встречается на сранице корзины у блоков общей стоимости
+  .m-page-cart-checkout{
+    margin-top: 2*$font-size-base;
+  }
+  .m-page-cart-checkout-txt{
+    color: $color-gray;
+    margin-top: 2*$font-size-base + 4px;
+    font-style: italic;
+    font-size: 16px;
+    width: 580px;
+  }
 }
+
