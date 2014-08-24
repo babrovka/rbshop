@@ -1,0 +1,16 @@
+$el: '.price';
+
+// fonts icon with FontAwesome
+@mixin fa-icon($icon-code, $size: $base-font-size) {
+  &:after {
+    font-family: FontAwesome;
+    font-size: $size;
+    content: $icon-code;
+  }
+}
+
+#{$el}{
+  @include fa-icon('\f158', 0.9em);
+  line-height: 1;
+  &:after{ padding-left: .5em; }
+}

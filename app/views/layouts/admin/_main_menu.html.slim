@@ -15,6 +15,15 @@ nav.navbar.navbar-default role="navigation"
           li = link_to 'список товаров', admin_products_path
 
 
+      li.dropdown
+        = link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+          | категоризатор
+          span.caret
+        ul.dropdown-menu
+          li = link_to 'список таксономий', admin_taxonomies_path
+          li = link_to 'список таксонов', admin_taxons_path
+
+
     ul.nav.navbar-nav.navbar-right
       li
         = link_to destroy_admin_session_path do
