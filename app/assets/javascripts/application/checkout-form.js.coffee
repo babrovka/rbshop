@@ -19,8 +19,10 @@ $ ->
 
     console.log "#{name.length} #{email.length} #{phone.length} #{address.length}"
 
-    if name.length >= 2 && email >= 5 && phone >= 7 && address >= 2
+    if name.length >= 2 && email.length >= 5 && phone.length >= 7 && address.length >= 2
+      console.log 'yes'
       $link.removeClass('m-disactive').addClass('m-active') if $link.hasClass('m-disactive')
     else
+      console.log 'no'
       $link.removeClass('m-active').addClass('m-disactive')
   )
