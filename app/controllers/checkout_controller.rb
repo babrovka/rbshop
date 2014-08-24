@@ -13,7 +13,7 @@ class CheckoutController < ApplicationController
   end
   
   def order
-    @order = Order.create(params[:order])
+    @order = Order.create(order_params)
     @order.add_line_items_from_cart(current_cart)
     
     if @order.save
@@ -25,4 +25,12 @@ class CheckoutController < ApplicationController
       redirect_to root_path, notice: 'Извините, что-то пошло не так'
     end
   end
+
+
+  private
+
+  def order_params
+    params.require(:order).permit(:name, :phone, :email, :address)
+  end
+
 end
