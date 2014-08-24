@@ -1,0 +1,20 @@
+= simple_form_for([:admin, resource],
+                        html: { class: 'form-horizontal', multiple:true },
+                        wrapper: :horizontal_form,
+                        wrapper_mappings: {} \
+                      ) do |f|
+
+
+  = f.input :title
+  = f.association :taxons, input_html: { class: 'js-select2', multiple: true }
+  = f.input :slug
+  = f.input :seo_title
+  = f.input :seo_description
+  = f.input :seo_text
+
+  br
+  br
+  .form-group
+    .col-sm-10.col-sm-offset-2
+      = f.submit class: 'btn btn-success'
+      = link_to 'Отменить', admin_products_path, class: 'btn btn-default'

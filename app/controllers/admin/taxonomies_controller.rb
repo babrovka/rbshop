@@ -8,7 +8,18 @@ class Admin::TaxonomiesController < Admin::ApplicationController
   has_scope :page, default: 1, only: :index
   has_scope :per, default: 15, only: :index
 
-  actions :all, only: [:index, :edit, :update]
+  actions :index, :edit, :update
 
+
+  def build_resource_params
+    [params.fetch(:taxonomy, {}).permit(
+         :title,
+         :slug,
+         :seo_title,
+         :seo_description,
+         :seo_text,
+         :taxons_ids
+     )]
+  end
 
 end

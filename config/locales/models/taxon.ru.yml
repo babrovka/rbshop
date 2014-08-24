@@ -1,0 +1,8 @@
+ru:
+  activerecord:
+    attributes:
+      taxon:
+        taxon_types:
+          by_product_type: Тип продукта
+          by_care_type: Тип защиты
+          by_age: Возраст

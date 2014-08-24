@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get '/' => 'products#index', :as => :root
-    resources :products, :taxons, :taxonomies, except: [:show]
+    resources :products, except: [:show]
+    resources :taxons, :taxonomies, only: [:index, :edit, :update]
   end
   
   

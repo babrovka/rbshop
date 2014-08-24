@@ -65,3 +65,5 @@ gem 'has_scope'
 gem 'velocityjs-rails'
 
 gem 'populator'
+
+gem 'select2-rails'

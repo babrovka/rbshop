@@ -15,5 +15,6 @@ class Taxon < ActiveRecord::Base
 
   default_scope { order('lft ASC') }
   scope :with_type, -> { where(taxon_type: nil) }
-  
+  scope :without, -> (id) { where.not(id: id) }
+
 end

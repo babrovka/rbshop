@@ -1,0 +1,26 @@
+= simple_form_for([:admin, resource],
+                        html: {class: 'form-horizontal'},
+                        wrapper: :horizontal_form,
+                        wrapper_mappings: {} \
+                      ) do |f|
+
+
+  = f.input :title
+  = f.association :parent, collection: Taxon.without(resource), input_html: {class: 'js-select2'}
+  = f.association :taxonomy, input_html: {class: 'js-select2'}
+  = f.input :taxon_type, as: :select,
+                                prompt: 'Не указана' ,
+                                collection: Taxon.taxon_types.keys,
+                                label_method: lambda { |el| t "activerecord.attributes.taxon.taxon_types.#{el}" }
+  = f.input :slug
+  = f.input :seo_title
+  = f.input :seo_description
+  = f.input :seo_text
+  = f.input :seo_url
+
+  br
+  br
+  .form-group
+    .col-sm-10.col-sm-offset-2
+      = f.submit class: 'btn btn-success'
+      = link_to 'Отменить', admin_products_path, class: 'btn btn-default'

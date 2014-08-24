@@ -14,15 +14,15 @@
           th Название
           th
       tbody
-        - collection.each_with_index do |taxon, i|
+        - collection.each_with_index do |taxonomy, i|
           tr.js-item-row
             td = number_in_list i
-            td = link_to taxon.title, edit_admin_taxon_path(taxon), title: 'редактировать'
+            td = link_to taxonomy.title, edit_admin_taxonomy_path(taxonomy), title: 'редактировать'
             td.text-right
               .btn-group.js-item-row-btns
-                = link_to poly_taxonomy_path(taxon), class: 'btn btn-success btn-sm', title: 'публичная страница таксономии' do
+                = link_to poly_taxonomy_path(taxonomy), class: 'btn btn-success btn-sm', title: 'публичная страница таксономии' do
                   span.fa.fa-eye
-                = link_to edit_admin_taxon_path(taxon), class: 'btn btn-warning btn-sm', title: 'редактировать' do
+                = link_to edit_admin_taxonomy_path(taxonomy), class: 'btn btn-warning btn-sm', title: 'редактировать' do
                   span.fa.fa-pencil
 
 
