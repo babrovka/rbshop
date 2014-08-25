@@ -2,6 +2,9 @@ $ ->
   tabs = new window.app.Tabs(['#description', '#payment', '#ingredients'])
 
   new window.app.Scroller()
+  
+  _.each($('.js-scroller'), (el) -> new window.app.Scroller(el))
+  new window.app.MainSlider('.js-main-slider')
 
   # работа счетчика.
   # инпут с кнопками «больше» и «меньше»

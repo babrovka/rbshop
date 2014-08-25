@@ -1,17 +1,39 @@
 $el: '.main-slider';
+$js-el: '.js-main-slider';
 $slider-height: 700px;
-$slider-offset-top: 150px;
+$slider-offset-top: 155px;
 
 #{$el}{
-  height: $slider-height - $slider-offset-top;
+  height: $slider-height;
+  margin-left: -$grid-cutter;
+  margin-right: -$grid-cutter;
+  margin-top: -$slider-offset-top;
+  overflow: hidden;
+  position: relative;
 }
 
-// картинку сдвигаем вверх
-#{$el}__container img{
+// контейнер под слайдеры сдвигаем под самый верх сайта
+#{$el}__container{
+  height: $slider-height;
   position: absolute;
   top: 0;
-  left: 0;
-  z-index: -2;
+  width: 100%;
+  z-index: -2; // выставлен, чтобы картинка находила под градиент и текст шапки
+}
+
+// итем под слайд
+#{$el}__item {
+  position: relative;
+  padding: $slider-offset-top $grid-cutter 0;
+  width: $container;
+
+
+  // изображение под задний фон слайдера
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 
@@ -24,4 +46,22 @@ $slider-offset-top: 150px;
   h4{ font-size: 60px; font-family: $font-family-conqueror; }
 
   .btn{ margin-top: 40px; }
+}
+
+
+// кнопки влево вправо для листания слайдов
+#{$el}__btn{
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: red;
+  &.m-prev{ left: 0; }
+  &.m-next{ right: 0; }
+}
+
+
+// js-стили для работы слайдера
+#{$js-el}-item{
+  @include inline-block(top);
 }

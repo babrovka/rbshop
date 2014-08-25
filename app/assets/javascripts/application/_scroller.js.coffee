@@ -8,9 +8,9 @@ class window.app.Scroller
     shadow_left: "<span class='scroller__shadow m-left'></span>"
     shadow_right: "<span class='scroller__shadow m-right'></span>"
 
-  constructor : () ->
-    @.$el = $(@.params.el)
-    @.$container = $(@.params.container)
+  constructor : (el) ->
+    @.$el = $(el)
+    @.$container = @.$el.find(@.params.container)
     @.$items = @.$container.find(@.params.item)
 
     if @.$el.length && @.$container.length && @.$items.length
@@ -20,7 +20,7 @@ class window.app.Scroller
 
 
   _init_sizes: ->
-    @.item_width = @.$items.eq(0).width()
+    @.item_width = @.$items.eq(0).outerWidth()
     @.el_width = @.$el.width()
     @.max_width = 0
     @.max_width = @.item_width * @.$items.length

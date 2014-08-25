@@ -4,6 +4,8 @@ $el: '.page';
   @include reset-float;
   overflow: hidden;
 
+  margin-top: 60px;
+
   > h1, > h2, > h3, > h4{ margin-bottom: 1em; }
 }
 
