@@ -20,7 +20,10 @@ class CheckoutController < ApplicationController
       # отправляем мейлы
       Cart.destroy(session[:cart_id])
       session[:cart_id] = nil
-      redirect_to root_path, notice: 'Заказ успешно создан, наши менеджеры свяжуться с вами'
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Заказ успешно создан, наши менеджеры свяжуться с вами' }
+        format.js { render layout: false }
+      end
     else
       redirect_to root_path, notice: 'Извините, что-то пошло не так'
     end

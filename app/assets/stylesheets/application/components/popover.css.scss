@@ -1,0 +1,54 @@
+$el: '.popover';
+
+$width: 460px;
+
+#{$el}, #{$el}__backdrop{ display: none; }
+
+#{$el}__backdrop{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 998;
+
+}
+
+#{$el}{
+  width: $width;
+  margin-left: -$width/2;
+  padding: $font-size-base*4;
+  background: white;
+  border: 7px solid $color-orange;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+
+  h5, p{ text-align: center; }
+
+  h5 {
+    font-family: $font-family-proxima-nova-bold;
+    color: $color-asphalt;
+    padding-bottom: $font-size-base*3;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-family: $font-family-proxima-nova-regular;
+    color: $color-asphalt;
+    font-weight: 100;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+
+  #{$el}__exit-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+  }
+}

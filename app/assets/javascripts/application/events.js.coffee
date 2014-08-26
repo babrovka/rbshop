@@ -40,3 +40,8 @@ $ ->
       $form.submit()
       return
   )
+
+
+  # инициализируем поповеры
+  window.order_popover = new window.app.Popover('.js-order-create-popover')
+#  window.order_popover.hide()

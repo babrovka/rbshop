@@ -1,6 +1,6 @@
 .page
   h3 Контактная информация
-  = form_for @order, url: order_path, html: { class: 'checkout-form js-checkout-form' } do |f|
+  = form_for @order, url: order_path, html: { class: 'checkout-form js-checkout-form', remote: true } do |f|
     .checkout-form__row
       = f.label :name
       = f.text_field :name, size: 23
