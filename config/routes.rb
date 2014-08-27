@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   # создаем заказ
   post '/order' => 'checkout#order', :as => :order
   
+  # удаляем заказ
+  resources :orders, only: [:destroy]
+  
   # главная страница
   root 'pages#index'
 
