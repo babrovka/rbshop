@@ -1,4 +1,4 @@
-= simple_form_for([:admin, resource],
+= simple_nested_form_for([:admin, resource],
                         html: {class: 'form-horizontal'},
                         wrapper: :horizontal_form,
                         wrapper_mappings: {} \
@@ -17,3 +17,23 @@
     .col-sm-10.col-sm-offset-2
       = f.submit class: 'btn btn-success'
       = link_to 'Отменить', admin_products_path, class: 'btn btn-default'
+
+
+  .form-group
+    h4 Что нужно доставить
+  .form-group
+    table.table.table-condensed
+      thead
+        tr
+          th №
+          th Код товара
+          th Название продукта
+          th Кол-во позиций
+      - resource.line_items.each_with_index do |line_item, i|
+        tr
+          td = number_in_list i
+          td = line_item.product.sku || '—'
+          td = line_item.product.title
+          td = line_item.quantity
+
+
