@@ -1,21 +1,4 @@
-.main-slider.js-main-slider
-  .main-slider__container.js-main-slider-container
-    .main-slider__item.js-main-slider-item
-      = image_tag 'index-slider-mock.jpg'
-      .main-slider__txt-area
-        p = Faker::Lorem.sentence(5)
-        h4 = Faker::Commerce.product_name
-
-        = link_to 'подробнее', '#', class: 'btn m-primary m-arrow'
-
-    .main-slider__item.js-main-slider-item
-      = image_tag 'index-slider-mock.jpg'
-      .main-slider__txt-area
-        p = Faker::Lorem.sentence(5)
-        h4 = Faker::Commerce.product_name
-
-        = link_to 'подробнее', '#', class: 'btn m-primary m-arrow'
-
+= render 'shared/main_slider'
 
 .main-page
   h3.text-orange Новинки и акции

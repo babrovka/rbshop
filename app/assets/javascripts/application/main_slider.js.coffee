@@ -2,8 +2,9 @@ class window.app.MainSlider extends window.app.Scroller
   params:
     container: '.js-main-slider-container'
     item: '.js-main-slider-item'
-    next_btn: "<a href='#' class='main-slider__btn m-next'></a>"
-    prev_btn: "<a href='#' class='main-slider__btn m-prev'></a>"
+    nav_container: "<nav class='nav-growpop'></nav>"
+    next_btn: "<a href='#' class='main-slider__btn m-next next'><span class='icon-wrap'></span></a>"
+    prev_btn: "<a href='#' class='main-slider__btn m-prev prev'><span class='icon-wrap'></span></a>"
     shadow_left: ""
     shadow_right: ""
 
@@ -16,6 +17,12 @@ class window.app.MainSlider extends window.app.Scroller
     @.$container.width(@.max_width)
 #    @.$el.height(@.$items.eq(0).height())
 
+
+  _render_buttons: ->
+    @.$nav_container = $(@.params.nav_container).appendTo(@.$el)
+    if @.$nav_container.length
+      @.$next_btn = $(@.params.next_btn).appendTo(@.$nav_container)
+      @.$prev_btn = $(@.params.prev_btn).appendTo(@.$nav_container)
 
 #  _render_elems: ->
 #    @.$next_btn = $(@.params.next_btn).appendTo(@.$el)

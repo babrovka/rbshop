@@ -29,11 +29,18 @@ class window.app.Scroller
 
 
   _render_elems: ->
-    @.$next_btn = $(@.params.next_btn).appendTo(@.$el)
-    $(@.params.shadow_right).appendTo(@.$el)
-    @.$prev_btn = $(@.params.prev_btn).appendTo(@.$el)
-    $(@.params.shadow_left).appendTo(@.$el)
+    @._render_buttons()
+    @._render_shadows()
 
+
+
+  _render_buttons: ->
+    @.$next_btn = $(@.params.next_btn).appendTo(@.$el)
+    @.$prev_btn = $(@.params.prev_btn).appendTo(@.$el)
+
+  _render_shadows: ->
+    $(@.params.shadow_right).appendTo(@.$el)
+    $(@.params.shadow_left).appendTo(@.$el)
 
   _init_events: ->
     if @.$next_btn.length
@@ -49,21 +56,25 @@ class window.app.Scroller
       )
 
 
+  max_offset: ->
+    -@.max_width + @.el_width
+
   scroll_next: (n=1) ->
-    max_offset = -@.max_width + @.el_width
     new_offset = @.$container.position().left - n*@.item_width
-    new_offset
-    new_offset = max_offset if new_offset <= max_offset
+    new_offset = 0 if new_offset < @.max_offset()
     @.set_new_offset(new_offset)
 
 
   scroll_prev: (n=1) ->
-    new_offset = @.$container.position().left + n*@.item_width
-    new_offset = 0 if new_offset >= 0
+    console.log new_offset = @.$container.position().left + n*@.item_width
+    new_offset = @.max_offset() if new_offset > 0
     @.set_new_offset(new_offset)
 
 
   set_new_offset: (offset) ->
 #    @.$container.stop().animate({left: offset}, 600, 'swing')
-    @.$container.velocity('stop').velocity( { translateX : offset }, { easing: 'easeInOut', duration: 200 } )
+    animate = { easing : 'easeInOut', duration : 200 }
+    @.$container.velocity('stop', true).velocity( { translateX : offset }, animate )
+
+
 
