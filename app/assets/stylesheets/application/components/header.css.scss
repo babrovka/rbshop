@@ -7,6 +7,9 @@ $height: 100px;
   padding-top: 10px;
 
   font-family: $font-family-proxima-nova-semibold;
+
+  position: relative;
+  z-index: 1;
 }
 
 #{$el}__logo,
@@ -53,23 +56,6 @@ $height: 100px;
 
 
 #{$el}.m-extra-header{
-  z-index: 99;
-
-  #{$el}__bg{
-    $width: 1200px;
-
-    background-image: image-url('extra-header-bg.png');
-    background-position: center top;
-    background-repeat: no-repeat;
-
-    position: absolute;
-    z-index: -1;
-    top: 0;
-
-    width: $width;
-    height: 600px;
-    margin-left: ($container - $width)/2 - $grid-cutter;
-  }
 
   #{$el}__logo small{ color: white; }
 

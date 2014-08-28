@@ -11,6 +11,9 @@ $slider-offset-top: 155px;
   overflow: hidden;
   position: relative;
 
+
+
+
   // стили под стилизованные кнопки влево-вправо
   nav a {
     position: absolute;
@@ -134,7 +137,6 @@ $slider-offset-top: 155px;
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: -2; // выставлен, чтобы картинка находила под градиент и текст шапки
 }
 
 // итем под слайд
@@ -143,6 +145,11 @@ $slider-offset-top: 155px;
   padding: $slider-offset-top $grid-cutter*2 0;
   width: $container;
 
+  // темный фон над слайдами
+  // вставляем в каждый слайд,чтобы избавиться от глубины z-index
+  background-image: image-url('extra-header-bg.png');
+  background-position: left top;
+  background-repeat: no-repeat;
 
   // изображение под задний фон слайдера
   img {
