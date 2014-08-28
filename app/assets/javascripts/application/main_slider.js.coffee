@@ -4,8 +4,8 @@ class window.app.MainSlider extends window.app.Scroller
     item: '.js-main-slider-item'
     previews: '.js-main-slider-previews'
     nav_container: "<nav class='nav-growpop'></nav>"
-    next_btn: "<a href='#' class='main-slider__btn m-next next'><span class='icon-wrap'></span><div class='js-preview-next'></div></a>"
-    prev_btn: "<a href='#' class='main-slider__btn m-prev prev'><span class='icon-wrap'></span><div class='js-preview-prev'></div></a>"
+    next_btn: "<a href='#' class='main-slider__btn m-next next'><span class='icon-wrap fa fa-angle-right'></span><div class='js-preview-next'></div></a>"
+    prev_btn: "<a href='#' class='main-slider__btn m-prev prev'><span class='icon-wrap fa fa-angle-left'></span><div class='js-preview-prev'></div></a>"
     shadow_left: ""
     shadow_right: ""
 

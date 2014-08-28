@@ -32,20 +32,19 @@ $slider-offset-top: 155px;
   }
 
   .nav-growpop .icon-wrap {
+    $color: rgba(0,0,0,0.5);
     position: relative;
     z-index: 100;
     display: block;
     padding: 20px 10px;
-    border: 0px solid #b24e44;
-    background: #b24e44;
+    border: 0px solid $color;
+    background: $color;
     -webkit-transition: border-width 0.3s 0.15s;
     transition: border-width 0.3s 0.15s;
-  }
 
-  .nav-growpop svg.icon {
-    fill: #fff;
+    color: white;
+    font-size: 40px;
   }
-
   .nav-growpop div {
     position: absolute;
     top: 50%;
@@ -171,13 +170,7 @@ $slider-offset-top: 155px;
 
 // кнопки влево вправо для листания слайдов
 #{$el}__btn{
-//  position: absolute;
-//  top: 50%;
-//  width: 20px;
-//  height: 20px;
-//  background: red;
-//  &.m-prev{ left: 0; }
-//  &.m-next{ right: 0; }
+  @include unstyled-link;
 }
 
 
