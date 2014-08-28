@@ -7,6 +7,10 @@ $el: '.main-menu';
   margin-left: -$grid-cutter;
   background: #f2f2f2;
 
+  // приходится использовать такое свойство,
+  // потому что абсолютно не ясно, как ведут себя все z-index вместе взятые
+  @include transform(translateZ(10px));
+
 }
 
 #{$el}__left, #{$el}__right{

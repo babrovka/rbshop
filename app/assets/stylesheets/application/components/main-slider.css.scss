@@ -19,8 +19,7 @@ $slider-offset-top: 155px;
     outline: none;
     text-align: left;
     z-index: 1000;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
+    @include transform(translateY(-50%));
   }
 
   nav a.prev {
@@ -32,11 +31,12 @@ $slider-offset-top: 155px;
   }
 
   .nav-growpop .icon-wrap {
-    $color: rgba(0,0,0,0.5);
+    $color: $color-orange-d;
     position: relative;
     z-index: 100;
     display: block;
     padding: 20px 10px;
+//    border: 0px solid transparent; // цвет прозрачный, чтобы цвет границы не накладывался на цвет фона и не уменьшалась прозрачность
     border: 0px solid $color;
     background: $color;
     -webkit-transition: border-width 0.3s 0.15s;
@@ -61,15 +61,13 @@ $slider-offset-top: 155px;
     left: 0;
     padding: 20px 140px 20px 70px;
     text-align: right;
-    -webkit-transform: translateY(-50%) translateX(-100%) scale(0.75);
-    transform: translateY(-50%) translateX(-100%) scale(0.75);
+    @include transform(translateY(-50%) translateX(-100%) scale(0.75));
   }
 
   .nav-growpop a.next div {
     right: 0;
     padding: 20px 70px 20px 140px;
-    -webkit-transform: translateY(-50%) translateX(100%) scale(0.75);
-    transform: translateY(-50%) translateX(100%) scale(0.75);
+    @include transform(translateY(-50%) translateX(100%) scale(0.75));
   }
 
   .nav-growpop span {
@@ -142,7 +140,7 @@ $slider-offset-top: 155px;
 // итем под слайд
 #{$el}__item {
   position: relative;
-  padding: $slider-offset-top $grid-cutter 0;
+  padding: $slider-offset-top $grid-cutter*2 0;
   width: $container;
 
 
