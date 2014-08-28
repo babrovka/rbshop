@@ -24,7 +24,9 @@ $el: '.main-menu';
   > li {
     @include inline-block(middle);
     + li { margin-left: $font-size-base*2; }
-    a{
+
+    // только первый уровень ссылок
+    > a{
       @include unstyled-link;
       color: $color-orange-d;
       font-family: $font-family-proxima-nova-semibold;
@@ -38,4 +40,36 @@ $el: '.main-menu';
       }
     }
   }
+}
+
+
+// выпадающий уровень меню
+#{$el}__2level{
+  display: none;
+}
+
+#{$el}__root > li:hover{
+  #{$el}__2level{
+    background: $color-orange;
+    padding: $font-size-base*3;
+    display: block;
+    position: absolute;
+
+    > li {
+      @include inline-block(top);
+      width: 200px;
+
+      > a{ @include unstyled-link; color: white; }
+
+      ul{ margin-top: .7em; }
+
+      li a {
+        @include link-variant($color-asphalt);
+        margin-bottom: .7em;
+      }
+    }
+  }
+
+  // пустое меню не показываем
+  #{$el}__2level:empty{ background: transparent; }
 }

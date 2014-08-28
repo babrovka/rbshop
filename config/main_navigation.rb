@@ -7,30 +7,38 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |taxonomies|
     taxonomies.dom_class = 'main-menu__root'
     Taxonomy.all.each do |taxonomy|
-      taxonomies.item "taxonomy-#{taxonomy.id}", taxonomy.title, taxonomy_path(taxonomy)
-      # taxonomies.item "taxonomy-#{taxonomy.id}", taxonomy.title, '#' do |taxons|
-      #   taxons.dom_class = ''
-      #
-      #   taxons.item "taxon-type-by-age", 'by_age', '#'
-      #   taxonomy.taxons.by_age.roots.each do |taxon|
-      #     taxons.item "taxon-#{taxon.id}", taxon.title, '#'
-      #   end
-      #
-      #   taxons.item "taxon-type-by-care-type", 'by_care_type', '#'
-      #   taxonomy.taxons.by_care_type.roots.each do |taxon|
-      #     taxons.item "taxon-#{taxon.id}", taxon.title, '#'
-      #   end
-      #
-      #   taxons.item "taxon-type-by-product-type", 'by_product_type', '#'
-      #   taxonomy.taxons.by_product_type.roots.each do |taxon|
-      #     taxons.item "taxon-#{taxon.id}", taxon.title, taxon_seo_path(taxon) do |subtaxons|
-      #       subtaxons.dom_class = '_left-menu-second-level js-left-menu-node'
-      #       taxon.children.each do |subtaxon|
-      #         subtaxons.item "taxon-#{subtaxon.id}", subtaxon.title, taxon_seo_path(subtaxon), class: 'empty'
-      #       end
-      #     end
-      #   end
-      # end
+      taxonomies.item "taxonomy-#{taxonomy.id}", taxonomy.title, poly_taxonomy_path(taxonomy) do |taxons|
+        taxons.dom_class = 'main-menu__2level'
+
+        if taxonomy.taxons.by_age.roots.any?
+          taxons.item 'by_age', 'по возрасту', '#' do |age_taxon|
+            taxonomy.taxons.by_age.roots.each do |taxon|
+              age_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon)
+            end
+          end
+        end
+
+        if taxonomy.taxons.by_care_type.roots.any?
+          taxons.item 'by_care_type', 'по типу ухода', '#' do |care_taxon|
+            taxonomy.taxons.by_care_type.roots.each do |taxon|
+              care_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon)
+            end
+          end
+        end
+
+        if taxonomy.taxons.by_product_type.roots.any?
+          taxons.item 'by_product_type', 'по продукту', '#' do |product_taxon|
+            taxonomy.taxons.by_product_type.roots.each do |taxon|
+              product_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon) do |subtaxons|
+                subtaxons.dom_class = '_left-menu-second-level js-left-menu-node'
+                taxon.children.each do |subtaxon|
+                  subtaxons.item "taxon-#{subtaxon.id}", subtaxon.title, poly_taxon_path(taxon), class: 'empty'
+                end
+              end
+            end
+          end
+        end
+      end
     end
   end
   # Specify a custom renderer if needed.
