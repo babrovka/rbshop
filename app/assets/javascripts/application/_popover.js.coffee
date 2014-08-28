@@ -48,7 +48,7 @@ class window.app.Popover
 
 
   _init_events: ->
-    console.log @.$el.find(@.params.exit_btn).on('click', (e) =>
+    @.$el.find(@.params.exit_btn).on('click', (e) =>
       e.preventDefault()
       window.location = '/'
     )

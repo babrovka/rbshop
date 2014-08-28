@@ -18,6 +18,8 @@ class window.app.Scroller
       @._render_elems()
       @._init_events()
 
+    @._custom_constructor()
+
 
   _init_sizes: ->
     @.item_width = @.$items.eq(0).outerWidth()
@@ -55,6 +57,8 @@ class window.app.Scroller
         @.scroll_prev()
       )
 
+  _custom_constructor: ->
+
 
   max_offset: ->
     -@.max_width + @.el_width
@@ -63,18 +67,30 @@ class window.app.Scroller
     new_offset = @.$container.position().left - n*@.item_width
     new_offset = 0 if new_offset < @.max_offset()
     @.set_new_offset(new_offset)
+    @.after_scroll_next()
 
 
   scroll_prev: (n=1) ->
-    console.log new_offset = @.$container.position().left + n*@.item_width
+    new_offset = @.$container.position().left + n*@.item_width
     new_offset = @.max_offset() if new_offset > 0
     @.set_new_offset(new_offset)
+    @.after_scroll_prev()
 
 
   set_new_offset: (offset) ->
 #    @.$container.stop().animate({left: offset}, 600, 'swing')
-    animate = { easing : 'easeInOut', duration : 200 }
+    animate =
+      easing : 'easeInOut',
+      duration : 200,
+      complete: =>
+        @.after_moved()
+
     @.$container.velocity('stop', true).velocity( { translateX : offset }, animate )
+
+
+  after_moved: ->
+  after_scroll_next: ->
+  after_scroll_prev: ->
 
 
 
