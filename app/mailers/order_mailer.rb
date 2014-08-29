@@ -6,10 +6,12 @@ class OrderMailer < ActionMailer::Base
   #
   #   en.order_mailer.notify_client.subject
   #
-  def notify_client
-    @greeting = "Hi"
+  def notify_client(order)
+    @name = order.name
+    @number = order.id
+    @line_item = order.line_items
 
-    mail to: "babrovka@gmail.com"
+    mail to: order.email
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -17,9 +19,9 @@ class OrderMailer < ActionMailer::Base
   #
   #   en.order_mailer.notify_admin.subject
   #
-  def notify_admin
-    @greeting = "Hi"
+  def notify_admin(order)
+    @number = order.id
 
-    mail to: "babrovka@gmail.com"
+    mail to: 'babrovka@gmail.com'
   end
 end

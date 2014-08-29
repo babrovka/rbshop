@@ -17,7 +17,7 @@ class CheckoutController < ApplicationController
     @order.add_line_items_from_cart(current_cart)
     
     if @order.save
-      # отправляем мейлы
+      send_mails
       Cart.destroy(session[:cart_id])
       session[:cart_id] = nil
       respond_to do |format|
@@ -31,6 +31,11 @@ class CheckoutController < ApplicationController
 
 
   private
+  
+  def send_mails
+    OrderMailer.delay.notify_client(@order)
+    OrderMailer.delay.notify_admin(@order)
+  end
 
   def order_params
     params.require(:order).permit(:name, :phone, :email, :address)

@@ -14,6 +14,7 @@ gem 'devise'
 gem 'paperclip', '~> 4.1'
 gem 'friendly_id', '~> 5.0.0'
 gem 'awesome_nested_set'
+gem 'delayed_job_active_record'
 
 group :development do
   # Automatically adds annotations to models

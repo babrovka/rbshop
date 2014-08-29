@@ -1,6 +1,8 @@
 require 'rvm/capistrano'
 require 'bundler/capistrano'
 load 'deploy/assets'
+require "delayed/recipes" 
+set :delayed_job_command, "bin/delayed_job"
 
 server "109.120.165.36", :web, :app, :db, primary: true
 
@@ -82,3 +84,7 @@ before "deploy:assets:precompile", "copy_database_config"
 after "copy_database_config", "copy_secret_config"
 after "copy_secret_config", "copy_mail_config"
 after "copy_mail_config", "public_system_symlink"
+
+after "deploy:stop",    "delayed_job:stop"
+after "deploy:start",   "delayed_job:start"
+after "deploy:restart", "delayed_job:restart"
