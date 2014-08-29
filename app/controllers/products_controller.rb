@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   
   def taxonomy
     taxon_ids = Taxon.where(taxonomy_id: selected_taxonomy.id).map(&:id)
-    @products = Product.includes(:taxons).where(taxons: { id: taxon_ids })
+    @products = Product.includes(:taxons).where(shop_taxons: { id: taxon_ids })
     # @products = @products.page(params[:page]).per_page(10)
     @title = selected_taxonomy.try(:seo_title) || ''
     @meta_description = selected_taxonomy.try(:seo_description) || ''
@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
   
   def taxon
     taxons = selected_taxon.self_and_descendants
-    @products = Product.includes(:taxons).where(:taxons => {:id => taxons})
+    @products = Product.includes(:taxons).where(:shop_taxons => {:id => taxons})
     @products = @products.where(:brand_id => params[:brand_ids]) if params[:brand_ids]
     # @products = @products.page(params[:page]).per_page(10)
     @title = selected_taxon.seo_title
