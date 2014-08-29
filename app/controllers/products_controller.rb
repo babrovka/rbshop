@@ -35,7 +35,8 @@ class ProductsController < ApplicationController
   end
 
   def collection
-    @products ||= Product.where(brand_id: params[:brand_ids]).page(params[:page]).per(20)
+    @products ||= Product.where(brand_id: params[:brand_ids])
+    @products.page(params[:page]).per(20)
   end
   
   private
