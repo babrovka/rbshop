@@ -55,10 +55,10 @@ $actions-width: $grid-cutter*1.5;
 
   &.m-left{
     left: $actions-width;
-    @include background( linear-gradient(left, #fff, transparent) );
+    background: image-url('gradients/hor-gradient-l.png') left top repeat-y;
   }
   &.m-right{
     right: $actions-width;
-    @include background(linear-gradient(right, #fff, transparent));
+    background: image-url('gradients/hor-gradient-r.png') left top repeat-y;
   }
 }

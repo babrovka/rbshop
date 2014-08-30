@@ -2,6 +2,7 @@ $el: '.main-slider';
 $js-el: '.js-main-slider';
 $slider-height: 700px;
 $slider-offset-top: 155px;
+$slider-button-offset: -50%;
 
 #{$el}{
   height: $slider-height;
@@ -22,7 +23,7 @@ $slider-offset-top: 155px;
     outline: none;
     text-align: left;
     z-index: 1000;
-    @include transform(translateY(-50%));
+    @include transform(translateY($slider-button-offset));
   }
 
   nav a.prev {
@@ -64,13 +65,13 @@ $slider-offset-top: 155px;
     left: 0;
     padding: 20px 140px 20px 70px;
     text-align: right;
-    @include transform(translateY(-50%) translateX(-100%) scale(0.75));
+    @include transform(translateY($slider-button-offset) translateX(-100%) scale(0.75));
   }
 
   .nav-growpop a.next div {
     right: 0;
     padding: 20px 70px 20px 140px;
-    @include transform(translateY(-50%) translateX(100%) scale(0.75));
+    @include transform(translateY($slider-button-offset) translateX(100%) scale(0.75));
   }
 
   .nav-growpop span {
@@ -126,8 +127,8 @@ $slider-offset-top: 155px;
     opacity: 1;
     -webkit-transition-delay: 0.3s;
     transition-delay: 0.3s;
-    -webkit-transform: translateY(-50%) translateX(0) scale(1);
-    transform: translateY(-50%) translateX(0) scale(1);
+    -webkit-transform: translateY($slider-button-offset) translateX(0) scale(1);
+    transform: translateY($slider-button-offset) translateX(0) scale(1);
   }
 }
 
@@ -164,6 +165,7 @@ $slider-offset-top: 155px;
 // внутри расположен текст слайда
 #{$el}__txt-area{
   padding-top: 100px;
+  height: 500px;
 
   h4, p{ color: white; }
   p{ font-size: 20px; }
@@ -176,6 +178,7 @@ $slider-offset-top: 155px;
 // кнопки влево вправо для листания слайдов
 #{$el}__btn{
   @include unstyled-link;
+  margin-top: 70px;
 }
 
 
