@@ -1,41 +1,42 @@
-.product
-  .product__gallery
-    - if resource.product_images.any?
-      = image_tag resource.product_images.first.image.url(:product)
-    - else
-      = image_tag 'noimage.png'
+.page
+  .product
+    .product__gallery
+      - if resource.product_images.any?
+        = image_tag resource.product_images.first.image.url(:product)
+      - else
+        = image_tag 'noimage.png'
 
-  .product__info
-    h2 = resource.title
-    small = resource.short_description
-    .product__price
-      .price = resource.price_dealer1
+    .product__info
+      h2 = resource.title
+      small = resource.short_description
+      .product__price
+        .price = resource.price_dealer1
 
-    .product__action
-      .counter.js-counter
-        = text_field_tag :count, 1, size: 3, maxlength: 3
-        = link_to '+', '#', class: 'counter__btn m-up js-counter-up'
-        = link_to '-', '#', class: 'counter__btn m-down js-counter-down'
-      = add_to_cart_btn resource
-
-
-    .product__description
-      .tabs
-        .tabs__group
-          = link_to 'описание', '#description', class: 'tabs__tab m-active'
-          = link_to 'ингридиенты', '#ingredients', class: 'tabs__tab'
-          = link_to 'оплата', '#payment', class: 'tabs__tab'
-        .tabs__content
-          p#description = resource.text
-          p#ingredients = resource.ingredients
-          p#payment = Faker::Lorem.sentence(100)
-
-    .product__meta
-      p
-        ' Объем:
-        b = resource.packing
+      .product__action
+        .counter.js-counter
+          = text_field_tag :count, 1, size: 3, maxlength: 3
+          = link_to '+', '#', class: 'counter__btn m-up js-counter-up'
+          = link_to '-', '#', class: 'counter__btn m-down js-counter-down'
+        = add_to_cart_btn resource
 
 
+      .product__description
+        .tabs
+          .tabs__group
+            = link_to 'описание', '#description', class: 'tabs__tab m-active'
+            = link_to 'ингридиенты', '#ingredients', class: 'tabs__tab'
+            = link_to 'оплата', '#payment', class: 'tabs__tab'
+          .tabs__content
+            p#description = resource.text
+            p#ingredients = resource.ingredients
+            p#payment = Faker::Lorem.sentence(100)
+
+      .product__meta
+        p
+          ' Объем:
+          b = resource.packing
 
 
-= render 'shared/product_scroller', collection: collection
+
+
+  = render 'shared/product_scroller', collection: collection
