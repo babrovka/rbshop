@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require underscore
 //= require velocity
-//= require_tree ./plugins
 //= require_self
 //= require_directory ./application
 
