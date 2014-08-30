@@ -8,7 +8,7 @@ class Admin::TaxonsController < Admin::ApplicationController
   has_scope :page, default: 1, only: :index
   has_scope :per, default: 15, only: :index
 
-  actions :index, :edit, :update
+  actions :all, except: [:show]
 
   def build_resource_params
     [params.fetch(:taxon, {}).permit(

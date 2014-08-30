@@ -2,7 +2,10 @@
   .col-sm-12
     h1
       ' Cписок таксонов
-      small (новый создать нельзя)
+      small
+        = link_to new_admin_taxon_path, class: 'btn btn-default' do
+          span.fa.fa-plus
+          span создать новый
 
 
 .row
