@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  helper_method :resource, :collection
+  helper_method :resource, :collection, :current_category
   
   def index
   end
@@ -43,13 +43,17 @@ class ProductsController < ApplicationController
 
   
   def selected_taxon
-    @selected_taxon ||= @taxon ||  Taxon.find(params[:id])
-    session[:taxon_id] = @selected_taxon.id
+    @selected_taxon ||= @taxon || Taxon.where(id: params[:id]).first
+    session[:taxon_id] = @selected_taxon.try(:id)
     @selected_taxon
   end
 
   def selected_taxonomy
-    @selected_taxonomy ||= @taxonomy || Taxonomy.find(params[:id])
+    @selected_taxonomy ||= @taxonomy || Taxonomy.where(id: params[:id]).first
+  end
+
+  def current_category
+    @current_category ||= selected_taxon.try(:title) || selected_taxonomy.try(:title) || 'Товары'
   end
 
 end
