@@ -2,11 +2,12 @@ class window.app.Popover
   params :
     backdrop : '.js-popovers-backdrop'
     exit_btn : '.js-popover-exit'
+    text_field: '.js-popover-text'
 
   constructor : (el) ->
     @.$el = $(el)
     @.$backdrop = $(@.params.backdrop)
-
+    @.$text_field = $(@.params.text_field)
 
     if @.is_exist()
       @._init_position()
@@ -20,8 +21,9 @@ class window.app.Popover
     , 5000)
 
 
-  show: ->
+  show: (text) ->
     if @.is_exist()
+      @.$text_field.text(text)
       @.$backdrop.fadeIn(200)
       @.$el.fadeIn(300)
       @.show_callback()
@@ -38,7 +40,7 @@ class window.app.Popover
 
 
   is_exist : ->
-    @.$el.length && @.$backdrop.length
+    @.$el.length && @.$backdrop.length && @.$text_field
 
   _init_position: ->
     height = @.$el.outerHeight()

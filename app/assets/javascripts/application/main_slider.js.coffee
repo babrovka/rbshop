@@ -11,7 +11,8 @@ class window.app.MainSlider extends window.app.Scroller
 
   _custom_constructor: ->
     @.$previews = $("#{@.params.previews} > div")
-    @.add_previews_for_current_slide(0)
+    if @.$previews.length && @.$next_btn.length && @.$prev_btn.length
+      @.add_previews_for_current_slide(0)
 
   _init_sizes: ->
     @.item_width = @.$items.eq(0).outerWidth()

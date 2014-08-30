@@ -19,8 +19,8 @@ html
       - else
         = yield
 
-    .js-popovers-backdrop.popover__backdrop
-    = render 'shared/order_create_popover'
+      .js-popovers-backdrop.popover__backdrop
+      = yield :popovers
 
       = render 'shared/layouts/application/footer'
 

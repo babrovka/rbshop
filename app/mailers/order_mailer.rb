@@ -22,6 +22,7 @@ class OrderMailer < ActionMailer::Base
   def notify_admin(order)
     @number = order.id
 
-    mail to: 'babrovka@gmail.com'
+    # mail to: 'babrovka@gmail.com'
+    mail to: 'justvitalius@gmail.com'
   end
 end

@@ -1,10 +1,12 @@
 $ ->
-  tabs = new window.app.Tabs(['#description', '#payment', '#ingredients'])
-
-  new window.app.Scroller()
-  
-  _.each($('.js-scroller'), (el) -> new window.app.Scroller(el))
   new window.app.MainSlider('.js-main-slider')
+
+  window.order_popover = new window.app.Popover('.js-order-create-popover')
+  window.order_popover.hide()
+
+  @.tabs = new window.app.Tabs(['#description', '#payment', '#ingredients'])
+  _.each($('.js-scroller'), (el) -> new window.app.Scroller(el))
+
 
   # работа счетчика.
   # инпут с кнопками «больше» и «меньше»
@@ -41,7 +43,3 @@ $ ->
       return
   )
 
-
-  # инициализируем поповеры
-  window.order_popover = new window.app.Popover('.js-order-create-popover')
-#  window.order_popover.hide()
