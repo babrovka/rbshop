@@ -479,9 +479,8 @@ ActiveRecord::Schema.define(version: 20140829122202) do
   create_table "stages", force: true do |t|
     t.string   "title"
     t.integer  "procedure_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "position",     default: 0
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "substage_products", force: true do |t|
@@ -494,9 +493,8 @@ ActiveRecord::Schema.define(version: 20140829122202) do
   create_table "substages", force: true do |t|
     t.text     "text"
     t.integer  "stage_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "position",   default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taxonomies", force: true do |t|

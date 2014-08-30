@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :taxons,
               :taxonomies,
               :orders,
-              only: [:index, :edit, :update]
+              except: [:show]
   end
   
   
