@@ -1,0 +1,31 @@
+p Спасибо за заказ в интернет-магазине Royal Brands!
+p
+  ' Номер заказа:
+  = @order.id
+
+p
+  - @order.line_items.each_with_index do |line_item, i|
+    p
+      ==' "#{i + 1}."
+      ==' line_item.product.title
+      ==' line_item.count
+      ' x
+      ==' line_item.product.price
+
+
+hr
+p
+  ' Итого:
+  ==' @order.total_price
+  ' руб.
+br
+br
+p
+  | Пожалуйста, приготовьте сумму, указанную в заказе, без сдачи. Если вам нужна сдача,
+  | сообщите об этом курьеру, когда он позвонит вам, чтобы согласовать впемя доставки.
+
+br
+br
+p Интернет-магазин Royal Brands
+hr
+p info@rbcos.ru | http://store.rbcos.ru
