@@ -5,13 +5,14 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.active_leaf_class = 'active-leaf'
 
   navigation.items do |taxonomies|
-    taxonomies.dom_class = 'main-menu__root'
+    taxonomies.dom_class = 'main-menu__root js-main-menu'
     Taxonomy.all.each do |taxonomy|
       taxonomies.item "taxonomy-#{taxonomy.id}", taxonomy.title, poly_taxonomy_path(taxonomy) do |taxons|
-        taxons.dom_class = 'main-menu__2level'
+
+        taxons.dom_class = 'main-menu__2level js-main-menu-2level'
 
         if taxonomy.taxons.by_age.roots.any?
-          taxons.item 'by_age', 'по возрасту', '#' do |age_taxon|
+          taxons.item 'by_age', 'По возрасту', '#' do |age_taxon|
             taxonomy.taxons.by_age.roots.each do |taxon|
               age_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon)
             end
@@ -19,7 +20,7 @@ SimpleNavigation::Configuration.run do |navigation|
         end
 
         if taxonomy.taxons.by_care_type.roots.any?
-          taxons.item 'by_care_type', 'по типу ухода', '#' do |care_taxon|
+          taxons.item 'by_care_type', 'По типу ухода', '#' do |care_taxon|
             taxonomy.taxons.by_care_type.roots.each do |taxon|
               care_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon)
             end
@@ -27,7 +28,7 @@ SimpleNavigation::Configuration.run do |navigation|
         end
 
         if taxonomy.taxons.by_product_type.roots.any?
-          taxons.item 'by_product_type', 'по продукту', '#' do |product_taxon|
+          taxons.item 'by_product_type', 'По типу средства', '#' do |product_taxon|
             taxonomy.taxons.by_product_type.roots.each do |taxon|
               product_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon) do |subtaxons|
                 subtaxons.dom_class = '_left-menu-second-level js-left-menu-node'
@@ -38,6 +39,8 @@ SimpleNavigation::Configuration.run do |navigation|
             end
           end
         end
+
+
       end
     end
   end

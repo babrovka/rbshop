@@ -17,8 +17,8 @@
     small = "объем: #{product.packing}"
     hr
     .card__price.m-new
-      .price = product.new_price
-    .card__price.m-old = product.price
+      .price = product.price
+    .card__price.m-old = product.new_price
 
     = add_to_cart_btn product, 'card__to-cart'
     /= link_to 'добавить к сравнению', '#', class: 'link m-dashed card__compare'

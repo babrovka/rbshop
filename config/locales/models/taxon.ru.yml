@@ -3,6 +3,6 @@ ru:
     attributes:
       taxon:
         taxon_types:
-          by_product_type: Тип продукта
-          by_care_type: Тип защиты
-          by_age: Возраст
+          by_product_type: По типу средства
+          by_care_type: По типу ухода
+          by_age: По возрасту

@@ -2,7 +2,7 @@ $el: '.main-menu';
 
 #{$el}{
   @include box-shadow(0 16px 30px -25px);
-  height: 55px;
+  height: $menu-height;
   width: $container;
   margin-left: -$grid-cutter;
   background: #f2f2f2;
@@ -15,8 +15,8 @@ $el: '.main-menu';
   @include inline-block(middle);
 }
 
-#{$el}__left { width: 84.999%; padding: $font-size-base/2 $grid-cutter 0;}
-#{$el}__right{ width: 14.999%; padding-top: 10px; }
+#{$el}__left { width: 84.999%; padding: 0 $grid-cutter 0;}
+#{$el}__right{ width: 14.999%; padding-right: $grid-cutter; }
 
 
 // рутовый уровень меню
@@ -30,6 +30,7 @@ $el: '.main-menu';
       @include unstyled-link;
       color: $color-orange-d;
       font-family: $font-family-proxima-nova-semibold;
+      line-height: $menu-height;
 
       &:after{
         @include inline-block(middle);
@@ -43,31 +44,81 @@ $el: '.main-menu';
 }
 
 
-// выпадающий уровень меню
-#{$el}__2level{
+// специальная заглушка
+// основное назначение,чтобы при движении мыши с главного пункта
+// на выпадающее меню,не происходило переключения на соседний пункт меню справа
+#{$el}__block{
+  height: $menu-height;
+  top: -$menu-height;
+  position: absolute;
+  left: 0;
+  width: 40%;
   display: none;
+  cursor: pointer;
 }
 
-#{$el}__root > li:hover{
-  #{$el}__2level{
-    background: $color-orange;
-    padding: $font-size-base*3;
+
+// выпадающий уровень меню
+#{$el}__2level{
+  background: $color-logo;
+  padding: $font-size-base*2 $font-size-base*3;
+  margin-left: -$font-size-base*3;
+  position: absolute;
+  opacity: 0;
+  @include transform(translateY(-100px));
+  @include transition(transform .2s ease-in-out, opacity .05s ease-in-out);
+
+  // стрелка
+  &:before{
+    $width: 8px;
+    content: '';
     display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 $width $width $width;
+    border-color: transparent transparent $color-logo transparent;
     position: absolute;
+    top: -$width;
+    left: $font-size-base*3 + $width;
+  }
 
-    > li {
-      @include inline-block(top);
-      width: 200px;
+  // типы подменю, выравниваются по линии
+  > li {
+    @include inline-block(top);
+    width: 200px;
 
-      > a{ @include unstyled-link; color: white; }
-
-      ul{ margin-top: .7em; }
-
-      li a {
-        @include link-variant($color-asphalt);
-        margin-bottom: .7em;
-      }
+    // заголовок типа подменю
+    // <для лица> например
+    > a{
+      @include unstyled-link;
+      font-family: $font-family-proxima-nova-bold;
+      color: $color-asphalt;
+      font-size: 16px;
+      cursor: default;
     }
+
+    ul{ margin-top: 1em; }
+
+    // ссылка в конкретном типе подменю
+    li a {
+      @include link-variant($color-asphalt, white);
+      font-family: $font-family-proxima-nova-semibold;
+      font-size: $font-size-base;
+      margin-bottom: .7em;
+    }
+  }
+}
+
+#{$el}__root > li.m-active{
+  #{$el}__block{ display: block; }
+
+  #{$el}__2level{
+    display: block;
+    opacity: .99;
+
+    @include transform(translateY(-1px));
+    @include transition(transform .1s ease-in-out, opacity .3s ease-in-out);
   }
 
   // пустое меню не показываем
