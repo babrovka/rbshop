@@ -8,7 +8,7 @@ class Admin::TaxonomiesController < Admin::ApplicationController
   has_scope :page, default: 1, only: :index
   has_scope :per, default: 15, only: :index
 
-  actions :index, :edit, :update
+  actions :all, except: [:show]
 
 
   def build_resource_params
@@ -18,8 +18,8 @@ class Admin::TaxonomiesController < Admin::ApplicationController
          :seo_title,
          :seo_description,
          :seo_text,
-         :taxons_ids
-     )]
+         taxon_ids: []
+    )]
   end
 
 end
