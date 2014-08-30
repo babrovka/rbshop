@@ -4,29 +4,23 @@
                         wrapper_mappings: {} \
                       ) do |f|
 
-
+  = f.input :in_stock
+  = f.input :sku
   = f.input :title
+  = f.input :short_description, input_html: { rows: 3 }
   = f.input :packing
-  = f.input :text
-  = f.input :ingredients
-  = f.association :brand
-  = f.input :visible_professional
-  = f.input :visible_dealer1
-  = f.input :visible_dealer2
-  = f.input :visible_dealer3
-  = f.input :price_professional
-  = f.input :price_dealer1
-  = f.input :price_dealer2
-  = f.input :price_dealer3
-  = f.input :short_description
+  = f.input :text, input_html: { rows: 3 }
+  = f.input :ingredients, input_html: { rows: 3 }
+  = f.association :brand, input_html: { class: 'js-select2' }
+  = f.association :taxons, input_html: { class: 'js-select2', multiple: true }
+  = f.input :price, input_html: { size: 5, type: :number }
+  = f.input :new_price, input_html: { size: 5, type: :number }
   /= f.association :product_category
   = f.input :latest
   = f.input :slug
   = f.input :seo_title
   = f.input :seo_description
   = f.input :seo_text
-  /= f.association :taxon
-  = f.input :position
 
   br
   br

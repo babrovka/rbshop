@@ -2,6 +2,7 @@ ru:
   activerecord:
     attributes:
       product:
+        in_stock: в наличии?
         sku: артикул
         title: заголовок
         position: порядковый номер
@@ -12,11 +13,13 @@ ru:
         packing: объем
         text: описание
         ingredients: ингредиенты
-        brand_id: бренд
+        brand: бренд
+        taxons: таксоны
         procedures: процедуры
         product_images: изображения
         cases: случаи применения
         product_taxons: категории
+        slug: ссылка
         seo_title: SEO title
         seo_description: SEO description
         seo_text: SEO текст

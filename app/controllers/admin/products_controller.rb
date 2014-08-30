@@ -11,4 +11,26 @@ class Admin::ProductsController < Admin::ApplicationController
   actions :all, except: [:show]
 
 
+  def build_resource_params
+    [params.fetch(:product, {}).permit(
+         :in_stock,
+         :sku,
+         :title,
+         :short_description,
+         :packing,
+         :text,
+         :ingredients,
+         :brand,
+         {taxon_ids: []},
+         :price,
+         :new_price,
+         :latest,
+         :slug,
+         :seo_title,
+         :seo_description,
+         :seo_text
+     )]
+end
+
+
 end
