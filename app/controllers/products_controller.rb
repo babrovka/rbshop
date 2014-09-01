@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
   end
 
   def selected_taxonomy
-    @selected_taxonomy ||= @taxonomy || Taxonomy.where(id: params[:id]).first
+    @selected_taxonomy ||= @taxonomy || Taxonomy.where(slug: params[:id]).first
   end
 
   def current_category
