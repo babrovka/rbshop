@@ -16,7 +16,6 @@ class Admin::TaxonsController < Admin::ApplicationController
          :parent_id,
          :taxonomy_id,
          :taxon_type,
-         :slug,
          :seo_title,
          :seo_description,
          :seo_text,

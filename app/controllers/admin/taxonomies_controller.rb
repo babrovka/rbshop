@@ -14,7 +14,6 @@ class Admin::TaxonomiesController < Admin::ApplicationController
   def build_resource_params
     [params.fetch(:taxonomy, {}).permit(
          :title,
-         :slug,
          :seo_title,
          :seo_description,
          :seo_text,

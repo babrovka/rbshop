@@ -25,7 +25,6 @@ class Admin::ProductsController < Admin::ApplicationController
          :price,
          :new_price,
          :latest,
-         :slug,
          :seo_title,
          :seo_description,
          :seo_text
