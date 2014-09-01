@@ -199,6 +199,8 @@ GEM
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.3)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     rvm-capistrano (1.5.3)
       capistrano (~> 2.15.4)
     sass (3.2.19)
@@ -303,6 +305,7 @@ DEPENDENCIES
   populator
   rails (= 4.1.4)
   rspec-rails (~> 3.0)
+  russian (~> 0.6.0)
   rvm-capistrano
   sass-rails (~> 4.0)
   sdoc (~> 0.4.0)
