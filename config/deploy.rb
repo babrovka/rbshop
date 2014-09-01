@@ -79,6 +79,13 @@ namespace(:deploy) do
   end
 end
 
+namespace :data do
+  task :fake_price do
+    run %Q{cd #{latest_release} && RAILS_ENV=production bundle exec rake data:fake_price_to_products }
+  end
+end
+
+
 
 before "deploy:assets:precompile", "copy_database_config"
 after "copy_database_config", "copy_secret_config"
