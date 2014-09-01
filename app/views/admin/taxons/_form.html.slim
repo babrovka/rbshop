@@ -13,7 +13,6 @@
                                 prompt: 'Не указана' ,
                                 collection: Taxon.taxon_types.keys,
                                 label_method: lambda { |el| t "activerecord.attributes.taxon.taxon_types.#{el}" }
-  = f.input :slug
   = f.input :seo_title
   = f.input :seo_description
   = f.input :seo_text
