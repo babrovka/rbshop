@@ -89,4 +89,15 @@ namespace :data do
     puts "\nSpecial taxons created!"
   end
 
+
+  task fake_price_to_products: :environment do
+    Product.all.each do |product|
+      product.price = rand(990..9999)
+      product.new_price = rand(600..5000)
+      product.save!
+      print '.'
+    end
+    puts "\ncompleted"
+  end
+
 end
