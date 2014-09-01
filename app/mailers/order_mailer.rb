@@ -7,9 +7,7 @@ class OrderMailer < ActionMailer::Base
   #   en.order_mailer.notify_client.subject
   #
   def notify_client(order)
-    @name = order.name
-    @number = order.id
-    @line_item = order.line_items
+    @order = order
 
     mail to: order.email
   end
@@ -20,9 +18,7 @@ class OrderMailer < ActionMailer::Base
   #   en.order_mailer.notify_admin.subject
   #
   def notify_admin(order)
-    @number = order.id
-
-    # mail to: 'babrovka@gmail.com'
-    mail to: 'justvitalius@gmail.com'
+    @order = order
+    mail to: %w(babrovka@gmail.com justvitalius@gmail.com)
   end
 end
