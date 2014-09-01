@@ -1,5 +1,5 @@
 class OrderMailer < ActionMailer::Base
-  default from: "robot@rbcos.ru"
+  default from: 'robot@rbcos.ru'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -9,7 +9,8 @@ class OrderMailer < ActionMailer::Base
   def notify_client(order)
     @order = order
 
-    mail to: order.email
+    mail to: order.email,
+         subject: 'Уведомление о новом заказе'
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -19,6 +20,8 @@ class OrderMailer < ActionMailer::Base
   #
   def notify_admin(order)
     @order = order
-    mail to: %w(babrovka@gmail.com justvitalius@gmail.com)
+
+    mail to: %w(babrovka@gmail.com justvitalius@gmail.com),
+         subject: 'Уведомление о новом заказе'
   end
 end
