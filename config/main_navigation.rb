@@ -30,12 +30,15 @@ SimpleNavigation::Configuration.run do |navigation|
         if taxonomy.taxons.by_product_type.roots.any?
           taxons.item 'by_product_type', 'По типу средства', '#' do |product_taxon|
             taxonomy.taxons.by_product_type.roots.each do |taxon|
-              product_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon) do |subtaxons|
-                subtaxons.dom_class = '_left-menu-second-level js-left-menu-node'
-                taxon.children.each do |subtaxon|
-                  subtaxons.item "taxon-#{subtaxon.id}", subtaxon.title, poly_taxon_path(taxon), class: 'empty'
-                end
-              end
+              product_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon)
+              #
+              # пока что не показываем второй уровень вложенности таксонов
+              # product_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon) do |subtaxons|
+              #   subtaxons.dom_class = '_left-menu-second-level js-left-menu-node'
+              #   taxon.children.each do |subtaxon|
+              #     subtaxons.item "taxon-#{subtaxon.id}", subtaxon.title, poly_taxon_path(taxon), class: 'empty'
+              #   end
+              # end
             end
           end
         end

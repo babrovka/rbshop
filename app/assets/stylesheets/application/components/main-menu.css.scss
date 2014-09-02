@@ -99,7 +99,10 @@ $el: '.main-menu';
       cursor: default;
     }
 
-    ul{ margin-top: 1em; }
+    ul{
+      margin-top: 1em;
+      &:empty{ margin-top: 0; }
+    }
 
     // ссылка в конкретном типе подменю
     li a {
