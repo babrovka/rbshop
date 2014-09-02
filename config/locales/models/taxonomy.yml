@@ -1,0 +1,9 @@
+ru:
+  activerecord:
+    attributes:
+      taxonomy:
+        title: заголовок
+        taxons: таксоны
+        seo_title: SEO title
+        seo_description: SEO description
+        seo_text: SEO текст
