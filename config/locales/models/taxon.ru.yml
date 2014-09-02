@@ -2,6 +2,14 @@ ru:
   activerecord:
     attributes:
       taxon:
+        title: заголовок
+        parent: таксон-родитель
+        taxonomy: таксономия
+        taxon_type: тип таксона
+        seo_title: SEO title
+        seo_description: SEO description
+        seo_text: SEO текст
+        seo_url: SEO url
         taxon_types:
           by_product_type: По типу средства
           by_care_type: По типу ухода
