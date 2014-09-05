@@ -23,4 +23,8 @@ class Taxon < ActiveRecord::Base
       [:seo_url, :title]
     ]
   end
+  
+  def should_generate_new_friendly_id?
+    new_record? || slug.blank?
+  end
 end
