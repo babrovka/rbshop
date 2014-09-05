@@ -10,24 +10,16 @@ class ProductsController < ApplicationController
   
   def taxonomy
     taxon_ids = Taxon.where(taxonomy_id: selected_taxonomy.id).map(&:id)
-    @products = Product.includes(:taxons).where(shop_taxons: { id: taxon_ids })
-    # @products = @products.page(params[:page]).per_page(10)
-    @title = selected_taxonomy.try(:seo_title) || ''
-    @meta_description = selected_taxonomy.try(:seo_description) || ''
-    @seo_text = selected_taxonomy.try(:seo_text) || ''
-    session[:taxon_id] = nil
-    render :template => '/products/index'
+    @products = collection.includes(:taxons).where(shop_taxons: { id: taxon_ids })
+    seo_data(selected_taxonomy)
+    render :index
   end
   
   def taxon
     taxons = selected_taxon.self_and_descendants
-    @products = Product.includes(:taxons).where(:shop_taxons => {:id => taxons})
-    @products = @products.where(:brand_id => params[:brand_ids]) if params[:brand_ids]
-    # @products = @products.page(params[:page]).per_page(10)
-    @title = selected_taxon.seo_title
-    @meta_description = selected_taxon.try(:seo_description) || ''
-    @seo_text = selected_taxon.try(:seo_text) || ''
-    render :template => '/products/index'
+    @products = collection.includes(:taxons).where(:shop_taxons => {:id => taxons})
+    seo_data(selected_taxon)
+    render :index
   end
 
   def resource
@@ -35,12 +27,12 @@ class ProductsController < ApplicationController
   end
 
   def collection
+    params[:brand_ids] ||= Brand.pluck(:id)
     @products ||= Product.where(brand_id: params[:brand_ids])
     @products.page(params[:page]).per(20)
   end
   
   private
-
   
   def selected_taxon
     @selected_taxon ||= @taxon || Taxon.where(id: params[:id]).first

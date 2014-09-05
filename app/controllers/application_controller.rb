@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
 
   private
+  
+  def seo_data(element)
+    @title = element.try(:seo_title) || ''
+    @meta_description = element.try(:seo_description) || ''
+    @seo_text = element.try(:seo_text) || ''
+  end
 
   def current_cart
     Cart.find(session[:cart_id])

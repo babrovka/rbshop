@@ -1,11 +1,11 @@
 doctype html
 html
   head
-    title = page_title
+    title = title
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
     meta content="width=1200" name="viewport" /
-
+    meta name="description" content=meta_description
     = csrf_meta_tags
   body
     .container
