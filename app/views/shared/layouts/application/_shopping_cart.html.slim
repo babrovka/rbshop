@@ -1,5 +1,13 @@
 .cart-widget
   .cart-widget__txt
+    - count = current_cart.product_count
+    - items_rus = Russian.p(count, "товар", "товара", "товаров")
+    - extra_text = link_to "#{count} #{items_rus}", cart_path, class: 'link'
+    - extra_text = content_tag(:p, 'пусто') if count < 1
+
     p в корзине
-    = link_to "#{current_cart.product_count} товаров", cart_path, class: 'link'
-  .cart-widget__img
+    = extra_text
+
+  - img_css = 'm-not-empty' if count > 0
+  .cart-widget__img class=img_css
+    = count

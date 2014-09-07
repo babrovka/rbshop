@@ -1,12 +1,46 @@
 $el: '.cart-widget';
+$cart-widget-font-size: 10px;
+
+@import "cart-widget/*.png";
 
 #{$el}{
   font-family: $font-family-proxima-nova-semibold;
+  text-align: right;
 }
 
+#{$el}__img, #{$el}__txt{ @include inline-block(bottom); }
+
 #{$el}__txt {
+  color: $color-gray-d;
+  font-size: $cart-widget-font-size;
+  text-transform: uppercase;
+  text-align: right;
+  line-height: 1.2;
+  letter-spacing: 1px;
+
   .link {
     @include link-variant($color-green-d);
     font-family: $font-family-proxima-nova-semibold;
+    font-size: $cart-widget-font-size;
   }
+}
+
+// иконка корзины
+#{$el}__img{
+  @include cart-widget-sprite(empty);
+  width: 22px;
+  height: 29px;
+  margin-left: 10px;
+
+  font-family: $font-family-proxima-nova-bold;
+  color: $color-asphalt;
+  text-align: center;
+  padding-top: 12px;
+  font-size: 13px;
+
+  &.m-not-empty{
+    @include cart-widget-sprite(not-empty);
+    color: white;
+  }
+
 }
