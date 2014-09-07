@@ -21,7 +21,7 @@ td
     = link_to '-', decrease_line_item_path(line_item), class: 'counter__btn m-down js-counter-down', remote: true
 
 td
-  .price = product.price
+  .price = product.current_price
 td
   .price = line_item.total_price
 td

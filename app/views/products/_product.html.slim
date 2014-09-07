@@ -1,7 +1,8 @@
 - active ||= false
 - css_class = active ? 'm-active' : ''
 .card class=css_class
-  .card__badge.m-green скидка
+  - if product.discount?
+    .card__badge.m-green скидка
 
   = link_to product_path(product), class: 'card__img' do
     - if product.product_images.any?
@@ -17,8 +18,9 @@
     small = "объем: #{product.packing}"
     hr
     .card__price.m-new
-      .price = product.price
-    .card__price.m-old = product.new_price
+      .price = product.current_price
+    - if product.discount?
+      .card__price.m-old = product.price
 
     .js-spinner-container = add_to_cart_btn product, 'card__to-cart'
     /= link_to 'добавить к сравнению', '#', class: 'link m-dashed card__compare'

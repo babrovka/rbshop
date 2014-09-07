@@ -67,4 +67,3 @@ gem 'has_scope'
 gem 'velocityjs-rails'
 
 gem 'populator'
-gem 'russian'
