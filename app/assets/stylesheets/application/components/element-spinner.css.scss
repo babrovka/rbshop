@@ -1,0 +1,15 @@
+$el: '.element-spinner';
+
+#{$el}{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.6);
+  text-align: center;
+}
+// в этом контейнере устанавливается спиннер
+.js-spinner-container{
+  position: relative;
+}

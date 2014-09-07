@@ -20,6 +20,6 @@
       .price = product.price
     .card__price.m-old = product.new_price
 
-    = add_to_cart_btn product, 'card__to-cart'
+    .js-spinner-container = add_to_cart_btn product, 'card__to-cart'
     /= link_to 'добавить к сравнению', '#', class: 'link m-dashed card__compare'
 

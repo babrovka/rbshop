@@ -15,7 +15,7 @@ td
     = product.sku || '—'
 
 td
-  .counter.js-counter
+  .counter.js-counter.js-spinner-container
     = text_field_tag :count, line_item.quantity, size: 3, maxlength: 3
     = link_to '+', increase_line_item_path(line_item), class: 'counter__btn m-up js-counter-up', remote: true
     = link_to '-', decrease_line_item_path(line_item), class: 'counter__btn m-down js-counter-down', remote: true
@@ -25,5 +25,5 @@ td
 td
   .price = line_item.total_price
 td
-  = link_to line_item_path(line_item), class: 'link m-red cart-table-card__remove-btn', remote: true, method: :delete do
+  = link_to line_item_path(line_item), class: 'link m-red cart-table-card__remove-btn js-spinner-container', remote: true, method: :delete do
     span.fa.fa-times

@@ -23,7 +23,7 @@ class LineItemsController < ApplicationController
   end
 
   # увеличиваем кол-во товаров
-  def increase 
+  def increase
     @line_item = LineItem.find(params[:id])
     @line_item.quantity += 1
     @line_item.save

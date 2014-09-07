@@ -44,7 +44,7 @@ $ ->
   )
 
 
-  console.log $('.js-main-menu-2level:empty').remove()
+  $('.js-main-menu-2level:empty').remove()
 
   # главное меню
   $('<div class="main-menu__block"></div>').insertBefore('.js-main-menu-2level > li')
@@ -52,4 +52,32 @@ $ ->
     $(@).closest('li').addClass('m-active')
   ).mouseleave( ->
     $(@).closest('li').removeClass('m-active')
+  )
+
+
+  # вставляем спиннер для отображения процесса загрузки
+  # по окончанию загрузки убираем его
+  # если ujs после complete заменяет текущий элемент, тоспиннер уничтожается автоматически
+  # чтобы не создавать грязных помех, сделаем показ спиннера через таймаут
+  # но чтобы не захломлять оперативку, данный таймер будет всегда один
+  # и будет очищаться постоянно в процесс работы ujs
+  window.ajax_timer_id = 0
+
+  add_spinner = (elem) ->
+    $container = $(elem).closest('.js-spinner-container').append("<div class='element-spinner'><div class='fa fa-spinner fa-spin'></div></div>")
+    # делаем отступ, чтобы спиннер был посередине блока
+    $container.find('.element-spinner').css
+      'padding-top': "#{($container.height()-16)/2}px"
+
+
+
+  $(document).on('ajax:before', '[data-remote="true"]', (e) ->
+    clearTimeout(window.ajax_timer_id)
+    elem = @
+    window.ajax_timer_id = setTimeout( ->
+      add_spinner(elem)
+    , 500)
+  ).on('ajax:complete', '[data-remote="true"]', (e) ->
+    clearTimeout(window.ajax_timer_id);
+    $(@).closest('.js-spinner-container').find('.element-spinner').remove()
   )

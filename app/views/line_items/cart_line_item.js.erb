@@ -2,3 +2,4 @@
 <%= render 'checkout/update_cart_checkout' %>
 <%- element_id = "#js-line-item-#{@line_item.id}" %>
 $('<%= element_id %>').html("<%= j render 'line_items/line_item', line_item: @line_item %>");
+clearTimeout(window.ajax_timer_id);
