@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
   friendly_id :short_description, use: :slugged
   
   def current_price
-    unless new_price.zero?
+    unless new_price.nil? || new_price.zero?
       new_price
     else
       price
@@ -35,6 +35,6 @@ class Product < ActiveRecord::Base
   end
 
   def discount?
-    !new_price.zero?
+    new_price.nil? || !new_price.zero?
   end
 end
