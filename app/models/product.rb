@@ -15,6 +15,9 @@ class Product < ActiveRecord::Base
                           join_table: "same_taxon_products",
                           foreign_key: "product_id",
                           association_foreign_key: "same_product_id"
+                          
+                          
+  scope :in_stock, -> { where(in_stock: true) }
   
   extend FriendlyId
   friendly_id :short_description, use: :slugged
