@@ -8,11 +8,17 @@ class window.app.MainSlider extends window.app.Scroller
     prev_btn: "<a href='#' class='main-slider__btn m-prev prev'><span class='icon-wrap fa fa-angle-left'></span><div class='js-preview-prev'></div></a>"
     shadow_left: ""
     shadow_right: ""
+    clock: 5000
 
   _custom_constructor: ->
     @.$previews = $("#{@.params.previews} > div")
     if @.$previews.length && @.$next_btn.length && @.$prev_btn.length
       @.add_previews_for_current_slide(0)
+      setInterval( =>
+        @.scroll_next()
+      , @.params.clock)
+
+
 
   _init_sizes: ->
     @.item_width = @.$items.eq(0).outerWidth()
@@ -39,8 +45,6 @@ class window.app.MainSlider extends window.app.Scroller
 
     next_id = current_id + 1
     next_id = 0 if next_id > max_count - 1
-
-    console.log next_id
 
     prev_id = current_id - 1
     prev_id = max_count if current_id < 0

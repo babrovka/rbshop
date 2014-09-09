@@ -78,7 +78,6 @@ class window.app.Scroller
 
 
   set_new_offset: (offset) ->
-#    @.$container.stop().animate({left: offset}, 600, 'swing')
     animate =
       easing : 'easeInOut',
       duration : 200,
