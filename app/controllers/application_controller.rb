@@ -12,13 +12,25 @@ class ApplicationController < ActionController::Base
     @meta_description = element.try(:seo_description) || ''
     @seo_text = element.try(:seo_text) || ''
   end
-
-  def current_cart
-    Cart.find(session[:cart_id])
-    rescue ActiveRecord::RecordNotFound
-    cart = Cart.create
+  
+  def temporary_cart
+    cart = Cart.exists?(session[:cart_id]) ? Cart.where(id: session[:cart_id]).first : Cart.create
     session[:cart_id] = cart.id
     cart
+  end
+    
+  def current_cart
+    if current_user
+      current_user.cart
+    else
+      temporary_cart
+    end
+  end
+  
+  def assign_cart_to_user
+    authenticate_user!
+    current_user.cart = temporary_cart
+    current_user.save
   end
   
 end

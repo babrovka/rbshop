@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   
   # юзеры
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
   get '/personal' => 'users#personal'
   get '/orders' => 'users#orders'
   
