@@ -3,6 +3,17 @@ $el: '.filter';
 $filter-gutter: 18px;
 
 #{$el}{
+
+  // заголовок фильтра
+  h4{
+    font-family: $font-family-proxima-nova-semibold;
+    color: $color-asphalt;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+  }
+
   // заголовок параметров фильтрации
   h5{
     font-family: $font-family-proxima-nova-semibold;
@@ -55,4 +66,11 @@ $filter-gutter: 18px;
 
     }
   }
+}
+
+
+// кнопка сбросить фильтр
+#{$el}__reset-btn{
+  margin-top: 85px;
+  margin-bottom: 30px;
 }
