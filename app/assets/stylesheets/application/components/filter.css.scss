@@ -26,4 +26,33 @@ $filter-gutter: 18px;
     color: $color-gray-d;
     font-size: 14px;
   }
+
+  &.m-price{
+    li{
+      @include inline-block(top);
+      width: 49.999%;
+
+      > span{
+        font-family: $font-family-proxima-nova-regular;
+        color: #95a5a6;
+        font-weight: 100;
+        width: 30px;
+      }
+
+      input{
+        font-family: $font-family-proxima-nova-bold;
+        color: $color-asphalt;
+        font-size: $font-size-base;
+        border: 1px $color-gray solid;
+        width: 70px;
+        padding: $font-size-base/2;
+        box-shadow: inset 0 3px 5px -1px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      span + input { margin-left: $font-size-base/2 }
+
+    }
+  }
 }

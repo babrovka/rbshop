@@ -51,16 +51,24 @@ class FilterPresenter
   def price_list(f, *args)
     html = []
 
-    html << h.content_tag(:div, nil, class: 'js-slider-handler')
+    html << h.content_tag(:div, nil, class: 'js-price-slider-handler')
 
     html << h.content_tag(:li) do
           h.content_tag(:span, 'от') +
-          f.text_field(:price_gteq, type: :number)
+          f.text_field(:price_gteq,
+                       type: :number,
+                       class: 'js-price-slider-input-min',
+                       'data-default' => 500
+          )
     end
 
     html << h.content_tag(:li) do
           h.content_tag(:span, 'до') +
-          f.text_field(:price_lteq, type: :number)
+          f.text_field( :price_lteq,
+                        type: :number,
+                        class: 'js-price-slider-input-max',
+                        'data-default' => 10000
+          )
     end
 
     h.content_tag :ul, *args do

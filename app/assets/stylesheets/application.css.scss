@@ -11,7 +11,9 @@
  * file per style scope.
  *
  *= require font-awesome
+ *= require jquery-ui/slider
  *= require_self
  */
 
 @import "application/base";
+@import 'overrides/*';

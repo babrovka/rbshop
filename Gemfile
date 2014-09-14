@@ -70,6 +70,7 @@ gem 'velocityjs-rails'
 gem 'populator'
 gem 'ransack'
 
+gem 'jquery-ui-rails'
 
 # for images croping
 gem 'papercrop'

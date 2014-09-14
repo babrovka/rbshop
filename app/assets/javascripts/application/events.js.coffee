@@ -84,3 +84,56 @@ $ ->
     clearTimeout(window.ajax_timer_id);
     $(@).closest('.js-spinner-container').find('.element-spinner').remove()
   )
+
+
+  # обработка слайдера цены на странице с фильтром товаров
+  $container = $('.js-price-slider')
+  $min_input = $container.find('.js-price-slider-input-min')
+  $max_input = $container.find('.js-price-slider-input-max')
+
+  # определяем активные значения слайдера
+  current_min_val = $min_input.val() || $min_input.data('default')+1000 || 1000
+  current_max_val = $max_input.val() || $max_input.data('default')-1000 || 8000
+
+  # записываем активные значения слайдера в инпуты, если те пусты
+  $min_input.val(current_min_val) unless $min_input.val()
+  $max_input.val(current_max_val) unless $max_input.val()
+
+  # активизация плагина
+  $slider = $('.js-price-slider-handler')
+  $slider.slider(
+    range: true
+    min: 0
+    max: 10000
+    step: 100
+    values: [ current_min_val, current_max_val ]
+    slide: ( event, ui ) ->
+      $min_input.val( ui.values[0] );
+      $max_input.val( ui.values[1] );
+
+  )
+
+  # после изменения значений напрямую в инпутах, меняем значения слайдера
+  $min_input.on('change', ->
+    min = $min_input.val()
+    max = $max_input.val()
+
+    # если выходим за границы выбранного максимального значения
+    if min > max
+      min = max
+      $min_input.val(max)
+
+    $slider.slider( values: [min, max] )
+  )
+
+  $max_input.on('change', ->
+    min = $min_input.val()
+    max = $max_input.val()
+
+    # если выходим за границы выбранного минимального значения
+    if max < min
+      max = min
+      $max_input.val(min)
+
+    $slider.slider( values: [min, max] )
+  )
