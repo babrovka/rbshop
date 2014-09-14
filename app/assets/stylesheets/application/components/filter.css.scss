@@ -1,0 +1,29 @@
+$el: '.filter';
+
+$filter-gutter: 18px;
+
+#{$el}{
+  // заголовок параметров фильтрации
+  h5{
+    font-family: $font-family-proxima-nova-semibold;
+    color: $color-gray-d;
+    padding-left: $filter-gutter;
+    font-size: 14px;
+    padding-bottom: $font-size-base/2;
+  }
+}
+
+
+// блок с параметрами фильтрации
+#{$el}__box{
+  @include border-radius(8px);
+  padding: $filter-gutter;
+  background: #fafafa;
+  margin-bottom: 30px;
+
+  &, label, span {
+    font-family: $font-family-proxima-nova-semibold;
+    color: $color-gray-d;
+    font-size: 14px;
+  }
+}

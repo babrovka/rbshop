@@ -2,13 +2,39 @@ h1 = @products.count
 = params.inspect
 .sidebar.filter
   = search_form_for @q, url: filter_path, html: { multipart: true } do |f|
-    - Taxon.by_product_type.each do |taxon|
+
+    - filter_presenter do |filter|
+      = filter.taxons_title :by_care_type
+      = filter.taxons_list :by_care_type, f, class: 'filter__box'
+
+      = filter.taxons_title :by_age
+      = filter.taxons_list :by_age, f, class: 'filter__box'
+
+      = filter.taxons_title :by_product_type
+      = filter.taxons_list :by_product_type, f, class: 'filter__box'
+
+      = filter.price_title
+      = filter.price_list f, class: 'js-price-slider filter__box m-price'
+
+    /- Taxon.by_product_type.each do |taxon|
+      = f.label "taxons_id_in_#{taxon.id}" do
+        = f.check_box :taxons_id_in, { multiple: true }, taxon.id, nil
+        span = taxon.title
+      br
+
+    /- Taxon.by_care_type.each do |taxon|
+      = f.label "taxons_id_in_#{taxon.id}" do
+        = f.check_box :taxons_id_in, { multiple: true }, taxon.id, nil
+        span = taxon.title
+      br
+
+    /- Taxon.by_age.each do |taxon|
       = f.label "taxons_id_in_#{taxon.id}" do
         = f.check_box :taxons_id_in, { multiple: true }, taxon.id, nil
         span = taxon.title
       br
 
 
-    = f.text_field :price_gteq
-    = f.text_field :price_lteq
+    /= f.text_field :price_gteq
+    /= f.text_field :price_lteq
     = submit_tag
