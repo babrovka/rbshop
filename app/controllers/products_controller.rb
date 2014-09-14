@@ -24,6 +24,12 @@ class ProductsController < ApplicationController
     render :index
   end
 
+  def filter
+    @q = Product.search(params[:q])
+    @products = @q.result(distinct: true)
+    render :index
+  end
+
   def resource
     @product ||= Product.friendly.find(params[:id])
   end
@@ -33,7 +39,7 @@ class ProductsController < ApplicationController
     @products ||= Product.where(brand_id: params[:brand_ids])
     @products.page(params[:page]).per(20)
   end
-  
+
   private
   
   def selected_taxon

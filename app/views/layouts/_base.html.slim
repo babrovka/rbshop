@@ -26,7 +26,7 @@ html
         .main-menu__right.m-user-bar = render 'shared/layouts/application/user_bar'
         .main-menu__right.m-cart.js-main-menu-cart-widget = render 'shared/layouts/application/shopping_cart'
 
-
+      = yield :sidebar
       - if content_for? :body_content
         = yield :body_content
       - else

@@ -1,0 +1,14 @@
+h1 = @products.count
+= params.inspect
+.sidebar.filter
+  = search_form_for @q, url: filter_path, html: { multipart: true } do |f|
+    - Taxon.by_product_type.each do |taxon|
+      = f.label "taxons_id_in_#{taxon.id}" do
+        = f.check_box :taxons_id_in, { multiple: true }, taxon.id, nil
+        span = taxon.title
+      br
+
+
+    = f.text_field :price_gteq
+    = f.text_field :price_lteq
+    = submit_tag
