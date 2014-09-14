@@ -1,6 +1,8 @@
 $el: '.filter';
 
 $filter-gutter: 18px;
+@import "sprites/*.png";
+
 
 #{$el}{
 
@@ -73,4 +75,60 @@ $filter-gutter: 18px;
 #{$el}__reset-btn{
   margin-top: 85px;
   margin-bottom: 30px;
+}
+
+
+// подсказка о кол-ве товара
+#{$el}__hint{
+  $height: 70px;
+  $border-width: 4px;
+
+  @include box-shadow(0 0 10px rgba(0,0,0,0.5));
+
+  height: $height;
+  border: $border-width solid $color-orange;
+  border-left-color: transparent;
+  z-index: 999;
+  background: white;
+
+  width: 260px;
+
+  > span, .link{ @include inline-block(top); }
+
+  // пояснительный текст о кол-ве найденных позиций
+  > span {
+    font-family: $font-family-proxima-nova-semibold;
+    color: $color-asphalt;
+    line-height: $height - 2*$border-width;
+    width: 160px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .link{
+    margin-top: 23px;
+    margin-left: 20px;
+  }
+
+  &:before{
+    @include sprites-sprite(filter-hint-arrow);
+    @include inline-block(top);
+    height: 90px;
+    content: ' ';
+    width: 27px;
+    margin-left: -27px;
+    margin-top:  -14px;
+  }
+}
+
+
+// js-стили
+.js-filter-form{
+  position: relative;
+}
+
+.js-filter-hint{
+  position: absolute;
+  margin-top: -31px; // половина от высоты блока с подсказкой c учетом бордера
 }

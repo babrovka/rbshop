@@ -111,6 +111,9 @@ $ ->
       $min_input.val( ui.values[0] );
       $max_input.val( ui.values[1] );
 
+    stop: ->
+      $max_input.trigger('change')
+
   )
 
   # после изменения значений напрямую в инпутах, меняем значения слайдера
@@ -136,4 +139,48 @@ $ ->
       $max_input.val(min)
 
     $slider.slider( values: [min, max] )
+  )
+
+
+  # показываем окошечко с результатами фильтрации
+
+  # заготовка под окошко с кол-вом найденных товаров
+  unless $('.js-filter-hint').length
+    $filter_hint = $("<div class='js-filter-hint filter__hint'><span></span><a href='#' class='link'>Показать</a></div>").appendTo('.js-filter-form').hide()
+
+  # клик по ссылке внутри блока подсказки подтверждает форму и грузит результаты
+  $filter_hint.find('a').on('click', (e) ->
+    e.preventDefault()
+    $filter_hint.closest('form').submit()
+  )
+
+  render_data = (data) ->
+    $filter_hint.find('span').text(data.text)
+
+  render_load_spinner = ->
+    $filter_hint.find('span').html("<span class='fa fa-spinner fa-spin'></span> загрузка...")
+
+  request_data = (form) =>
+    $form = $(form)
+    $.ajax
+      type: 'GET'
+      url: form.action
+      dataType: 'json'
+      data: $form.serialize()
+      success: (data) -> render_data(data)
+
+
+
+  $('.js-filter-form').on('change', (e) ->
+    $current_item = $(e.target)
+
+    render_load_spinner()
+
+    left_pos = $current_item.parent().width() + $current_item.parent()[0].offsetLeft + 30
+    $filter_hint.show().css
+      left: left_pos
+      top: $current_item[0].offsetTop
+
+    form = $current_item.closest('form')[0]
+    request_data(form)
   )

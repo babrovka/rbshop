@@ -27,8 +27,16 @@ class ProductsController < ApplicationController
   def filter
     @q = Product.search(params[:q])
     @products = @q.result(distinct: true)
-    render :index
+    respond_to do |format|
+      format.html { render :index }
+      format.json do
+        txt = Russian.p(@products.count, 'товар', 'товара', 'товаров')
+        render json: { text: "Найдено #{@products.count} #{txt}" }
+      end
+    end
   end
+
+private
 
   def resource
     @product ||= Product.friendly.find(params[:id])
@@ -40,11 +48,9 @@ class ProductsController < ApplicationController
     @products.page(params[:page]).per(20)
   end
 
-  private
-  
   def selected_taxon
     @selected_taxon ||= @taxon || Taxon.where(id: params[:id]).first
-    session[:taxon_id] = @selected_taxon.try(:id)
+    # session[:taxon_id] = @selected_taxon.try(:id)
     @selected_taxon
   end
 
