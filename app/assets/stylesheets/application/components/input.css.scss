@@ -1,0 +1,22 @@
+$el: '.checkbox';
+
+// кастомный чекбокс
+#{$el}{
+  #{$el}__icon, > span{
+    @include inline-block(text-bottom);
+  }
+
+  input[type='checkbox']{ display: none; }
+}
+
+// иконка чекбокса
+#{$el}__icon{
+  $size: 18px;
+  @include sprites-sprite(checkbox-default);
+
+  width: $size;
+  height: $size;
+  margin-right: $font-size-base/2;
+
+  &.m-active{ @include sprites-sprite(checkbox-checked); }
+}

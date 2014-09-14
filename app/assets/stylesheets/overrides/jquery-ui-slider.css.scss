@@ -1,8 +1,6 @@
 // переопредеяем стиль слайдера от бустрапа
 $slider-height: 10px;
 
-@import "sprites/*.png";
-
 // вся область слайдера
 .ui-widget-content{
   @include border-radius($slider-height);

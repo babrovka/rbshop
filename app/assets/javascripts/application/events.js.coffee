@@ -172,15 +172,27 @@ $ ->
 
 
   $('.js-filter-form').on('change', (e) ->
-    $current_item = $(e.target)
+    $current_item_parent = $(e.target).parent()
 
     render_load_spinner()
 
-    left_pos = $current_item.parent().width() + $current_item.parent()[0].offsetLeft + 30
+    left_pos = $current_item_parent.width() + $current_item_parent[0].offsetLeft + 30
     $filter_hint.show().css
       left: left_pos
-      top: $current_item[0].offsetTop
+      top: $current_item_parent[0].offsetTop
 
-    form = $current_item.closest('form')[0]
+    form = $current_item_parent.closest('form')[0]
     request_data(form)
   )
+
+  # навешиваем всем чекбоксам красивые иконочки
+  $("input[type='checkbox']").closest('label')
+                              .addClass('checkbox')
+                              .prepend("<span class='checkbox__icon'></span>")
+
+  # ставим/убираем галочки при кликах на чекбокс
+  $("input[type='checkbox']").on('change', (e) ->
+    $(@).closest('label').find('.checkbox__icon').toggleClass('m-active')
+  )
+
+

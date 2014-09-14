@@ -1,8 +1,6 @@
 $el: '.filter';
 
 $filter-gutter: 18px;
-@import "sprites/*.png";
-
 
 #{$el}{
 
@@ -68,6 +66,12 @@ $filter-gutter: 18px;
 
     }
   }
+
+  .checkbox{
+    @include inline-block(top);
+    margin-bottom: $font-size-base;
+  }
+
 }
 
 
@@ -130,5 +134,5 @@ $filter-gutter: 18px;
 
 .js-filter-hint{
   position: absolute;
-  margin-top: -31px; // половина от высоты блока с подсказкой c учетом бордера
+  margin-top: -24px; // половина от высоты блока с подсказкой c учетом бордера
 }
