@@ -99,5 +99,12 @@ namespace :data do
     end
     puts "\ncompleted"
   end
+  
+  task admin_and_user: :environment do
+    Admin.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+    User.create(email: 'user@example.com', password: 'password', password_confirmation: 'password')
+    puts 'Done!'
+  end
+  
 
 end

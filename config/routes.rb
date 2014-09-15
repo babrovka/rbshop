@@ -13,7 +13,10 @@ Rails.application.routes.draw do
               except: [:show]
   end
   
-  
+  # юзеры
+  devise_for :users, :controllers => {:registrations => "registrations"}
+  get '/personal' => 'users#personal'
+  get '/orders' => 'users#orders'
   
   # управляем товарами в корзине
   resources :line_items, only: [:create, :destroy] do
