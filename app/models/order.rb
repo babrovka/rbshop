@@ -4,7 +4,8 @@ class Order < ActiveRecord::Base
   end
   
   has_many :line_items,  dependent: :destroy
-  # belongs_to :user
+  belongs_to :user
+  after_save :buy_products_in_line_items
   
   enum status: [ :not_paid, :paid, :ready_for_delivery, :delivered ]
   
@@ -12,6 +13,12 @@ class Order < ActiveRecord::Base
     cart.line_items.each do |item|
       item.cart_id = nil
       line_items << item
+    end
+  end
+  
+  def buy_products_in_line_items
+    line_items.each do |line_item|
+      line_item.product.buy(line_item.quantity)
     end
   end
 

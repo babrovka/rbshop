@@ -49,4 +49,9 @@ class Product < ActiveRecord::Base
       false
     end
   end
+  
+  def buy(quantity)
+    self.bought += quantity
+    self.save!
+  end
 end
