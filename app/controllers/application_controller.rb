@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
   
   def temporary_cart
-    cart = Cart.exists?(session[:cart_id]) ? Cart.where(id: session[:cart_id]).first : Cart.create
+    cart = Cart.where(id: session[:cart_id]).first_or_create!
     session[:cart_id] = cart.id
     cart
   end
