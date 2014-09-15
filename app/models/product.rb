@@ -3,8 +3,8 @@ class Product < ActiveRecord::Base
   has_many :product_images
   has_many :product_taxons
   has_many :taxons, through: :product_taxons
-  has_and_belongs_to_many :procedures
-  has_and_belongs_to_many :cases
+  # has_and_belongs_to_many :procedures
+  # has_and_belongs_to_many :cases
   has_and_belongs_to_many :related_products,
                           class_name: 'Product',
                           join_table: "related_products",
