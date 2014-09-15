@@ -7,6 +7,7 @@
   = f.input :in_stock
   = f.input :sku
   = f.input :title
+  = f.input :position
   = f.input :short_description, input_html: { rows: 3 }
   = f.input :packing
   = f.input :text, input_html: { rows: 3 }
@@ -15,8 +16,10 @@
   = f.association :taxons, input_html: { class: 'js-select2', multiple: true }
   = f.input :price, input_html: { size: 5, type: :number }
   = f.input :new_price, input_html: { size: 5, type: :number }
-  /= f.association :product_category
   = f.input :latest
+  = f.input :applying
+  = f.association :related_products, input_html: { class: 'js-select2', multiple: true }
+  = f.association :same_taxon_products, input_html: { class: 'js-select2', multiple: true }
   = f.input :seo_title
   = f.input :seo_description
   = f.input :seo_text

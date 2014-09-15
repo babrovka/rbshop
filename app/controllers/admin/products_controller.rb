@@ -16,6 +16,7 @@ class Admin::ProductsController < Admin::ApplicationController
          :in_stock,
          :sku,
          :title,
+         :position,
          :short_description,
          :packing,
          :text,
@@ -25,6 +26,8 @@ class Admin::ProductsController < Admin::ApplicationController
          :price,
          :new_price,
          :latest,
+         {related_product_ids: []},
+         {same_taxon_product_ids: []},
          :seo_title,
          :seo_description,
          :seo_text
