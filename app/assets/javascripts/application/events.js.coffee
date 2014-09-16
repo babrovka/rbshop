@@ -47,7 +47,7 @@ $ ->
   $('.js-main-menu-2level:empty').remove()
 
   # главное меню
-  $('<div class="main-menu__block"></div>').insertBefore('.js-main-menu-2level > li')
+  $('<div class="main-menu__block"></div>').insertAfter('.js-main-menu > li > a')
   $('.js-main-menu > li').mouseenter( ->
     $(@).closest('li').addClass('m-active')
   ).mouseleave( ->

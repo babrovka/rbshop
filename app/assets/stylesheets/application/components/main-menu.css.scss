@@ -49,10 +49,8 @@ $el: '.main-menu';
 // на выпадающее меню,не происходило переключения на соседний пункт меню справа
 #{$el}__block{
   height: $menu-height;
-  top: -$menu-height;
   position: absolute;
-  left: 0;
-  width: 40%;
+  width: 5%;
   display: none;
   cursor: pointer;
 }
@@ -115,7 +113,7 @@ $el: '.main-menu';
 }
 
 #{$el}__root > li.m-active{
-  #{$el}__block{ display: block; }
+  #{$el}__block{ @include inline-block(top); }
 
   #{$el}__2level{
     display: block;
