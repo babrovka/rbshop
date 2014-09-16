@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   after_create :send_welcome_mail
   
   has_one :cart
+  has_many :orders
   
   private
   
