@@ -1,0 +1,6 @@
+ru:
+  activerecord:
+    attributes:
+      case:
+        title: Заголовок
+        products: Товары

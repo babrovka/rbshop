@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     resources :taxons,
               :taxonomies,
+              :cases,
               except: [:show]
     resources :orders, except: [:show] do
       collection do 

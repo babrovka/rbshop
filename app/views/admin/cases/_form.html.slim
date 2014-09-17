@@ -1,0 +1,22 @@
+= simple_form_for([:admin, resource],
+                        html: {class: 'form-horizontal'},
+                        wrapper: :horizontal_form,
+                        wrapper_mappings: {} \
+                      ) do |f|
+
+  = f.input :title
+  = f.input :text
+  = f.input :short_description
+  = f.input :image
+  = f.association :products, input_html: { class: 'js-select2', multiple: true }
+  = f.input :seo_url
+  = f.input :seo_title
+  = f.input :seo_description
+  br
+  br
+  .form-group
+    .col-sm-10.col-sm-offset-2
+      = f.submit class: 'btn btn-success'
+      = link_to 'Отменить', admin_cases_path, class: 'btn btn-default'
+      - unless resource.new_record?
+        = link_to 'Удалить товар', admin_case_path(resource), class: 'btn btn-danger', 'data-method' => :delete, 'data-confirm' => 'вы уверены?'
