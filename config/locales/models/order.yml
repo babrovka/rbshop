@@ -22,3 +22,5 @@ ru:
         city: город
         address: адрес доставки
         comment: комментарий
+        status: статус
+        pay_type: тип оплаты

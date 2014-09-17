@@ -9,13 +9,15 @@ class Admin::OrdersController < Admin::ApplicationController
   actions :index, :edit, :update
 
   def build_resource_params
-    [params.fetch(:taxon, {}).permit(
+    [params.fetch(:order, {}).permit(
          :name,
          :email,
          :phone,
          :city,
          :address,
          :comment,
+         :pay_type,
+         :status,
      )]
   end
 
