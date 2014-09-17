@@ -1,0 +1,23 @@
+.row
+  .col-sm-12
+    h1
+      ' Cписок товаров
+      small
+        = link_to new_admin_product_path, class: 'btn btn-default' do
+          span.fa.fa-plus
+          span создать новый
+
+
+
+.row
+  .col-sm-12
+    table.table.table-striped
+      thead
+        tr
+          th Название
+          th Сколько раз куплен
+      tbody
+        - collection.each_with_index do |product, i|
+          tr.js-item-row
+            td = product.title
+            td = product.bought
