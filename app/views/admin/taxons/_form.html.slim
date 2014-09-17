@@ -24,3 +24,5 @@
     .col-sm-10.col-sm-offset-2
       = f.submit class: 'btn btn-success'
       = link_to 'Отменить', admin_products_path, class: 'btn btn-default'
+      - unless resource.new_record?
+        = link_to 'Удалить таксон', admin_taxon_path(resource), class: 'btn btn-danger', 'data-method' => :delete, 'data-confirm' => 'вы уверены?'
