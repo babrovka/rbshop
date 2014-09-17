@@ -1,10 +1,10 @@
 .sidebar.filter
-  = link_to filter_path, class: 'link m-red filter__reset-btn' do
+  = link_to products_path, class: 'link m-red filter__reset-btn' do
     span.fa.fa-times
     span сбросить фильтр
 
   h4 фильтр по параметрам
-  = search_form_for @q, url: filter_path,
+  = search_form_for filter, url: request.original_url,
                         html: { multipart: true, class: 'js-filter-form' } do |f|
 
     - filter_presenter do |filter|
