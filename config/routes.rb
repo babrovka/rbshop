@@ -9,8 +9,12 @@ Rails.application.routes.draw do
     resources :products, except: [:show]
     resources :taxons,
               :taxonomies,
-              :orders,
               except: [:show]
+    resources :orders, except: [:show] do
+      collection do 
+        get 'statistics'
+      end
+    end
   end
   
   # юзеры

@@ -7,6 +7,10 @@ class Admin::OrdersController < Admin::ApplicationController
   has_scope :per, default: 15, only: :index
 
   actions :index, :edit, :update
+  
+  def statistics
+    @grouped_orders = collection.group_by(&:city)
+  end
 
   def build_resource_params
     [params.fetch(:order, {}).permit(

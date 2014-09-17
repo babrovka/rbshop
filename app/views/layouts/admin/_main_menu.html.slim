@@ -23,7 +23,17 @@ nav.navbar.navbar-default role="navigation"
           li = link_to 'список таксономий', admin_taxonomies_path
           li = link_to 'список таксонов', admin_taxons_path
 
-      li = link_to 'заказы', admin_orders_path
+
+      li.dropdown
+        = link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+          | заказы
+          span.caret
+        ul.dropdown-menu
+          li = link_to 'заказы', admin_orders_path
+          li = link_to 'статистика по городам', statistics_admin_orders_path
+
+
+      
 
 
     ul.nav.navbar-nav.navbar-right
