@@ -15,7 +15,8 @@
           th Имя покупателя
           th Телефон
           th Эл. почта
-          th Комментрий
+          th Статус
+          th Тип оплаты
           th
       tbody
         - collection.each_with_index do |order, i|
@@ -25,7 +26,8 @@
             td = order.name
             td = order.phone
             td = order.email
-            td = order.comment
+            td = order.status_i18n
+            td = order.pay_type_i18n
             td.text-right
               .btn-group.js-item-row-btns
                 = link_to edit_admin_order_path(order), class: 'btn btn-warning btn-sm', title: 'редактировать' do

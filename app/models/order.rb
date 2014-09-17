@@ -8,6 +8,7 @@ class Order < ActiveRecord::Base
   after_save :buy_products_in_line_items
   
   enum status: [ :not_paid, :paid, :ready_for_delivery, :delivered ]
+  enum pay_type: [ :cash, :online ]
   
   def add_line_items_from_cart(cart)
     cart.line_items.each do |item|

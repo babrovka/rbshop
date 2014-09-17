@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916151518) do
+ActiveRecord::Schema.define(version: 20140917082716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -425,6 +425,7 @@ ActiveRecord::Schema.define(version: 20140916151518) do
     t.string   "address"
     t.text     "comment"
     t.integer  "status",     default: 0
+    t.integer  "pay_type"
   end
 
   create_table "shop_product_taxons", force: true do |t|
