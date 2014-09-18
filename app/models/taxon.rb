@@ -11,6 +11,8 @@ class Taxon < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+  
+  validates :taxonomy_id, presence: true
 
 
   default_scope { order('lft ASC') }
