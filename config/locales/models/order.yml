@@ -1,4 +1,14 @@
 ru:
+  enums:
+    order:
+      status: 
+        not_paid: не оплачен
+        paid: оплачен
+        ready_for_delivery: ждет отправки 
+        delivered: доставлен
+      pay_type:
+        cash: наличными
+        online: онлайн
   activerecord:
     attributes:
       order:
@@ -12,8 +22,5 @@ ru:
         city: город
         address: адрес доставки
         comment: комментарий
-        statuses: 
-          not_paid: не оплачен
-          paid: оплачен
-          ready_for_delivery: ждет отправки 
-          delivered: доставлен
+        status: статус
+        pay_type: тип оплаты

@@ -9,6 +9,10 @@ class Admin::ProductsController < Admin::ApplicationController
   has_scope :per, default: 15, only: :index
 
   actions :all, except: [:show]
+  
+  def statistics
+     @products = collection.order('bought DESC')
+  end
 
 
   def build_resource_params

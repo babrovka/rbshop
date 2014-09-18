@@ -1,0 +1,19 @@
+.row
+  .col-sm-12
+    h1
+      ' Статистика по покупаемым позициям
+
+
+
+.row
+  .col-sm-12
+    table.table.table-striped
+      thead
+        tr
+          th Название
+          th Сколько раз куплен
+      tbody
+        - collection.each_with_index do |product, i|
+          tr.js-item-row
+            td = product.title
+            td = product.bought

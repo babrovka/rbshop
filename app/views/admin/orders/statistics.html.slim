@@ -1,0 +1,19 @@
+.row
+  .col-sm-12
+    h1
+      ' Cписок заказов
+      small (новый создать нельзя)
+
+
+.row
+  .col-sm-12
+    table.table.table-striped
+      thead
+        tr
+          th Город
+          th Количество заказов
+      tbody
+        - @grouped_orders.each do |city, orders|
+          tr.js-item-row
+            td = city
+            td = orders.count

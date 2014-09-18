@@ -16,6 +16,7 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'awesome_nested_set'
 gem 'delayed_job_active_record'
 gem 'russian', '~> 0.6.0'
+gem 'enum_help'
 
 group :development do
   # Automatically adds annotations to models

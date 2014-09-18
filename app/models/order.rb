@@ -8,6 +8,9 @@ class Order < ActiveRecord::Base
   after_save :buy_products_in_line_items
   
   enum status: [ :not_paid, :paid, :ready_for_delivery, :delivered ]
+  enum pay_type: [ :cash, :online ]
+  
+  default_scope { order('updated_at DESC') } 
   
   def add_line_items_from_cart(cart)
     cart.line_items.each do |item|
@@ -18,7 +21,7 @@ class Order < ActiveRecord::Base
   
   def buy_products_in_line_items
     line_items.each do |line_item|
-      line_item.product.buy(line_item.quantity)
+      line_item.product.buy(line_item.quantity) if line_item.product
     end
   end
 
