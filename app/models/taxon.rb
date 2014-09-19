@@ -18,6 +18,7 @@ class Taxon < ActiveRecord::Base
   default_scope { order('lft ASC') }
   scope :with_type, -> { where(taxon_type: nil) }
   scope :without, -> (id) { where.not(id: id) }
+  scope :ordered, -> (field) {order(field)}
   
   def should_generate_new_friendly_id?
     new_record? || slug.blank?

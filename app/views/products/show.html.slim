@@ -27,7 +27,7 @@
             = link_to 'ингридиенты', '#ingredients', class: 'tabs__tab'
             = link_to 'оплата', '#payment', class: 'tabs__tab'
           .tabs__content
-            p#description = resource.text
+            p#description = markdown(resource.text)
             p#ingredients = resource.ingredients
             p#payment = Faker::Lorem.sentence(100)
 

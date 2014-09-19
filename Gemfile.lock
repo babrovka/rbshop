@@ -180,6 +180,7 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    redcarpet (1.17.2)
     ref (1.0.5)
     request_store (1.0.8)
     responders (1.1.0)
@@ -306,6 +307,7 @@ DEPENDENCIES
   poltergeist
   populator
   rails (= 4.1.4)
+  redcarpet (= 1.17.2)
   rspec-rails (~> 3.0)
   russian (~> 0.6.0)
   rvm-capistrano

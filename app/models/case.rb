@@ -8,6 +8,8 @@ class Case < ActiveRecord::Base
   has_attached_file :image, styles: {medium: "940x380#", banner: "620x220#"}
   do_not_validate_attachment_file_type :image
   
+  scope :ordered, -> (field) {order(field)}
+  
   extend FriendlyId
   friendly_id :seo_url, use: :slugged
 end

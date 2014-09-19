@@ -5,6 +5,8 @@ class Taxonomy < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
   
+  scope :ordered, -> (field) {order(field)}
+  
   def should_generate_new_friendly_id?
     new_record? || slug.blank?
   end

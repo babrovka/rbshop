@@ -18,6 +18,7 @@ class Product < ActiveRecord::Base
                           
                           
   scope :in_stock, -> { where(in_stock: true) }
+  scope :ordered, -> (field) {order(field)}
   
   extend FriendlyId
   friendly_id :short_description, use: :slugged
