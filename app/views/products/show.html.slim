@@ -26,7 +26,6 @@
 
 
       .product__description
-        /= render 'shared/disqus_script'
         .tabs
           .tabs__group
             = link_to 'описание', '#description', class: 'tabs__tab m-active'
@@ -44,9 +43,12 @@
               p = Faker::Lorem.sentence(100)
 
       .product__meta
-        p
-          ' Объем:
-          b = resource.packing
+        = product_meta_tag resource.sku, 'Артикул'
+        = product_meta_tag resource.brand.try(:title), 'Бренд'
+        = product_meta_tag resource.packing, 'Объем'
+        = product_meta_tag resource.taxons.by_age.first.try(:title), 'Возраст'
+        = product_meta_tag resource.taxons.by_care_type.first.try(:title), 'Тип ухода'
+
 
 
 

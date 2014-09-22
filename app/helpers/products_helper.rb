@@ -20,4 +20,15 @@ module ProductsHelper
     end
   end
 
+
+  # мета информация продукта
+  def product_meta_tag(attr, title)
+    unless attr.blank?
+      content_tag :p do
+        content_tag(:span, "#{title}: ") +
+        content_tag(:b, attr)
+      end
+    end
+  end
+
 end

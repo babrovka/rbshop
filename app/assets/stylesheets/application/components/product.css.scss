@@ -56,10 +56,11 @@ $meta-width: 200px;
   right: 0;
   top: 2*$font-size-base;
   font-family: $font-family-proxima-nova-semibold;
+  font-size: 14px;
 
   padding: 30px;
 
-  p{ color: $color-gray; }
+  p{ color: $color-gray; padding-bottom: $font-size-base*0.4; }
   b{ color: $color-gray-d; }
 }
 
