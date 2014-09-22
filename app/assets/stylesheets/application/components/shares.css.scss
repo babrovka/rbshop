@@ -1,0 +1,8 @@
+$el: '.shares';
+
+#{$el}{}
+#{$el}__item{
+  height: $font-size-base*2;
+
+  &.m-yandex{ margin-left: -7px; }
+}

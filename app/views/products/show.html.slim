@@ -6,6 +6,11 @@
       - else
         = image_tag 'noimage.png'
 
+      .product__share.shares
+        .shares__item = render 'shared/plugins/facebook_shares'
+        .shares__item = render 'shared/plugins/vk_shares'
+        .shares__item.m-yandex = render 'shared/plugins/yandex_shares'
+
     .product__info
       h2 = resource.title
       small = resource.short_description
@@ -32,7 +37,7 @@
             = link_to 'оплата', '#payment', class: 'tabs__tab'
           .tabs__content
             #description = markdown(resource.text)
-            #comments = render 'shared/disqus_script'
+            #comments = render 'shared/plugins/disqus_script'
             #ingredients
               p = resource.ingredients
             #payment
