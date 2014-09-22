@@ -4,6 +4,9 @@ $ ->
   window.order_popover = new window.app.Popover('.js-order-create-popover')
   window.order_popover.hide()
 
+  window.add_to_cart_popover = new window.app.AddToCartPopover('.js-add-to-cart-popover')
+  window.add_to_cart_popover.hide()
+
   @.tabs = new window.app.Tabs(['#description', '#payment', '#ingredients', '#comments'])
   _.each($('.js-scroller'), (el) -> new window.app.Scroller(el))
 

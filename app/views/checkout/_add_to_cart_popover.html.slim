@@ -1,0 +1,17 @@
+.popover.js-add-to-cart-popover
+  = link_to '#', class: 'link m-red popover__exit-btn js-popover-exit' do
+    span.fa.fa-times
+
+  h5 Товар добавлен в корзину
+  p
+    span
+      ' Вы можете
+    = link_to 'продолжить покупки', '#', class: 'js-popover-exit link'
+    span
+      ' ,
+    br
+    span
+      ' или
+    = link_to 'перейти в корзину', cart_path, class: 'link'
+    span
+      | для оформления заказа.

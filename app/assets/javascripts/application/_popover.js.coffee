@@ -4,10 +4,11 @@ class window.app.Popover
     exit_btn : '.js-popover-exit'
     text_field: '.js-popover-text'
 
-  constructor : (el) ->
+  constructor : (el, timer=false) ->
     @.$el = $(el)
     @.$backdrop = $(@.params.backdrop)
     @.$text_field = $(@.params.text_field)
+    @.timer = timer
 
     if @.is_exist()
       @._init_position()

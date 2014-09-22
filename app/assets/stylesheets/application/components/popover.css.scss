@@ -4,6 +4,7 @@ $width: 460px;
 
 #{$el}, #{$el}__backdrop{ display: none; }
 
+// задний темный фон
 #{$el}__backdrop{
   position: fixed;
   left: 0;
@@ -15,6 +16,7 @@ $width: 460px;
 
 }
 
+// сам поповер
 #{$el}{
   width: $width;
   margin-left: -$width/2;
@@ -36,15 +38,22 @@ $width: 460px;
     text-transform: uppercase;
   }
 
+
+  // просто текст внутри поповера
   p {
     font-family: $font-family-proxima-nova-regular;
     color: $color-asphalt;
     font-weight: 100;
     line-height: 1.6;
     font-size: 16px;
+
+    span, .link{ @include inline-block(); font-size: $font-size-base; line-height: 0.8; }
+    .link{ line-height: 1; }
+    span{ line-height: 0.8; }
+    span + .link, .link + span { margin-left: .4em; }
   }
 
-
+  // кнопка закрытия поповера
   #{$el}__exit-btn {
     position: absolute;
     right: 10px;
