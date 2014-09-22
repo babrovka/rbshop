@@ -17,6 +17,8 @@ hr{
 h3, .h3{
   font-size: 42px;
   font-family: $font-family-conqueror;
+
+  &.m-orange, &.m-primary{ color: $color-orange; }
 }
 
 

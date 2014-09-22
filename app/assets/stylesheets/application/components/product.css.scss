@@ -3,7 +3,10 @@ $el: '.product';
 $gallery-width: 256px;
 $meta-width: 200px;
 
-#{$el} { position: relative; }
+#{$el} {
+  position: relative;
+  margin-bottom: $font-size-base*5;
+}
 
 #{$el}__gallery, #{$el}__info{ @include inline-block(top); }
 

@@ -13,7 +13,7 @@
 
     .product__info
       h2 = resource.title
-      small = resource.short_description
+      small = resource.short_description.truncate(400)
       .product__price
         .price = resource.current_price
 
@@ -52,5 +52,12 @@
 
 
 
-
-  = render 'shared/product_scroller', collection: collection
+  - if @current_category.present?
+    h3.m-primary Товары из этой категории
+    = render 'shared/product_scroller', collection: @current_category
+  br
+  br
+  br
+  - if @related_products.present?
+    h3.m-primary С этим товаром берут
+    = render 'shared/product_scroller', collection: @related_products
