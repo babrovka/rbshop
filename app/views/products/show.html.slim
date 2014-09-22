@@ -21,15 +21,22 @@
 
 
       .product__description
+        /= render 'shared/disqus_script'
         .tabs
           .tabs__group
             = link_to 'описание', '#description', class: 'tabs__tab m-active'
             = link_to 'ингридиенты', '#ingredients', class: 'tabs__tab'
+            = link_to '#comments', class: 'tabs__tab' do
+              span.fa.fa-comment
+              span отзывы
             = link_to 'оплата', '#payment', class: 'tabs__tab'
           .tabs__content
-            p#description = markdown(resource.text)
-            p#ingredients = resource.ingredients
-            p#payment = Faker::Lorem.sentence(100)
+            #description = markdown(resource.text)
+            #comments = render 'shared/disqus_script'
+            #ingredients
+              p = resource.ingredients
+            #payment
+              p = Faker::Lorem.sentence(100)
 
       .product__meta
         p

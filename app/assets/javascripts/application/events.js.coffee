@@ -4,7 +4,7 @@ $ ->
   window.order_popover = new window.app.Popover('.js-order-create-popover')
   window.order_popover.hide()
 
-  @.tabs = new window.app.Tabs(['#description', '#payment', '#ingredients'])
+  @.tabs = new window.app.Tabs(['#description', '#payment', '#ingredients', '#comments'])
   _.each($('.js-scroller'), (el) -> new window.app.Scroller(el))
 
 
