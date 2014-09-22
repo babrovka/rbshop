@@ -195,4 +195,6 @@ $ ->
     $(@).closest('label').find('.checkbox__icon').toggleClass('m-active')
   )
 
+  # ставим галочки при загрузке страницы
+  $("input[type='checkbox']:checked").closest('label').find('.checkbox__icon').addClass('m-active')
 

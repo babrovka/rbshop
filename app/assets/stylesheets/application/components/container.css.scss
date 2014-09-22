@@ -8,7 +8,7 @@ $el: '.container';
 }
 
 #{$el}__column{
-  &.m-sidebar, &.m-main{ @include inline-block(top); }
+  &.m-sidebar, &.m-with-sidebar{ @include inline-block(top); }
 
   &.m-sidebar { width: $sidebar-width; }
   &.m-main.m-with-sidebar { width: $container - $sidebar-width - 2*$grid-cutter; padding-left: $font-size-base; }

@@ -7,6 +7,11 @@
   = search_form_for filter, url: request.original_url,
                         html: { multipart: true, class: 'js-filter-form' } do |f|
 
+    /- Taxon.by_care_type.each do |t|
+    /  = f.label :taxons_id_in, t.title
+    /  = f.check_box :taxons_id_in, {multiple: true}, t.id, nil
+    /
+    /= f.submit
     - filter_presenter do |filter|
       = filter.taxons_title :by_care_type
       = filter.taxons_list :by_care_type, f, class: 'filter__box'
