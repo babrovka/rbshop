@@ -9,12 +9,16 @@
         p = meta_seo_text
         /= link_to 'читать далее', '#', class: 'link link-dashed'
 
-    /.products__filter
+    .products__filter
+      = params.inspect
+      br
+      br
+      /= sort_params.inspect
       .text-left.b-inline
         ' сортировка по
-        = sort_link_to 'цене'
-        = sort_link_to 'продажам'
-        = sort_link_to 'популярности'
+        = sort_link_to 'цене', :price, class: 'link m-simple'
+        = sort_link_to 'продажам', :bought, class: 'link m-simple'
+        /= sort_link_to 'популярности'
 
       /.text-right.b-inline
         ' товаров на странице

@@ -22,3 +22,7 @@ $el: '.link';
   @include link-without-border;
 }
 
+#{$el}.m-simple{
+  @include link-without-border;
+}
+
