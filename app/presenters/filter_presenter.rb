@@ -58,7 +58,7 @@ class FilterPresenter
           f.text_field(:price_gteq,
                        type: :number,
                        class: 'js-price-slider-input-min',
-                       'data-default' => 500
+                       'data-default' => products_min_price
           )
     end
 
@@ -67,7 +67,7 @@ class FilterPresenter
           f.text_field( :price_lteq,
                         type: :number,
                         class: 'js-price-slider-input-max',
-                        'data-default' => 10000
+                        'data-default' => products_max_price
           )
     end
 
@@ -80,6 +80,14 @@ private
 
   def h
     @template
+  end
+
+  def products_max_price
+    Product.maximum(:price)
+  end
+
+  def products_min_price
+    Product.minimum(:price)
   end
 
 end
