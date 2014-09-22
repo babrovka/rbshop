@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   end
   
   # юзеры
-  devise_for :users, :controllers => {:registrations => "registrations"}
-  get '/personal' => 'users#personal'
-  get '/orders' => 'users#orders'
+  devise_for :users, :controllers => {:registrations => 'registrations'}
+  get '/profile' => 'users#personal', as: :user_profile
+  get '/orders' => 'users#orders', as: :user_orders
   
   # управляем товарами в корзине
   resources :line_items, only: [:create, :destroy] do

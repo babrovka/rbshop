@@ -21,6 +21,11 @@
   &.m-disactive{
     @include button-variant(white, $color-gray);
   }
+
+  &.m-small{
+    padding: 6px 10px;
+    font-size: 14px;
+  }
 }
 
 

@@ -11,9 +11,10 @@ html
     .container
       = render 'shared/layouts/application/header'
       .main-menu
-        .main-menu__left
+        .main-menu__left.m-menu
           = render_navigation context: :main, expand_all: true
-        .main-menu__right.js-main-menu-cart-widget = render 'shared/layouts/application/shopping_cart'
+        .main-menu__right.m-user-bar = render 'shared/layouts/application/user_bar'
+        .main-menu__right.m-cart.js-main-menu-cart-widget = render 'shared/layouts/application/shopping_cart'
 
 
       - if content_for? :body_content

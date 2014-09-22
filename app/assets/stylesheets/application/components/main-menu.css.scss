@@ -15,8 +15,12 @@ $el: '.main-menu';
   @include inline-block(middle);
 }
 
-#{$el}__left { width: 84.999%; padding: 0 $grid-cutter 0;}
-#{$el}__right{ width: 14.999%; padding-right: $grid-cutter; }
+#{$el}__left.m-menu{ width: 830px;}
+#{$el}__right.m-user-bar{ width: 220px;}
+#{$el}__right.m-cart{ width: 150px;}
+
+#{$el}__left { padding: 0 $grid-cutter 0;}
+#{$el}__right{ padding-right: $grid-cutter; }
 
 
 // рутовый уровень меню

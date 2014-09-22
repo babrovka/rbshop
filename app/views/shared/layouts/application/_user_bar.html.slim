@@ -1,0 +1,7 @@
+- unless signed_in?
+  .btn-group
+    = link_to 'вход', new_user_session_path, class: 'btn m-primary m-small'
+    = link_to 'регистрация', new_user_registration_path, class: 'btn m-primary m-small'
+- else
+  - name = "#{current_user.first_name} #{current_user.last_name.firsts}"
+  = link_to name, user_profile_path, class: 'link link-dashed'
