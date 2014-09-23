@@ -3,5 +3,10 @@
     = link_to 'вход', new_user_session_path, class: 'btn m-primary m-small'
     = link_to 'регистрация', new_user_registration_path, class: 'btn m-primary m-small'
 - else
-  - name = "#{current_user.try(:first_name)} #{current_user.try(:last_name).try(:firsts)}"
-  = link_to name, user_profile_path, class: 'link link-dashed'
+  .user-bar
+    - user = UserPresenter.new(current_user)
+    .user-bar__title = link_to user.title, '#', class: 'link link-dashed'
+    /ul.user-bar__submenu
+      li = link_to 'профайл', user_profile_path
+      li = link_to 'заказы', user_orders_path
+      li = link_to 'выйти', destroy_user_session_path
