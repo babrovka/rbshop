@@ -19,9 +19,11 @@ class Product < ActiveRecord::Base
                           
   scope :in_stock, -> { where(in_stock: true) }
   scope :ordered, -> (field) {order(field)}
+  
+  enum product_type: [ :regular, :promo ]
 
   accepts_nested_attributes_for :product_images, allow_destroy: true
-
+  
   extend FriendlyId
   friendly_id :short_description, use: :slugged
   
