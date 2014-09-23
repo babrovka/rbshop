@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
   def show
     @related_products = resource.related_products
-    @current_category = collection
+    @current_category = resource.same_taxon_products
   end
   
   def taxonomy
