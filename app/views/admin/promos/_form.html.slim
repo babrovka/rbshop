@@ -1,0 +1,34 @@
+= simple_form_for([:admin, resource],
+                        html: {class: 'form-horizontal'},
+                        wrapper: :horizontal_form,
+                        wrapper_mappings: {} \
+                      ) do |f|
+
+  = f.input :in_stock
+  = f.input :sku
+  = f.input :title
+  = f.input :position
+  = f.input :short_description, input_html: { rows: 3 }
+  = f.input :text, input_html: { rows: 3 }
+  = f.association :brand, input_html: { class: 'js-select2' }
+  = f.association :taxons, input_html: { class: 'js-select2', multiple: true }
+  = f.input :price, input_html: { size: 5, type: :number }
+  = f.input :new_price, input_html: { size: 5, type: :number }
+  = f.input :latest
+  = f.input :applying
+  = f.association :related_products, input_html: { class: 'js-select2', multiple: true }
+  = f.association :same_taxon_products, input_html: { class: 'js-select2', multiple: true }
+  = f.association :cases, input_html: { class: 'js-select2', multiple: true }
+  = f.input :seo_title
+  = f.input :seo_description
+  = f.input :seo_text
+  = f.hidden_field :product_type, value: 1
+
+  br
+  br
+  .form-group
+    .col-sm-10.col-sm-offset-2
+      = f.submit class: 'btn btn-success'
+      = link_to 'Отменить', admin_promos_path, class: 'btn btn-default'
+      - unless resource.new_record?
+        = link_to 'Удалить товар', admin_promo_path(resource), class: 'btn btn-danger', 'data-method' => :delete, 'data-confirm' => 'вы уверены?'

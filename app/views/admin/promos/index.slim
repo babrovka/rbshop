@@ -1,0 +1,45 @@
+.row
+  .col-sm-12
+    h1
+      ' Cписок акций
+      small
+        = link_to new_admin_promo_path, class: 'btn btn-default' do
+          span.fa.fa-plus
+          span создать новую
+
+
+
+.row
+  .col-sm-12
+    table.table.table-striped
+      thead
+        tr
+          th №
+          th Название
+          th Таксоны
+          th.text-right Цена
+          th.text-right Новая цена
+          th
+      tbody
+        - collection.each_with_index do |product, i|
+          tr.js-item-row
+            td = number_in_list i
+            td = link_to product.title, edit_admin_product_path(product), title: 'редактировать товар'
+            td
+              - product.taxons.each do |taxon|
+                ==' taxon.title
+            td.price.text-right = product.new_price
+            td.price.text-right = product.price
+            td.text-right
+              .btn-group.js-item-row-btns
+                = link_to product_path(product), class: 'btn btn-success btn-sm', title: 'публичная страница товара' do
+                  span.fa.fa-eye
+                = link_to edit_admin_product_path(product), class: 'btn btn-warning btn-sm', title: 'редактировать товар' do
+                  span.fa.fa-pencil
+
+
+.row
+  .col-sm-12
+    .text-center
+      = paginate collection, theme: 'admin'
+

@@ -5,8 +5,8 @@ class Admin::ProductsController < Admin::ApplicationController
   
   defaults resource_class: Product.friendly
   
-  has_scope :page, default: 1, only: [:index, :promo]
-  has_scope :per, default: 15, only: [:index, :promo]
+  has_scope :page, default: 1, only: :index
+  has_scope :per, default: 15, only: :index
   has_scope :ordered, :default => 'updated_at DESC'
 
   actions :all, except: [:show]
@@ -38,12 +38,6 @@ class Admin::ProductsController < Admin::ApplicationController
   def statistics
      @products = collection.order('bought DESC')
   end
-  
-  def promo
-    @products = collection.promo
-    render :index
-  end
-
 
   def build_resource_params
     [params.fetch(:product, {}).permit(

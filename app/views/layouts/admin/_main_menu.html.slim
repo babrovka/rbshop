@@ -3,6 +3,8 @@ nav.navbar.navbar-default role="navigation"
     /! Brand and toggle get grouped for better mobile display
     = link_to 'админ.панель rbcos', admin_products_path, class: 'navbar-brand'
     ul.nav.navbar-nav
+    
+      / товары
       li.dropdown
         = link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
           | товары
@@ -14,7 +16,18 @@ nav.navbar.navbar-default role="navigation"
               span создать товар
           li = link_to 'список товаров', admin_products_path
           li = link_to 'статистика по покупаемым позициям', statistics_admin_products_path
-
+      
+      / акции
+      li.dropdown
+        = link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+          | акции
+          span.caret
+        ul.dropdown-menu
+          li
+            = link_to new_admin_promo_path do
+              span.fa.fa-plus
+              span создать акцию
+          li = link_to 'список акций', admin_promos_path
 
       li.dropdown
         = link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
