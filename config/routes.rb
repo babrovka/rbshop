@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
   
   # юзеры
-  devise_for :users, :controllers => {:registrations => 'registrations'}
+  devise_for :users, :controllers => {:registrations => 'registrations', :sessions => 'sessions'}
   get '/profile' => 'users#personal', as: :user_profile
   get '/orders' => 'users#orders', as: :user_orders
   

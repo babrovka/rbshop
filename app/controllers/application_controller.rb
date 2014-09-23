@@ -33,4 +33,9 @@ class ApplicationController < ActionController::Base
     current_user.save
   end
   
+  def destroy_cart
+    Cart.where(user_id: current_user.id).first.destroy
+    # current_user.cart.destroy
+  end
+  
 end

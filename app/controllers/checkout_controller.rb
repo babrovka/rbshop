@@ -15,6 +15,8 @@ class CheckoutController < ApplicationController
   def order
     @order = Order.create(order_params)
     @order.add_line_items_from_cart(current_cart)
+    @order.city = 'Санкт-Петербург'
+    @order.user_id = current_user.id
     
     if @order.save
       send_mails
