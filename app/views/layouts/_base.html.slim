@@ -1,13 +1,21 @@
 doctype html
 html
   head
-    title = title
+    title = seo_title
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
     script src="//vk.com/js/api/openapi.js?115" type="text/javascript"
 
     meta content="width=1200" name="viewport" /
-    meta name="description" content=meta_description
+    meta name="description" content=meta_seo_description
+
+    / facebook meta tags
+    meta property='og:type' content='website'
+    meta property='og:url' content=request.original_url
+    meta property='og:title' content=seo_title
+    meta property='og:description' content=meta_seo_description
+
+
     = csrf_meta_tags
   body
     .container

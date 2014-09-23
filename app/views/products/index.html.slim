@@ -3,9 +3,9 @@
     .products__page-header
       h1 = current_category
       small = "#{collection.count} шт"
-      /p
-        ' SEO TEXT
-        = link_to 'читать далее', '#', class: 'link link-dashed'
+      - if meta_seo_text.present?
+        p = meta_seo_text
+        /= link_to 'читать далее', '#', class: 'link link-dashed'
 
     /.products__filter
       .text-left.b-inline

@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
   private
   
   def seo_data(element)
-    @title = element.try(:seo_title) || ''
-    @meta_description = element.try(:seo_description) || ''
+    @seo_title = element.try(:seo_title) || ''
+    @seo_description = element.try(:seo_description) || ''
     @seo_text = element.try(:seo_text) || ''
   end
   
