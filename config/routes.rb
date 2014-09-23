@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :products, except: [:show] do 
       collection do 
         get 'statistics'
+        get 'promo'
       end
       member do
         get 'crop'
