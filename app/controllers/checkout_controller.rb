@@ -16,12 +16,13 @@ class CheckoutController < ApplicationController
     @order = Order.create(order_params)
     @order.add_line_items_from_cart(current_cart)
     @order.city = 'Санкт-Петербург'
-    @order.user_id = current_user.id
+    if user_signed_in?
+      @order.user_id = current_user.id
+    end
     
     if @order.save
       send_mails
-      Cart.destroy(session[:cart_id])
-      session[:cart_id] = nil
+      current_cart.line_items.clear
       respond_to do |format|
         format.html { redirect_to root_path, notice: 'Заказ успешно создан, наши менеджеры свяжуться с вами' }
         format.js { render layout: false }
