@@ -24,7 +24,7 @@
         - collection.each_with_index do |product, i|
           tr.js-item-row
             td = number_in_list i
-            td = link_to product.title, edit_admin_product_path(product), title: 'редактировать товар'
+            td = link_to product.title, edit_admin_promo_path(product), title: 'редактировать товар'
             td
               - product.taxons.each do |taxon|
                 ==' taxon.title
@@ -32,9 +32,9 @@
             td.price.text-right = product.price
             td.text-right
               .btn-group.js-item-row-btns
-                = link_to product_path(product), class: 'btn btn-success btn-sm', title: 'публичная страница товара' do
+                = link_to promo_path(product), class: 'btn btn-success btn-sm', title: 'публичная страница товара' do
                   span.fa.fa-eye
-                = link_to edit_admin_product_path(product), class: 'btn btn-warning btn-sm', title: 'редактировать товар' do
+                = link_to edit_admin_promo_path(product), class: 'btn btn-warning btn-sm', title: 'редактировать товар' do
                   span.fa.fa-pencil
 
 

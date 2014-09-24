@@ -1,4 +1,5 @@
 = simple_form_for([:admin, resource],
+                        url: collection_form_url,
                         html: {class: 'form-horizontal'},
                         wrapper: :horizontal_form,
                         wrapper_mappings: {} \
@@ -22,8 +23,8 @@
   = f.input :seo_title
   = f.input :seo_description
   = f.input :seo_text
-  = f.hidden_field :product_type, value: 1
-
+  = f.association :products, input_html: { class: 'js-select2', multiple: true }
+  
   br
   br
   .form-group

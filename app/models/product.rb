@@ -16,7 +16,11 @@ class Product < ActiveRecord::Base
                           foreign_key: "product_id",
                           association_foreign_key: "same_product_id"
                           
+  belongs_to :promo, class_name: "Product"
+  has_many :products, class_name: "Product",
+                      foreign_key: "promo_id"
                           
+  # default_scope { where(product_type: 0) }
   scope :in_stock, -> { where(in_stock: true) }
   scope :ordered, -> (field) {order(field)}
   

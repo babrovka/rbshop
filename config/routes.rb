@@ -53,6 +53,8 @@ Rails.application.routes.draw do
 
   get 'menu', to: 'pages#menu'
   
+  resources :promos, only: [:show]
+  
   # products
   resources :products, only: [:index]
   match :filter, to: 'products#filter', via: [:get, :post]
