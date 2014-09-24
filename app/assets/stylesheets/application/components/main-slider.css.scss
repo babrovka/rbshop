@@ -146,11 +146,7 @@ $slider-button-offset: -50%;
   padding: $slider-offset-top $grid-cutter*2 0;
   width: $container;
 
-  // темный фон над слайдами
-  // вставляем в каждый слайд,чтобы избавиться от глубины z-index
-  background-image: image-url('extra-header-bg.png');
-  background-position: left top;
-  background-repeat: no-repeat;
+
 
   // изображение под задний фон слайдера
   img {
@@ -159,6 +155,19 @@ $slider-button-offset: -50%;
     left: 0;
     z-index: -1;
   }
+}
+
+#{$el}__item-bg{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  // темный фон над слайдами
+  // вставляем в каждый слайд,чтобы избавиться от глубины z-index
+  background-image: image-url('extra-header-bg.png');
+  background-position: left top;
+  background-repeat: no-repeat;
 }
 
 
@@ -183,6 +192,11 @@ $slider-button-offset: -50%;
 
 
 // js-стили для работы слайдера
+// стиль под один слайд
 #{$js-el}-item{
-  @include inline-block(top);
+//  @include inline-block(top);
+  position: absolute;
+  left: 0;
+  visibility: hidden;
+  &.m-current{ visibility: visible; }
 }

@@ -9,16 +9,45 @@ class window.app.MainSlider extends window.app.Scroller
     shadow_left: ""
     shadow_right: ""
     clock: 5000
+    anim_clock: 1500
 
-  _custom_constructor: ->
+  constructor : (el) ->
+    @.$el = $(el)
+    @.$container = @.$el.find(@.params.container)
+    @.$items = @.$container.find(@.params.item)
+    @.$current_item = @.$items.first().addClass('m-current')
+
+    if @.$el.length && @.$container.length && @.$items.length
+      @._init_sizes()
+      @._render_buttons()
+      @._init_events()
+
     @.$previews = $("#{@.params.previews} > div")
     if @.$previews.length && @.$next_btn.length && @.$prev_btn.length
       @.add_previews_for_current_slide(0)
-      setInterval( =>
+      setInterval(=>
         @.scroll_next()
       , @.params.clock)
 
+  _init_events : ->
+    if @.$next_btn.length
+      @.$next_btn.on('click', (e) =>
+        e.preventDefault()
+        @.scroll_next()
+      )
 
+    if @.$prev_btn.length
+      @.$prev_btn.on('click', (e) =>
+        e.preventDefault()
+        @.scroll_prev()
+      )
+
+  _turn_off_clicks : ->
+    if @.$next_btn.length
+      @.$next_btn.off('click')
+
+    if @.$prev_btn.length
+      @.$prev_btn.off('click')
 
   _init_sizes: ->
     @.item_width = @.$items.eq(0).outerWidth()
@@ -26,7 +55,6 @@ class window.app.MainSlider extends window.app.Scroller
     @.max_width = 0
     @.max_width = @.item_width * @.$items.length
     @.$container.width(@.max_width)
-#    @.$el.height(@.$items.eq(0).height())
 
 
   _render_buttons: ->
@@ -35,26 +63,58 @@ class window.app.MainSlider extends window.app.Scroller
       @.$next_btn = $(@.params.next_btn).appendTo(@.$nav_container)
       @.$prev_btn = $(@.params.prev_btn).appendTo(@.$nav_container)
 
-  after_moved: ->
-    current_id = Math.abs(@.$container.position().left / @.item_width)
-    @.add_previews_for_current_slide(current_id)
+
+  scroll_next : (n = 1) ->
+    @._turn_off_clicks()
+    @.before_moved_next()
+    @.add_previews_for_current_slide()
+    @.scroll(1)
+    @.after_moved_next()
 
 
-  add_previews_for_current_slide: (current_id) ->
-    max_count = Math.abs(@.max_width / @.item_width)
+  scroll_prev : (n = 1) ->
+    @._turn_off_clicks()
+    @.before_moved_prev()
+    @.add_previews_for_current_slide()
+    @.scroll(-1)
+    @.after_modev_prev()
 
-    next_id = current_id + 1
-    next_id = 0 if next_id > max_count - 1
+  scroll: (pos_diff) ->
+    to_pos = @.calculate_pos(pos_diff)
+    @.$current_item = @.$items.eq(to_pos).addClass('m-current')
 
-    prev_id = current_id - 1
-    prev_id = max_count if current_id < 0
+
+  current_pos: ->
+    @.$items.index(@.$current_item)
+
+
+  before_moved_next: ->
+    @.$current_item.addClass('navOutNext')
+    @.$items.eq(@.calculate_pos(1)).addClass('navInNext')
+
+  calculate_pos: (pos_diff) ->
+    to_pos = @.current_pos() + pos_diff
+    to_pos = @.$items.length - 1 if to_pos < 0
+    to_pos = 0 if to_pos >= @.$items.length
+    to_pos
+
+  before_moved_prev: ->
+
+
+  after_moved_next: ->
+    setTimeout( =>
+      @.$items.removeClass('navInNext navOutNext')
+      @.$items.not(@.$current_item).removeClass('m-current')
+      @._init_events()
+    , @.params.anim_clock)
+
+
+  add_previews_for_current_slide : (current_id) ->
+    prev_id = @.calculate_pos(-1)
+    next_id = @.calculate_pos(1)
 
     $preview_prev = @.$previews.eq(prev_id)
     $preview_next = @.$previews.eq(next_id)
 
     @.$next_btn.find('.js-preview-next').html($preview_next)
     @.$prev_btn.find('.js-preview-prev').html($preview_prev)
-
-
-
-

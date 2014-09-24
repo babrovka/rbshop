@@ -1,0 +1,117 @@
+//
+// source
+// http://tympanus.net/Development/ItemTransitions/index2.html
+//
+/*****************************************/
+/* Soft Scale */
+/*****************************************/
+$anim_clock: 1.5s;
+
+
+.navOutNext {
+  -webkit-animation: scaleUp $anim_clock forwards cubic-bezier(0.7, 0, 0.3, 1);
+  animation: scaleUp $anim_clock forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.navInNext {
+  -webkit-animation: scaleDownUp $anim_clock forwards cubic-bezier(0.7, 0, 0.3, 1);
+  animation: scaleDownUp $anim_clock forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.navOutPrev {
+  -webkit-animation: scaleDown $anim_clock forwards cubic-bezier(0.7, 0, 0.3, 1);
+  animation: scaleDown $anim_clock forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.navInPrev {
+  -webkit-animation: scaleUpDown $anim_clock forwards cubic-bezier(0.7, 0, 0.3, 1);
+  animation: scaleUpDown $anim_clock forwards cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+@-webkit-keyframes scaleUp {
+  from {
+  }
+  /* Fixes Chrome issue 35.0.1916.114 (easing breaks) */
+  to {
+    -webkit-transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+  }
+  /* Fixes Chrome issue 35.0.1916.114 (easing breaks) */
+  to {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes scaleDownUp {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes scaleDownUp {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes scaleDown {
+  from {
+  }
+  /* Fixes Chrome issue 35.0.1916.114 (easing breaks) */
+  to {
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+  }
+}
+
+@keyframes scaleDown {
+  from {
+  }
+  /* Fixes Chrome issue 35.0.1916.114 (easing breaks) */
+  to {
+    opacity: 0;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+
+@-webkit-keyframes scaleUpDown {
+  from {
+    -webkit-transform: scale(1.2);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes scaleUpDown {
+  from {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}

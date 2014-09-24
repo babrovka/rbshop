@@ -66,6 +66,7 @@ class window.app.Scroller
   scroll_next: (n=1) ->
     new_offset = @.$container.position().left - n*@.item_width
     new_offset = 0 if new_offset < @.max_offset()
+    @.before_moved()
     @.set_new_offset(new_offset)
     @.after_scroll_next()
 
@@ -88,6 +89,7 @@ class window.app.Scroller
 
 
   after_moved: ->
+  before_moved: ->
   after_scroll_next: ->
   after_scroll_prev: ->
 
