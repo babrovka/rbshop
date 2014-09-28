@@ -69,7 +69,8 @@ private
     params[:brand_ids] ||= Brand.pluck(:id)
     @products ||= filter.result(distinct: true)
                         .where(brand_id: params[:brand_ids])
-                        .page(params[:page]).per(20)
+                        .page(params[:page])
+                        .per(params[:per] || 20)
   end
 
   def selected_taxon

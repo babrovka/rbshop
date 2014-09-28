@@ -6,6 +6,7 @@ $el: '.link';
   font-size: $font-size-base;
   font-family: $font-family-proxima-nova-regular;
   font-weight: 100;
+  vertical-align: baseline;
 
 
   + #{$el}{ margin-left: 10px; }
