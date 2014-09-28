@@ -7,6 +7,9 @@ class ProductsController < ApplicationController
                 :selected_taxon,
                 :selected_taxonomy
 
+
+  before_action :modify_search_params
+
   def index
     render_responce
   end
@@ -58,17 +61,25 @@ private
                             :price_gteq,
                             :price_lteq,
                             { taxons_id_in: [] },
-                            { brands_id_in: [] },
+                            { brand_id_in: [] },
                         )
+  end
+
+
+  # модифицируем параметры фильтрации перед построением самого ransack фильтра
+  # здесь модифицируются все параметры, которые необходимо отразить визуально в фильтре
+  def modify_search_params
+    if params[:brand_ids].present?
+      search_params.merge!(brand_id_in: params[:brand_ids])
+    end
   end
 
   # коллеция товаров
   # унаследована от инстанса фильтрации
   # чтобы учитывать гибкие параметры фильтрации на различных страницах
   def collection
-    params[:brand_ids] ||= Brand.pluck(:id)
+    # params[:brand_ids] ||= Brand.pluck(:id) unless params[:brand_ids].present?
     @products ||= filter.result(distinct: true)
-                        .where(brand_id: params[:brand_ids])
                         .page(params[:page])
                         .per(params[:per] || 20)
   end

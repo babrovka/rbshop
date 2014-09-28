@@ -28,6 +28,23 @@ class FilterPresenter
     end
   end
 
+  # блок фильтрации по бренду
+  # принимает
+  #   - html параметры для блока с чекбоксами
+  def by_brands(f, *args)
+    h.content_tag(:h5, 'По бренду') +
+    h.content_tag(:ul, *args )do
+      Brand.all.map do |brand|
+        h.content_tag :li do
+          f.label "brand_id_in_#{brand.id}" do
+            f.check_box( :brand_id_in, { multiple: true }, brand.id, nil) +
+            h.content_tag(:span, brand.title)
+          end
+        end
+      end.flatten.compact.join.html_safe
+    end
+  end
+
 
   # заголовок поискового фильтра по таксону
   # принимает

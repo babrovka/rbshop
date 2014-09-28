@@ -8,6 +8,7 @@
                         html: { multipart: true, class: 'js-filter-form' } do |f|
 
     - filter_presenter do |filter|
+      = filter.by_brands f, class: 'filter__box'
       = filter.taxons_title :by_care_type
       = filter.taxons_list :by_care_type, f, class: 'filter__box'
 
