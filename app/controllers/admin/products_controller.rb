@@ -38,8 +38,13 @@ class Admin::ProductsController < Admin::ApplicationController
   def statistics
      @products = collection.order('bought DESC')
   end
-
-
+  
+private
+  
+  def collection
+    @products ||= end_of_association_chain.regular
+  end
+  
   def build_resource_params
     [params.fetch(:product, {}).permit(
          :in_stock,
@@ -50,7 +55,6 @@ class Admin::ProductsController < Admin::ApplicationController
          :packing,
          :text,
          :ingredients,
-         :brand,
          {taxon_ids: []},
          :price,
          :new_price,
@@ -72,9 +76,11 @@ class Admin::ProductsController < Admin::ApplicationController
          ]},
          :seo_title,
          :seo_description,
-         :seo_text
+         :seo_text,
+         :brand_id, 
+         :applying, 
+         {case_ids: []}
      )]
 end
-
 
 end

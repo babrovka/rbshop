@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         get 'crop'
       end
     end
+    resources :promos, except: [:show]
     resources :taxons,
               :taxonomies,
               :cases,
@@ -51,6 +52,8 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   get 'menu', to: 'pages#menu'
+  
+  resources :promos, only: [:show]
   
   # products
   resources :products, only: [:index]
