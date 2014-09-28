@@ -46,6 +46,11 @@
               p = Faker::Lorem.sentence(100)
 
       .product__meta
+        - if resource.in_stock?
+          .product__meta-title
+            span.fa.fa-check-circle
+            span Есть в наличии
+
         = product_meta_tag resource.sku, 'Артикул'
         = product_meta_tag resource.brand.try(:title), 'Бренд'
         = product_meta_tag resource.packing, 'Объем'
