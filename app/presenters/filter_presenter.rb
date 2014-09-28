@@ -10,7 +10,7 @@ class FilterPresenter
   #   - f объект формы под чекбоксы
   #   - html параметры
   def taxons_list(type, f, *args)
-    taxons = Taxon.send(type)
+    taxons = allowed_taxons(type)
 
     if taxons.present?
       h.content_tag :ul, *args do
@@ -34,7 +34,9 @@ class FilterPresenter
   #   - имя enum из модели Taxon
   #   - html параметры
   def taxons_title(type, *args)
-    h.content_tag(:h5, h.t(type, scope: 'activerecord.attributes.taxon.taxon_types'), *args)
+    if allowed_taxons(type).present?
+      h.content_tag(:h5, h.t(type, scope: 'activerecord.attributes.taxon.taxon_types'), *args)
+    end
   end
 
   # заголовок ценового фильтра
@@ -78,14 +80,30 @@ class FilterPresenter
 
 private
 
+  # делаем выборку по разрешенным к показу таксонам
+  # если есть выбранный таксон, то разрешаем брать все кроме него
+  # если нет таксона, но есть выбранная таксономия,то отдаем только ее таксоны
+  # если нет ничего такого, то отдаем все возможные таксоны
+  def allowed_taxons(type)
+    if h.selected_taxon
+      h.selected_taxonomy.taxons.send(type) unless type.to_s == h.selected_taxon.taxon_type.to_s
+    elsif h.selected_taxonomy
+      h.selected_taxonomy.taxons.send(type)
+    else
+      Taxon.send(type)
+    end
+  end
+
   def h
     @template
   end
 
+  # максимальная цена поиска для слайдера цены
   def products_max_price
     Product.maximum(:price)
   end
 
+  # минимальная цена поиска для слайдера цены
   def products_min_price
     Product.minimum(:price)
   end

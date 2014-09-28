@@ -1,7 +1,12 @@
 class ProductsController < ApplicationController
 
-  helper_method :resource, :collection, :current_category, :filter
-  
+  helper_method :resource,
+                :collection,
+                :current_category,
+                :filter,
+                :selected_taxon,
+                :selected_taxonomy
+
   def index
     render_responce
   end
@@ -12,7 +17,7 @@ class ProductsController < ApplicationController
   end
   
   def taxonomy
-    taxon_ids = Taxon.where(taxonomy_id: selected_taxonomy.id).map(&:id)
+    taxon_ids = selected_taxonomy.taxons.pluck(:id)
     @products = collection.includes(:taxons).where(shop_taxons: { id: taxon_ids })
     seo_data(selected_taxonomy)
     render_responce
@@ -44,7 +49,17 @@ private
 
   # инстанс для поддержки гибкой фильтрации
   def filter
-    @q = Product.search(params[:q])
+    @q ||= Product.search(search_params)
+  end
+
+  # подготовка параметров к фильтрации
+  def search_params
+    @search_params ||= params.fetch(:q, {}).permit(
+                            :price_gteq,
+                            :price_lteq,
+                            { taxons_id_in: [] },
+                            { brands_id_in: [] },
+                        )
   end
 
   # коллеция товаров
@@ -59,11 +74,13 @@ private
 
   def selected_taxon
     @selected_taxon ||= @taxon || Taxon.where(id: params[:id]).first
-    @selected_taxon
   end
 
   def selected_taxonomy
-    @selected_taxonomy ||= @taxonomy || Taxonomy.where(slug: params[:id]).first
+    @selected_taxonomy ||=  Taxonomy.where(slug: params[:id]).first ||
+                            Taxonomy.where(slug: params[:taxonomy]).first ||
+                            Taxonomy.where(id: params[:id]).first ||
+                            Taxonomy.where(id: params[:taxonomy]).first
   end
 
   def current_category
