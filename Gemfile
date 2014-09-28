@@ -17,7 +17,6 @@ gem 'awesome_nested_set'
 gem 'delayed_job_active_record'
 gem 'russian', '~> 0.6.0'
 gem 'enum_help'
-gem 'redcarpet', '1.17.2'
 
 group :development do
   # Automatically adds annotations to models

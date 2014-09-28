@@ -35,7 +35,8 @@
               span отзывы
             = link_to 'оплата', '#payment', class: 'tabs__tab'
           .tabs__content
-            #description = markdown(resource.text)
+            #description
+              p = simple_format resource.text
             #comments = render 'shared/plugins/disqus_script'
             #ingredients
               p = resource.ingredients
