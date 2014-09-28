@@ -60,6 +60,7 @@ private
     @search_params ||= params.fetch(:q, {}).permit(
                             :price_gteq,
                             :price_lteq,
+                            :s,
                             { taxons_id_in: [] },
                             { brand_id_in: [] },
                         )
