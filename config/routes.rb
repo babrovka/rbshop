@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   
+  # Admin area
   scope module: 'admin' do
     devise_for :admins, path: 'admin'
   end
-  
+
   namespace :admin do
     get '/' => 'products#index', :as => :root
     resources :products, except: [:show] do 
@@ -25,12 +26,17 @@ Rails.application.routes.draw do
       end
     end
   end
-  
-  # юзеры
+  # ===========================================================================
+
+
+  # Regular users area
   devise_for :users, :controllers => {:registrations => 'registrations', :sessions => 'sessions'}
   get '/profile' => 'users#personal', as: :user_profile
   get '/orders' => 'users#orders', as: :user_orders
-  
+  # ===========================================================================
+
+  # Корзина и оформление заказа
+  #
   # управляем товарами в корзине
   resources :line_items, only: [:create, :destroy] do
     member do 
@@ -47,14 +53,20 @@ Rails.application.routes.draw do
   
   # создаем заказ
   post '/order' => 'checkout#order', :as => :order
-  
-  # главная страница
-  root 'pages#index'
+  # ===========================================================================
 
-  get 'menu', to: 'pages#menu'
-  
+
+  # Simple pages
+  root 'pages#index'
+  get 'faq' => 'high_voltage/pages#show', id: 'faq'
+  get 'payments' => 'high_voltage/pages#show', id: 'payments'
+  get 'delivery' => 'high_voltage/pages#show', id: 'delivery'
+  # ===========================================================================
+
+
   resources :promos, only: [:show]
-  
+
+  # Friendly urls area
   # products
   resources :products, only: [:index]
   match :filter, to: 'products#filter', via: [:get, :post]
@@ -64,4 +76,5 @@ Rails.application.routes.draw do
   get '/:taxonomy/:id', to: 'products#taxon', :as => :taxon
   # product
   get '/:id' => 'products#show', as: :product
+  # ===========================================================================
 end

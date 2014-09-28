@@ -74,3 +74,5 @@ gem 'jquery-ui-rails'
 
 # for images croping
 gem 'papercrop'
+
+gem 'high_voltage', '~> 2.2.1'
