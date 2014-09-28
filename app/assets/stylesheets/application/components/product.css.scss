@@ -50,21 +50,34 @@ $meta-width: 200px;
 // пока нет других элементов товаров, сдвигаем вниз этот блок
 #{$el}__description { margin-top: 180px; }
 
-// блок с мета информацией,всякого рода артиклы и т.д.
+// блок с мета информацией, всякого рода артиклы и т.д.
 #{$el}__meta{
-  @include border-radius(4px);
+  @include border-radius(8px);
   position: absolute;
   width: $meta-width;
   background: $color-gray-l;
   right: 0;
-  top: 2*$font-size-base;
+  top: 3*$font-size-base;
   font-family: $font-family-proxima-nova-semibold;
   font-size: 14px;
 
-  padding: 30px;
+  padding: $font-size-base*1.5 $font-size-base;
 
   p{ color: $color-gray; padding-bottom: $font-size-base*0.4; }
   b{ color: $color-gray-d; }
+
+  // заголовок над мета информацией о товаре
+  // во время создания это текст «товар в наличии»
+  #{$el}__meta-title{
+    color: $color-green-d;
+    font-family: $font-family-proxima-nova-semibold;
+    font-size: $font-size-base;
+
+    position: absolute;
+    top: -$font-size-base*2;
+
+    span + span{ padding-left: .3em;}
+  }
 }
 
 // взаимное расположение блока с цифрами и кнопкой «купить»
