@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       collection do 
         get 'statistics'
       end
+      member do
+        get 'crop'
+      end
     end
     resources :taxons,
               :taxonomies,

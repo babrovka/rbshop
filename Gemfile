@@ -68,3 +68,7 @@ gem 'has_scope'
 gem 'velocityjs-rails'
 
 gem 'populator'
+
+
+# for images croping
+gem 'papercrop'

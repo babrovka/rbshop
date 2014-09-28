@@ -1,5 +1,5 @@
-= simple_form_for([:admin, resource],
-                        html: {class: 'form-horizontal'},
+= simple_nested_form_for([:admin, resource],
+                        html: { class: 'form-horizontal', multipart: true },
                         wrapper: :horizontal_form,
                         wrapper_mappings: {} \
                       ) do |f|
@@ -21,6 +21,13 @@
   = f.association :related_products, input_html: { class: 'js-select2', multiple: true }
   = f.association :same_taxon_products, input_html: { class: 'js-select2', multiple: true }
   = f.association :cases, input_html: { class: 'js-select2', multiple: true }
+
+  = f.simple_fields_for :product_images do |f_img|
+    = f_img.input :image, as: :file
+    = f_img.link_to_remove "Remove this task"
+
+  = f.link_to_add "Add a task", :product_images
+
   = f.input :seo_title
   = f.input :seo_description
   = f.input :seo_text

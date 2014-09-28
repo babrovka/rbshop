@@ -151,6 +151,10 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    papercrop (0.2.0)
+      jquery-rails
+      paperclip (>= 3.4)
+      rails (>= 3.1)
     pg (0.17.1)
     poltergeist (1.5.1)
       capybara (~> 2.1)
@@ -302,6 +306,7 @@ DEPENDENCIES
   mysql2
   nested_form
   paperclip (~> 4.1)
+  papercrop
   pg
   poltergeist
   populator
