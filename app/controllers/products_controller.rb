@@ -41,7 +41,7 @@ private
       format.html { render :index }
       format.json do
         txt = Russian.p(collection.count, 'товар', 'товара', 'товаров')
-        render json: { text: "Найдено #{collection.count} #{txt}" }
+        render json: { text: "Найдено #{collection.total_count} #{txt}" }
       end
     end
   end
