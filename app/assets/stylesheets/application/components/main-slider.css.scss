@@ -13,6 +13,8 @@ $slider-button-offset: -50%;
   position: relative;
   z-index: 0;
 
+  background: black;
+
 
 
   // стили под стилизованные кнопки влево-вправо
@@ -116,14 +118,14 @@ $slider-button-offset: -50%;
     left: 20px;
   }
 
-  .nav-growpop a:hover .icon-wrap {
+  .nav-growpop a.m-active .icon-wrap {
     border-top-width: 40px;
     border-bottom-width: 40px;
     -webkit-transition-delay: 0s;
     transition-delay: 0s;
   }
 
-  .nav-growpop a:hover div {
+  .nav-growpop a.m-active div {
     opacity: 1;
     -webkit-transition-delay: 0.3s;
     transition-delay: 0.3s;
@@ -175,6 +177,8 @@ $slider-button-offset: -50%;
 #{$el}__txt-area{
   padding-top: 100px;
   height: 500px;
+  position: relative;
+  z-index: 1;
 
   h4, p{ color: white; }
   p{ font-size: 20px; }

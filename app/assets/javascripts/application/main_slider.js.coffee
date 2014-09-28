@@ -34,12 +34,16 @@ class window.app.MainSlider extends window.app.Scroller
       @.$next_btn.on('click', (e) =>
         e.preventDefault()
         @.scroll_next()
+      ).on('mouseenter', (e) -> $(@).closest('a').addClass('m-active')
+      ).on('mouseleave', (e) -> $(@).closest('a').removeClass('m-active')
       )
 
     if @.$prev_btn.length
       @.$prev_btn.on('click', (e) =>
         e.preventDefault()
         @.scroll_prev()
+      ).on('mouseenter', (e) -> $(@).closest('a').addClass('m-active')
+      ).on('mouseleave', (e) -> $(@).closest('a').removeClass('m-active')
       )
 
   _turn_off_clicks : ->
@@ -67,7 +71,6 @@ class window.app.MainSlider extends window.app.Scroller
   scroll_next : (n = 1) ->
     @._turn_off_clicks()
     @.before_moved_next()
-    @.add_previews_for_current_slide()
     @.scroll(1)
     @.after_moved_next()
 
@@ -75,9 +78,8 @@ class window.app.MainSlider extends window.app.Scroller
   scroll_prev : (n = 1) ->
     @._turn_off_clicks()
     @.before_moved_prev()
-    @.add_previews_for_current_slide()
     @.scroll(-1)
-    @.after_modev_prev()
+    @.after_moved_prev()
 
   scroll: (pos_diff) ->
     to_pos = @.calculate_pos(pos_diff)
@@ -88,10 +90,6 @@ class window.app.MainSlider extends window.app.Scroller
     @.$items.index(@.$current_item)
 
 
-  before_moved_next: ->
-    @.$current_item.addClass('navOutNext')
-    @.$items.eq(@.calculate_pos(1)).addClass('navInNext')
-
   calculate_pos: (pos_diff) ->
     to_pos = @.current_pos() + pos_diff
     to_pos = @.$items.length - 1 if to_pos < 0
@@ -99,14 +97,34 @@ class window.app.MainSlider extends window.app.Scroller
     to_pos
 
   before_moved_prev: ->
+    @.$prev_btn.removeClass('m-active')
+    @.$current_item.addClass('navOutPrev')
+    @.$items.eq(@.calculate_pos(-1)).addClass('navInPrev')
 
+  before_moved_next: ->
+    @.$next_btn.removeClass('m-active')
+    @.$current_item.addClass('navOutNext')
+    @.$items.eq(@.calculate_pos(1)).addClass('navInNext')
 
   after_moved_next: ->
     setTimeout( =>
       @.$items.removeClass('navInNext navOutNext')
       @.$items.not(@.$current_item).removeClass('m-current')
+      @.add_previews_for_current_slide(@.current_pos())
       @._init_events()
+      @.$next_btn.addClass('m-active')
     , @.params.anim_clock)
+
+
+  after_moved_prev: ->
+    setTimeout( =>
+      @.$items.removeClass('navInPrev navOutPrev')
+      @.$items.not(@.$current_item).removeClass('m-current')
+      @.add_previews_for_current_slide(@.current_pos())
+      @._init_events()
+      @.$prev_btn.addClass('m-active')
+    , @.params.anim_clock)
+
 
 
   add_previews_for_current_slide : (current_id) ->
