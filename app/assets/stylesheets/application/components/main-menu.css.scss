@@ -64,7 +64,7 @@ $el: '.main-menu';
 #{$el}__2level{
   background: $color-logo;
   padding: $font-size-base*2 $font-size-base*3;
-  margin-left: -$font-size-base*3;
+  margin-left: -$grid-cutter;
   position: absolute;
   opacity: 0;
   visibility: hidden;
@@ -107,11 +107,14 @@ $el: '.main-menu';
     }
 
     // ссылка в конкретном типе подменю
-    li a {
-      @include link-variant($color-asphalt, white);
-      font-family: $font-family-proxima-nova-semibold;
-      font-size: $font-size-base;
+    li{
       margin-bottom: .7em;
+      a {
+        @include link-variant($color-asphalt, white);
+        display: inline;
+        font-family: $font-family-proxima-nova-semibold;
+        font-size: $font-size-base;
+      }
     }
   }
 }
