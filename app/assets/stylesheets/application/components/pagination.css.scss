@@ -5,7 +5,7 @@ $el: '.pagination';
   font-family: $font-family-proxima-nova-semibold;
   color: $color-asphalt;
 
-  .page, .last, .next, .prev, .first{
+  #{$el}__page, .last, .next, .prev, .first{
     @include inline-block(middle);
     color: $color-gray;
     margin-left: 1em;

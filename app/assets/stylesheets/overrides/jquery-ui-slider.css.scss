@@ -1,0 +1,34 @@
+// переопредеяем стиль слайдера от бустрапа
+$slider-height: 10px;
+
+// вся область слайдера
+.ui-widget-content{
+  @include border-radius($slider-height);
+  @include box-shadow(inset 0 2px 3px rgba(0,0,0,0.1), 0 3px 3px -2px white);
+  height: $slider-height+2px;
+  margin-bottom: $font-size-base;
+  border: 1px #cac8cd solid;
+  background: #ebeaeb;
+}
+
+// заливка между значениями слайдера
+.ui-widget-header{
+  background: #24a45b;
+  @include background-image(linear-gradient(bottom, #24a45b, #61d798));
+  @include box-shadow(0 2px 3px rgba(0,0,0,0.3));
+  margin-top: -1px;
+  border: 1px solid transparent;
+  border-top-color: #2dc870;
+  border-bottom-color: #188c49;
+}
+
+.ui-slider-horizontal .ui-slider-range{ height: $slider-height+2px; }
+
+
+// ярлычок слайдера, за который тянут
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+  @include sprites-sprite(slider-btn);
+  height: 23px;
+  width: 16px;
+  border: none;
+}

@@ -1,8 +1,17 @@
 class ProductsController < ApplicationController
 
-  helper_method :resource, :collection, :current_category
-  
+  helper_method :resource,
+                :collection,
+                :current_category,
+                :filter,
+                :selected_taxon,
+                :selected_taxonomy
+
+
+  before_action :modify_search_params
+
   def index
+    render_responce
   end
 
   def show
@@ -11,39 +20,80 @@ class ProductsController < ApplicationController
   end
   
   def taxonomy
-    taxon_ids = Taxon.where(taxonomy_id: selected_taxonomy.id).map(&:id)
+    taxon_ids = selected_taxonomy.taxons.pluck(:id)
     @products = collection.includes(:taxons).where(shop_taxons: { id: taxon_ids })
     seo_data(selected_taxonomy)
-    render :index
+    render_responce
   end
   
   def taxon
     taxons = selected_taxon.self_and_descendants
     @products = collection.includes(:taxons).where(:shop_taxons => {:id => taxons})
     seo_data(selected_taxon)
-    render :index
+    render_responce
+  end
+
+private
+
+  # рендеринг результата
+  def render_responce
+    respond_to do |format|
+      format.html { render :index }
+      format.json do
+        txt = Russian.p(collection.count, 'товар', 'товара', 'товаров')
+        render json: { text: "Найдено #{collection.count} #{txt}" }
+      end
+    end
   end
 
   def resource
     @product ||= Product.friendly.find(params[:id])
   end
 
-  def collection
-    params[:brand_ids] ||= Brand.pluck(:id)
-    @products ||= Product.where(brand_id: params[:brand_ids])
-    @products.page(params[:page]).per(20)
+  # инстанс для поддержки гибкой фильтрации
+  def filter
+    @q ||= Product.search(search_params)
   end
-  
-  private
-  
+
+  # подготовка параметров к фильтрации
+  def search_params
+    @search_params ||= params.fetch(:q, {}).permit(
+                            :price_gteq,
+                            :price_lteq,
+                            :s,
+                            { taxons_id_in: [] },
+                            { brand_id_in: [] },
+                        )
+  end
+
+
+  # модифицируем параметры фильтрации перед построением самого ransack фильтра
+  # здесь модифицируются все параметры, которые необходимо отразить визуально в фильтре
+  def modify_search_params
+    if params[:brand_ids].present?
+      search_params.merge!(brand_id_in: params[:brand_ids])
+    end
+  end
+
+  # коллеция товаров
+  # унаследована от инстанса фильтрации
+  # чтобы учитывать гибкие параметры фильтрации на различных страницах
+  def collection
+    # params[:brand_ids] ||= Brand.pluck(:id) unless params[:brand_ids].present?
+    @products ||= filter.result(distinct: true)
+                        .page(params[:page])
+                        .per(params[:per] || 20)
+  end
+
   def selected_taxon
     @selected_taxon ||= @taxon || Taxon.where(id: params[:id]).first
-    session[:taxon_id] = @selected_taxon.try(:id)
-    @selected_taxon
   end
 
   def selected_taxonomy
-    @selected_taxonomy ||= @taxonomy || Taxonomy.where(slug: params[:id]).first
+    @selected_taxonomy ||=  Taxonomy.where(slug: params[:id]).first ||
+                            Taxonomy.where(slug: params[:taxonomy]).first ||
+                            Taxonomy.where(id: params[:id]).first ||
+                            Taxonomy.where(id: params[:taxonomy]).first
   end
 
   def current_category

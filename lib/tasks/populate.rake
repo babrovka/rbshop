@@ -9,7 +9,7 @@ namespace :data do
 
   task :taxonomies => :environment do
     Taxonomy.delete_all
-    Taxonomy.populate 5 do |taxonomy|
+    Taxonomy.populate 3 do |taxonomy|
       taxonomy.title = Faker::Lorem.words(1)[0].capitalize
     end
 
@@ -24,7 +24,7 @@ namespace :data do
     # instead of Taxon.reset_pk_sequence!
     # ActiveRecord::Base.connection.reset_pk_sequence!('taxons')
 
-    Taxon.populate 10 do |taxon|
+    Taxon.populate 4 do |taxon|
       taxon.title = Faker::Lorem.words(1)[0].capitalize
       taxon.taxonomy_id = Taxonomy.pluck(:id).sample
       taxon.seo_url = Faker::Lorem.words(1)[0]
@@ -35,10 +35,10 @@ namespace :data do
     Taxon.rebuild!
 
 
-    4.times do | |
+    3.times do | |
       root = Taxon.roots.shuffle.first
 
-      5.times do
+      3.times do
         taxon = Taxon.new
         taxon.title = Faker::Lorem.words(1)[0].capitalize
         taxon.taxonomy_id = Taxonomy.pluck(:id).sample
@@ -60,7 +60,7 @@ namespace :data do
 
     Taxon.where(taxon_type: [1,2]).destroy_all
 
-    10.times do
+    3.times do
       taxon = Taxon.new
 
       taxon.taxonomy_id = Taxonomy.first.id
@@ -74,7 +74,7 @@ namespace :data do
 
     puts ''
 
-    6.times do
+    3.times do
       taxon = Taxon.new
 
       taxon.taxonomy_id = Taxonomy.first.id
@@ -104,6 +104,15 @@ namespace :data do
     Admin.create(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
     User.create(email: 'user@example.com', password: 'password', password_confirmation: 'password')
     puts 'Done!'
+  end
+
+
+  task taxons_to_products: :environment do
+    taxons = Taxon.all
+    Product.all.each do |p|
+      p.taxons << taxons.sample
+      p.taxons << taxons.sample
+    end
   end
   
 

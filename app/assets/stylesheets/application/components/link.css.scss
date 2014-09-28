@@ -6,6 +6,7 @@ $el: '.link';
   font-size: $font-size-base;
   font-family: $font-family-proxima-nova-regular;
   font-weight: 100;
+  vertical-align: baseline;
 
 
   + #{$el}{ margin-left: 10px; }
@@ -19,6 +20,10 @@ $el: '.link';
 
 #{$el}.m-red{
   @include link-variant($color-red);
+  @include link-without-border;
+}
+
+#{$el}.m-simple{
   @include link-without-border;
 }
 

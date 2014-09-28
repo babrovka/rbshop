@@ -1,0 +1,22 @@
+.sidebar.filter
+  = link_to products_path, class: 'link m-red filter__reset-btn' do
+    span.fa.fa-times
+    span сбросить фильтр
+
+  h4 фильтр по параметрам
+  = search_form_for filter, url: request.original_url,
+                        html: { multipart: true, class: 'js-filter-form' } do |f|
+
+    - filter_presenter do |filter|
+      = filter.by_brands f, class: 'filter__box'
+      = filter.taxons_title :by_care_type
+      = filter.taxons_list :by_care_type, f, class: 'filter__box'
+
+      = filter.taxons_title :by_age
+      = filter.taxons_list :by_age, f, class: 'filter__box'
+
+      = filter.taxons_title :by_product_type
+      = filter.taxons_list :by_product_type, f, class: 'filter__box'
+
+      = filter.price_title
+      = filter.price_list f, class: 'js-price-slider filter__box m-price'

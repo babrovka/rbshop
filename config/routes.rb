@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   
   # products
   resources :products, only: [:index]
+  match :filter, to: 'products#filter', via: [:get, :post]
   # taxonomy
   get '/products/:id' => 'products#taxonomy', :as => :taxonomy
   #taxon
