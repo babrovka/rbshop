@@ -9,6 +9,8 @@ class ProductsController < ApplicationController
 
 
   before_action :modify_search_params
+  
+  has_scope :ordered, :default => 'position ASC'
 
   def index
     render_responce
