@@ -20,4 +20,4 @@
       = f.submit class: 'btn btn-success'
       = link_to 'Отменить', admin_promos_path, class: 'btn btn-default'
       - unless resource.new_record?
-        = link_to 'Удалить товар', admin_promo_path(resource), class: 'btn btn-danger', 'data-method' => :delete, 'data-confirm' => 'вы уверены?'
+        = link_to 'Удалить акцию', admin_promo_path(resource), class: 'btn btn-danger', 'data-method' => :delete, 'data-confirm' => 'вы уверены?'
