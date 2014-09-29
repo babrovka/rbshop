@@ -23,9 +23,9 @@ class LineItemsController < ApplicationController
   end
 
   # увеличиваем кол-во товаров
-  def increase
+  def increase(qty=1)
     @line_item = LineItem.find(params[:id])
-    @line_item.quantity += 1
+    @line_item.quantity += qty
     @line_item.save
     respond_to do |format|
       format.html { redirect_to :back }
@@ -34,12 +34,12 @@ class LineItemsController < ApplicationController
   end
   
   # уменьшаем кол-во товаров
-  def decrease 
+  def decrease(qty=1)
     @line_item = LineItem.find(params[:id])
-    if @line_item.quantity <= 1
+    if @line_item.quantity <= qty
       @line_item.quantity = 1
     else
-      @line_item.quantity -= 1
+      @line_item.quantity -= qty
       @line_item.save
     end
     respond_to do |format|
