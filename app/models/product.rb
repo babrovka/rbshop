@@ -27,6 +27,14 @@ class Product < ActiveRecord::Base
   enum product_type: [ :regular, :promo ]
 
   accepts_nested_attributes_for :product_images, allow_destroy: true
+
+  after_update :reprocess_images
+
+  def reprocess_images
+    self.product_images.each do |image|
+      image.save
+    end
+  end
   
   extend FriendlyId
   friendly_id :short_description, use: :slugged
