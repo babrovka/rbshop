@@ -14,13 +14,13 @@ class Product < ActiveRecord::Base
                           class_name: 'Product',
                           join_table: "same_taxon_products",
                           foreign_key: "product_id",
-                          association_foreign_key: "same_product_id"
-                          
+                          association_foreign_key: "same_product_id"                          
   belongs_to :promo, class_name: "Product"
   has_many :products, class_name: "Product",
                       foreign_key: "promo_id"
-                          
-  # default_scope { where(product_type: 0) }
+                      
+  # after_save :count_separate_product_price, :if => lambda {|product| product.product_type == 'promo' }
+                      
   scope :in_stock, -> { where(in_stock: true) }
   scope :ordered, -> (field) {order(field)}
   
@@ -30,6 +30,11 @@ class Product < ActiveRecord::Base
   
   extend FriendlyId
   friendly_id :short_description, use: :slugged
+  
+  def count_separate_product_price
+    price = self.products.to_a.sum { |p| p.current_price }
+    self.update_columns(promo_products_price: price)
+  end
   
   def current_price
     unless new_price.nil? || new_price.zero?
