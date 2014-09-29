@@ -19,7 +19,7 @@ class Product < ActiveRecord::Base
   has_many :products, class_name: "Product",
                       foreign_key: "promo_id"
                       
-  # after_save :count_separate_product_price, :if => lambda {|product| product.product_type == 'promo' }
+  after_save :count_separate_product_price, :if => lambda {|product| product.product_type == 'promo' }
                       
   scope :in_stock, -> { where(in_stock: true) }
   scope :ordered, -> (field) {order(field)}
@@ -32,7 +32,7 @@ class Product < ActiveRecord::Base
   friendly_id :short_description, use: :slugged
   
   def count_separate_product_price
-    price = self.products.to_a.sum { |p| p.current_price }
+    price = self.products.map {|p| p.price.to_i}.sum
     self.update_columns(promo_products_price: price)
   end
   
