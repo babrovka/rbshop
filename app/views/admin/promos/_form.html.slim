@@ -1,3 +1,4 @@
+
 = simple_form_for([:admin, resource],
                         url: collection_form_url,
                         html: {class: 'form-horizontal'},
@@ -11,10 +12,10 @@
   = f.input :text, input_html: { rows: 3 }
   = f.association :products, collection: Product.regular, input_html: { class: 'js-select2', multiple: true } 
   = f.input :price, input_html: { size: 5, type: :number }
-  = f.input :show_in_slider
-  
   = f.simple_fields_for :slide do |s|
     = s.input :title
+    = s.input :text
+    = s.input :image, as: :file
   
   div.col-sm-10.col-sm-offset-2
     |Cтоимость всех товаров акции по-отдельности: #{resource.promo_products_price}

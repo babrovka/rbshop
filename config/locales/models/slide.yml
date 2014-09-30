@@ -1,0 +1,7 @@
+ru:
+  activerecord:
+    attributes:
+      slide:
+        title: заголовок
+        text: текст
+        image: изображение
