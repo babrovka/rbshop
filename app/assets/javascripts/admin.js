@@ -16,5 +16,5 @@
 //= require select2
 //= require jquery_nested_form
 //= require jquery.jcrop
-// require papercrop
+//= require_tree ./plugins
 //= require_tree ./admin

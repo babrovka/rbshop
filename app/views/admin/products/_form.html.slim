@@ -22,11 +22,29 @@
   = f.association :same_taxon_products, input_html: { class: 'js-select2', multiple: true }
   = f.association :cases, input_html: { class: 'js-select2', multiple: true }
 
-  = f.simple_fields_for :product_images do |f_img|
-    = f_img.input :image, as: :file
-    = f_img.link_to_remove "Remove this task"
+  / Блок с прикреплением изображений и ссылкой на кропинг
+  .row
+    .col-sm-offset-2.col-sm-10
+      .well
+        h4
+          ' Изображения товара
+          small
+            - if resource.product_images.any?
+              = link_to 'откропить изображения', crop_admin_product_path(resource), class: 'js-form-crop-link' unless resource.new_record?
+            - else
+              span.js-form-crop-link добавьте изображения и откропьте их
 
-  = f.link_to_add "Add a task", :product_images
+        .row
+          = f.simple_fields_for :product_images do |f_img|
+            .col-sm-3
+              .js-form-img-container
+                .js-form-img-placeholder
+                  = image_tag 'http://placehold.it/150x150'
+                = f_img.input :image, as: :file, label: false, input_html: { accept: "image/*" }
+                = f_img.link_to_remove 'удалить', class: 'text-danger'
+                hr
+
+          = f.link_to_add 'Добавить изображение', :product_images, class: 'btn btn-success'
 
   = f.input :seo_title
   = f.input :seo_description

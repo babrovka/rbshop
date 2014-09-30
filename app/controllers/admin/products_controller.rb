@@ -15,21 +15,6 @@ class Admin::ProductsController < Admin::ApplicationController
     @products = apply_scopes(collection)
   end
 
-  def create
-    create! do |success, failure|
-      if build_resource_params.first[:product_images_attributes].present?
-        success.html{ redirect_to crop_admin_product_path(resource) }
-      end
-    end
-  end
-
-  def update
-    update! do |success, failure|
-      if build_resource_params.first[:product_images_attributes].present?
-        success.html{ redirect_to crop_admin_product_path(resource) }
-      end
-    end
-  end
 
   def crop
   end
