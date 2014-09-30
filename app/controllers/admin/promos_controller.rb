@@ -55,7 +55,8 @@ class Admin::PromosController < Admin::ApplicationController
         :applying, 
         {case_ids: []},
         :product_type,
-        {product_ids: []}
+        {product_ids: []},
+        :show_in_slider
      ).merge(product_type: 'promo')]
    end
 

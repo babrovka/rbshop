@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
   belongs_to :promo, class_name: "Product"
   has_many :products, class_name: "Product",
                       foreign_key: "promo_id"
-                      
+  has_one :slide  
   after_save :count_separate_product_price, :if => lambda {|product| product.product_type == 'promo' }
                       
   scope :in_stock, -> { where(in_stock: true) }
@@ -27,6 +27,7 @@ class Product < ActiveRecord::Base
   enum product_type: [ :regular, :promo ]
 
   accepts_nested_attributes_for :product_images, allow_destroy: true
+  accepts_nested_attributes_for :slide, allow_destroy: true
 
   after_update :reprocess_images
 

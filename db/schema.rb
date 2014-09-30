@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926134202) do
+ActiveRecord::Schema.define(version: 20140930070957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -346,6 +346,7 @@ ActiveRecord::Schema.define(version: 20140926134202) do
     t.integer  "product_type",                                 default: 0
     t.integer  "promo_id"
     t.integer  "promo_products_price"
+    t.boolean  "show_in_slider",                               default: false
   end
 
   add_index "products", ["slug"], name: "index_products_on_slug", unique: true, using: :btree
@@ -503,6 +504,18 @@ ActiveRecord::Schema.define(version: 20140926134202) do
 
   add_index "shop_users", ["email"], name: "index_shop_users_on_email", unique: true, using: :btree
   add_index "shop_users", ["reset_password_token"], name: "index_shop_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "slides", force: true do |t|
+    t.string   "title"
+    t.text     "text"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stage_images", force: true do |t|
     t.string   "title"
