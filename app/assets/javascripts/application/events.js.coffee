@@ -92,8 +92,8 @@ $ ->
   $max_input = $container.find('.js-price-slider-input-max')
 
   # определяем активные значения слайдера
-  current_min_val = $min_input.val() || $min_input.data('default')+1000 || 1000
-  current_max_val = $max_input.val() || $max_input.data('default')-1000 || 8000
+  current_min_val = $min_input.val() || $min_input.data('default') || 0
+  current_max_val = $max_input.val() || $max_input.data('default') || 100000
 
   # записываем активные значения слайдера в инпуты, если те пусты
   $min_input.val(current_min_val) unless $min_input.val()

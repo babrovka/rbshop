@@ -30,6 +30,10 @@ class ProductsController < ApplicationController
   
   def taxon
     taxons = selected_taxon.self_and_descendants
+    logger.info '####'
+    logger.info filter.inspect
+    logger.info collection.to_sql
+    logger.info '####'
     @products = collection.includes(:taxons).where(:shop_taxons => {:id => taxons})
     seo_data(selected_taxon)
     render_responce
@@ -62,6 +66,10 @@ private
     @search_params ||= params.fetch(:q, {}).permit(
                             :price_gteq,
                             :price_lteq,
+                            :new_price_lteq,
+                            :new_price_gteq,
+                            :new_price_or_price_lteq,
+                            :new_price_or_price_gteq,
                             :s,
                             { taxons_id_in: [] },
                             { brand_id_in: [] },

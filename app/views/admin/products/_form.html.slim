@@ -39,7 +39,8 @@
             .col-sm-3
               .js-form-img-container
                 .js-form-img-placeholder
-                  = image_tag 'http://placehold.it/150x150'
+                  - path = f_img.object.image? ? f_img.object.image.url(:catalog) : 'http://placehold.it/150x150'
+                  = image_tag path
                 = f_img.input :image, as: :file, label: false, input_html: { accept: "image/*" }
                 = f_img.link_to_remove 'удалить', class: 'text-danger'
                 hr

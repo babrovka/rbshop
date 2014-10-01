@@ -12,7 +12,9 @@
         .shares__item.m-yandex = render 'shared/plugins/yandex_shares'
 
     .product__info
-      h2 = resource.title
+      h2
+        ==' resource.title
+        = link_to 'редактировать', edit_admin_product_path(resource), class: 'link' if admin_signed_in?
       small = resource.short_description.truncate(400)
       .product__price
         .price = resource.current_price
