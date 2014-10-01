@@ -20,8 +20,10 @@ class Order < ActiveRecord::Base
   end
   
   def buy_products_in_line_items
-    line_items.each do |line_item|
-      line_item.product.buy(line_item.quantity) if line_item.product
+    if self.delivered?
+      line_items.each do |line_item|
+        line_item.product.buy(line_item.quantity) if line_item.product
+      end
     end
   end
 
