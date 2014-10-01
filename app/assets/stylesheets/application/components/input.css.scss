@@ -2,9 +2,8 @@ $el: '.checkbox';
 
 // кастомный чекбокс
 #{$el}{
-  #{$el}__icon, > span{
-    @include inline-block(text-bottom);
-  }
+  > span {display: inline; }
+  #{$el}__icon{ @include inline-block(text-bottom); }
 
   input[type='checkbox']{ display: none; }
 }
