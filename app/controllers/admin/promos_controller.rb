@@ -13,6 +13,11 @@ class Admin::PromosController < Admin::ApplicationController
   
   actions :all, except: [:show]
   
+  def new
+    new! do |success|
+      success.html { resource.build_slide }
+    end
+  end
 
   private
   
@@ -55,7 +60,15 @@ class Admin::PromosController < Admin::ApplicationController
         :applying, 
         {case_ids: []},
         :product_type,
-        {product_ids: []}
+        {product_ids: []},
+        :show_in_slider,
+        {slide_attributes: [
+             :title,
+             :text,
+             :image,
+             :id,
+             '_destroy'
+         ]},
      ).merge(product_type: 'promo')]
    end
 
