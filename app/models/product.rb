@@ -20,7 +20,8 @@ class Product < ActiveRecord::Base
                       foreign_key: "promo_id"
   has_one :slide  
   after_save :count_separate_product_price, :if => lambda {|product| product.product_type == 'promo' }
-                      
+  
+  default_scope { order('position ASC') } 
   scope :in_stock, -> { where(in_stock: true) }
   scope :ordered, -> (field) {order(field)}
   
