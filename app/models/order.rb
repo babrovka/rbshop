@@ -30,7 +30,7 @@ class Order < ActiveRecord::Base
   end
   
   def update_user_bought_counter
-    if self.delivered?
+    if self.delivered? && self.user
       user = self.user
       user.update_columns(bought_counter: self.total)
     end

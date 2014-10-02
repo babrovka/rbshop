@@ -17,6 +17,7 @@ describe User do
       it "can be counted" do
         o = order_with_products
         o.status = 'delivered'
+        o.user = user
         o.save!
         user.reload
         expect(user.bought_counter).to eq o.total
