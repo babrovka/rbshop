@@ -1,0 +1,10 @@
+$el: '.user-bar';
+
+
+// имя ссылка,
+// на момент разработки,она размещается в главном меню
+// и из нее выскакивает доп.меню
+#{$el}__name-link{
+  @include link-variant($color-blue);
+  display: inline;
+}
