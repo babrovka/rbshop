@@ -8,6 +8,6 @@ class LineItem < ActiveRecord::Base
   belongs_to :order
   
   def total_price
-  	product.price.to_i * quantity
+  	product.price.to_i * quantity if product
   end
 end
