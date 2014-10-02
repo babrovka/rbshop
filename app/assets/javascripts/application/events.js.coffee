@@ -11,6 +11,10 @@ $ ->
   _.each($('.js-scroller'), (el) -> new window.app.Scroller(el))
 
 
+  # на странице «корзина» убиваем поповер связанный с «ваш товар добавлен»
+  unless window.location.pathname.match(/cart/) == null
+    delete window.add_to_cart_popover
+
   # работа счетчика.
   # инпут с кнопками «больше» и «меньше»
   $('.js-counter a').on('click', (e) ->
