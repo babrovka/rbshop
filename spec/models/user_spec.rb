@@ -5,7 +5,8 @@ describe User do
   describe '#order' do
     let(:user) { create(:user) }
     let(:order) { create(:order, user: user) }
-    let(:order_with_products) { create(:order_with_products, user: user) }
+    let(:order_with_products1) { create(:order_with_products, user: user) }
+    let(:order_with_products2) { create(:order_with_products, user: user) }
     
     context 'create order' do
       it "is possible" do
@@ -15,12 +16,17 @@ describe User do
     
     context 'order products' do
       it "can be counted" do
-        o = order_with_products
-        o.status = 'delivered'
-        o.user = user
-        o.save!
+        order1 = order_with_products1
+        order1.status = 'delivered'
+        order1.user = user
+        order1.save!
+        order2 = order_with_products2
+        order2.status = 'delivered'
+        order2.user = user
+        order2.save!
         user.reload
-        expect(user.bought_counter).to eq o.total
+        orders_total_price = order1.total + order2.total 
+        expect(user.bought_counter).to eq orders_total_price
       end
     end
   end
