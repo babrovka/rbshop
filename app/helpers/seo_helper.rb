@@ -25,5 +25,15 @@ module SeoHelper
       base_meta_text
     end
   end
+
+
+  # прописываем условия,
+  # когда нужно вписать метатэг для робота,
+  # чтобы он не сканил страницу
+  def robots_meta_tags
+    if params[:page].present? || params[:q].present?
+      content_tag :meta, nil, name: 'robots', content: 'noindex, nofollow'
+    end
+  end
    
 end

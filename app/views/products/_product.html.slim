@@ -11,7 +11,7 @@
       = image_tag 'noimage.png'
 
   h3 = link_to product.title, product_path(product)
-  small = product.short_description.truncate(50)
+  small = product.short_description.try(:truncate, 50)
 
   .card__footer
     .card__rating
