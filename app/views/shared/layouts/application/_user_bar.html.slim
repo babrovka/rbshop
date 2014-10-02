@@ -1,7 +1,10 @@
 - unless user_signed_in?
   .btn-group
-    = link_to 'вход', new_user_session_path, class: 'btn m-primary m-small'
-    = link_to 'регистрация', new_user_registration_path, class: 'btn m-primary m-small'
+    - login_extra_class = 'm-disable' if current_page?(controller: :sessions, action: :new)
+    - sign_up_extra_class = 'm-disable' if current_page?(controller: :registrations, action: :new)
+
+    = link_to 'вход', new_user_session_path, class: "btn m-primary m-small #{login_extra_class}"
+    = link_to 'регистрация', new_user_registration_path, class: "btn m-primary m-small #{sign_up_extra_class}"
 - else
   .user-bar
     - user = UserPresenter.new(current_user)

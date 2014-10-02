@@ -1,6 +1,7 @@
 .text-right{ text-align: right; }
 
 .text-orange{ color: $color-orange; }
+.text-red{ color: $color-red; }
 
 .text-phone{
   @include unstyled-link;

@@ -1,33 +1,33 @@
 .page
   h3 Контактная информация
-  = form_for @order, url: order_path, html: { class: 'checkout-form js-checkout-form', remote: true } do |f|
-    .checkout-form__row
+  = form_for @order, url: order_path, html: { class: 'form js-checkout-form', remote: true } do |f|
+    .form__row
       = f.label :name
       = f.text_field :name, size: 23
 
-    .checkout-form__row
+    .form__row
       = f.label :email
       = f.text_field :email, size: 30
-      span.checkout-form__help Спама не будет
+      span.form__help Спама не будет
 
-    .checkout-form__row
+    .form__row
       = f.label :phone
       = f.text_field :phone, size: 25
-      span.checkout-form__help Пишите полностью, с кодом города и добавочным номером
+      span.form__help Пишите полностью, с кодом города и добавочным номером
 
-    .checkout-form__row.m-address
+    .form__row.m-address
       = f.label :address
       = f.text_area :address, rows: 3, cols: 40
-      span.checkout-form__help
+      span.form__help
         | Нам обязательно нужен ваши индекс,
         br
         | улица, дом и номер помещения/квартиры
 
-    .checkout-form__row.m-checkout
+    .form__row.m-checkout
       = link_to '#', class: 'btn m-disactive' do
         span.fa.fa-check
         span Все готово, можно отправлять
-      .checkout-form__help
+      .form__help
         | Мы пришлём письмо с инструкциями
         br
         | и свяжемся с вами в рабочее время с 10 до 19 по Мск
