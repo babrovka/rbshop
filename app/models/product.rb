@@ -55,7 +55,7 @@ class Product < ActiveRecord::Base
   end
   
   def old_price
-    if price
+    if price && price != 0
       price
     else
       nil
