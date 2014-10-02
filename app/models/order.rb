@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   has_many :line_items,  dependent: :destroy
   belongs_to :user
   after_save :buy_products_in_line_items
+  after_save :count_total
   
   enum status: [ :not_paid, :paid, :ready_for_delivery, :delivered ]
   enum pay_type: [ :cash, :online ]
@@ -27,7 +28,9 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def total_price
-    line_items.to_a.sum { |item| item.total_price }
+  def count_total
+    total = self.line_items.map {|l| l.total_price.to_i}.sum
+    self.update_columns(total: total)
   end
+  
 end

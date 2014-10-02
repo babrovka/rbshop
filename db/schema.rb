@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930070957) do
+ActiveRecord::Schema.define(version: 20141002070611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -451,6 +451,7 @@ ActiveRecord::Schema.define(version: 20140930070957) do
     t.text     "comment"
     t.integer  "status",     default: 0
     t.integer  "pay_type"
+    t.integer  "total",      default: 0
   end
 
   create_table "shop_product_taxons", force: true do |t|
@@ -500,6 +501,7 @@ ActiveRecord::Schema.define(version: 20140930070957) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bought_counter",         default: 0
   end
 
   add_index "shop_users", ["email"], name: "index_shop_users_on_email", unique: true, using: :btree
