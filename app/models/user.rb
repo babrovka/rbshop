@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     when 200000
       20
     else
-      nil
+      0
     end
   end
   

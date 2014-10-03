@@ -21,6 +21,14 @@ class Cart < ActiveRecord::Base
   def total_price
     line_items.to_a.sum { |item| item.total_price }
   end
+  
+  def discounted_price  
+    if self.user
+      percents = 100-self.user.discount
+      discounted_price = self.total_price/100*percents
+      discounted_price
+    end
+  end
 
   # кол-во всех единиц продукции с учетом того, что некоторых добавлено по 2-3 штуки
   def product_count

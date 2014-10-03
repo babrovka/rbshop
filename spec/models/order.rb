@@ -4,9 +4,13 @@ describe Order do
   
   describe '#order' do
     let(:order) { create(:order) }
+    let(:user) { create(:user) }
     let(:product1) { create(:product) }
     let(:product2) { create(:product) }
     let(:product3) { create(:product) }
+    
+    let(:user) { create(:user) }
+    let(:order) { create(:order_with_products, user: user) }
     
     context 'total price' do
       it "can be counted" do
@@ -23,6 +27,21 @@ describe Order do
         expect(order.total).to eq total
       end
     end
+    
+    context 'total_price' do
+      it "can be discounted" do
+        user.bought_counter = 150000
+        user.save!
+        user.reload 
+        order.reload
+        order_total_price = order.line_items.to_a.sum { |item| item.total_price }
+        percents = 100-user.discount
+        order_discounted_price = order_total_price/100*percents
+        
+        expect(order.discounted_price).to eq order_discounted_price
+      end
+    end
+    
   end
     
 end
