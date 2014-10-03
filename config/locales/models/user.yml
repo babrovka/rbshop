@@ -1,0 +1,7 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        password: пароль
+        password_confirmation: повторите пароль
+        current_password: текущий пароль

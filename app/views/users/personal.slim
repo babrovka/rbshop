@@ -1,1 +1,5 @@
-= current_user.id
+= content_for :sidebar do
+  = render_navigation context: :user_profile
+
+.page
+  .h1 Адрес доставки
