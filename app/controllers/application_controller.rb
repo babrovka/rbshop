@@ -29,8 +29,10 @@ class ApplicationController < ActionController::Base
   
   def assign_cart_to_user
     authenticate_user!
-    current_user.cart = temporary_cart
-    current_user.save
+    if current_user
+      current_user.cart = temporary_cart
+      current_user.save
+    end
   end
   
   def destroy_cart
