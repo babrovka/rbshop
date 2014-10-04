@@ -2,7 +2,7 @@
   .main-slider__container.js-main-slider-container
     - slides.each do |slide|
       .main-slider__item.js-main-slider-item data-slide-id=slide.id
-        = image_tag slide.image.url(:original)
+        = image_tag slide.image.url(:slide)
         .main-slider__item-bg
         .main-slider__txt-area
           p = slide.text
@@ -17,4 +17,4 @@
           span
           h3 = slide.title
           p = slide.text
-          = image_tag slide.image.url(:slide_preview)
+          = image_tag slide.image.url(:preview)
