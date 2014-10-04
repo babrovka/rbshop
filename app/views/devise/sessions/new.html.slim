@@ -31,4 +31,6 @@
         span
           ' Вы не зарегистрированы на сайте? Пройдите простую
         = link_to 'процедуру регистрации', new_registration_path(resource_name), class: 'link'
+        br
+        = link_to "Восстановить пароль", new_password_path(resource_name), class: 'link'
 

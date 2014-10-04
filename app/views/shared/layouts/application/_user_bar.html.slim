@@ -1,10 +1,9 @@
 - unless user_signed_in?
   .btn-group
-    - login_extra_class = 'm-disable' if current_page?(controller: :sessions, action: :new)
-    - sign_up_extra_class = 'm-disable' if current_page?(controller: :registrations, action: :new)
-
-    = link_to 'вход', new_user_session_path, class: "btn m-primary m-small #{login_extra_class}"
-    = link_to 'регистрация', new_user_registration_path, class: "btn m-primary m-small #{sign_up_extra_class}"
+    = link_to_unless_current 'вход', new_user_session_path, class: "btn m-primary m-small" do
+      = content_tag :span, 'вход', class: "btn m-small m-disable"
+    = link_to_unless_current 'регистрация', new_user_registration_path, class: "btn m-primary m-small" do
+      = content_tag :span, 'регистрация', class: "btn m-small m-disable"
 - else
   .user-bar
     ul.main-menu__root.js-main-menu
