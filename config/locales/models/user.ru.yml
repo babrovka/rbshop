@@ -5,3 +5,4 @@ ru:
         password: пароль
         password_confirmation: повторите пароль
         current_password: текущий пароль
+        email: 'эл.почта'
