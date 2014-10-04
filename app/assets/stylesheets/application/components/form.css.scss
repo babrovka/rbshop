@@ -30,12 +30,6 @@ $border-diff: 2px;
       border-width: 1px + $border-diff;
       margin: 0;
     }
-
-    &.m-error{
-      &, &:focus, &:active, &.m-active{
-        border-color: $color-red;
-      }
-    }
   }
 
   textarea {
@@ -49,8 +43,25 @@ $border-diff: 2px;
   padding-left: $font-size-base;
 }
 
+#{$el}__error{
+  color: $color-red;
+  padding-left: $font-size-base;
+  font-size: $font-size-base;
+  font-family: 'PT Serif';
+  font-style: italic;
+}
+
 #{$el}__row {
   margin-bottom: $font-size-base*1.3;
+
+  // строка содержит инпут с ошибкой
+  &.m-error{
+    input, textarea {
+      &, &:focus, &:active, &.m-active {
+        border-color: $color-red;
+      }
+    }
+  }
 
   // кнопка «заказать»
   &.m-checkout {

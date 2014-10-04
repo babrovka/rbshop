@@ -1,41 +1,16 @@
-h2
-  | Sign up
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-    = f.input :password, required: true
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, "Sign up"
-= render "devise/shared/links"
-
-
 .page.login-page
   .h1.login-page__header Зарегистрироваться
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form js-form-submitting'}) do |f|
-    - error_class = 'm-error' if flash[:alert].present?
 
-    .form__row
-      - if error_class
-        .text-italic = flash[:alert]
-        br
+  = simple_form_for resource,
+                    as: resource_name,
+                    url: registration_path(resource_name),
+                    html: { class: 'form js-form-submitting' },
+                    wrapper: :regular do |f|
 
-    .form__row
-      = f.label :email, 'эл.почта'
-      = f.text_field :email, type: :email, autofocus: true, size: 40, class: error_class
-
-    .form__row
-      = f.label :password, 'пароль'
-      = f.text_field :password, type: :password, size: 40, class: error_class
-
-    .form__row
-      = f.label :password_confirmation, 'повторите пароль'
-      = f.text_field :password, type: :password_confirmation, size: 40, class: error_class
-
-
+    = f.input :email, required: true, autofocus: true, input_html: { size: 40 }
+    = f.input :password, required: true, input_html: { size: 40 }
+    = f.input :password_confirmation, required: true, input_html: { size: 40 }
     .form__row.m-offset
-      /= f.button :submit, 'Войти', class: 'btn m-primary'
       = link_to 'Зарегистрироваться', '#', class: 'btn m-primary js-form-submitter'
 
 
