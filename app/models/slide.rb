@@ -6,4 +6,6 @@ class Slide < ActiveRecord::Base
                                      slide_preview: {geometry: "100х100#"}
                                      }
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
+  # crop_attached_file :image
 end

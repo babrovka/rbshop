@@ -1,52 +1,20 @@
 .main-slider.js-main-slider
   .main-slider__container.js-main-slider-container
-    .main-slider__item.js-main-slider-item data-slide-id=1
-      = image_tag 'index-slider-mock.jpg'
-      .main-slider__item-bg
-      .main-slider__txt-area
-        p = Faker::Lorem.sentence(5)
-        h4 Слайд №1
+    - slides.each do |slide|
+      .main-slider__item.js-main-slider-item data-slide-id=slide.id
+        = image_tag slide.image.url(:original)
+        .main-slider__item-bg
+        .main-slider__txt-area
+          p = slide.text
+          h4 = slide.title
 
-        = link_to 'подробнее', '#', class: 'btn m-primary m-arrow'
-
-
-    .main-slider__item.js-main-slider-item data-slide-id=2
-      = image_tag 'index-slider-mock.jpg'
-      .main-slider__item-bg
-      .main-slider__txt-area
-        p = Faker::Lorem.sentence(5)
-        h4 Слайд №2
-
-        = link_to 'подробнее', '#', class: 'btn m-primary m-arrow'
-
-
-    .main-slider__item.js-main-slider-item data-slide-id=3
-      = image_tag 'index-slider-mock.jpg'
-      .main-slider__item-bg
-      .main-slider__txt-area
-        p = Faker::Lorem.sentence(5)
-        h4 Слайд №3
-
-        = link_to 'подробнее', '#', class: 'btn m-primary m-arrow'
-
+          = link_to 'подробнее', promo_path(slide), class: 'btn m-primary m-arrow'
 
   .hidden
     .js-main-slider-previews
-      div data-slide-id=1
-        span
-        h3 Слайд №1
-        p текст слайда №1
-        = image_tag 'http://tympanus.net/Development/ArrowNavigationStyles/img/22.png'
-
-      div data-slide-id=2
-        span
-        h3 Слайд №2
-        p текст слайда №2
-        = image_tag 'http://tympanus.net/Development/ArrowNavigationStyles/img/22.png'
-
-      div data-slide-id=3
-        span
-        h3 Слайд №3
-        p текст слайда №3
-        = image_tag 'http://tympanus.net/Development/ArrowNavigationStyles/img/22.png'
-
+      - slides.each do |slide|
+        div data-slide-id=slide.id
+          span
+          h3 = slide.title
+          p = slide.text
+          = image_tag slide.image.url(:slide_preview)

@@ -36,6 +36,10 @@ class Product < ActiveRecord::Base
     self.product_images.each do |image|
       image.save
     end
+
+    if self.promo?
+      self.slide.image.save
+    end
   end
   
   extend FriendlyId
