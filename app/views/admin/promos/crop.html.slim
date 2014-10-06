@@ -1,0 +1,12 @@
+h1
+  ==' resource.title
+  small Кропинг изображения
+
+= simple_nested_form_for [:admin, resource], url: collection_form_url do |f|
+  = f.fields_for :product_images do |f_img|
+    .form-group = f_img.cropbox :image, width: 400
+
+  = f.submit 'сохранить', class: 'btn btn-success'
+  = link_to 'отменить и вернуться к товару', edit_admin_product_path(resource), class: 'btn btn-default'
+  = link_to 'отменить и к списку товаров', admin_products_path, class: 'btn btn-default'
+

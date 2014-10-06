@@ -1,22 +1,59 @@
 
-= simple_form_for([:admin, resource],
+= simple_nested_form_for([:admin, resource],
                         url: collection_form_url,
                         html: {class: 'form-horizontal'},
                         wrapper: :horizontal_form,
                         wrapper_mappings: {} \
                       ) do |f|
 
-  = f.input :in_stock
+  = f.input :in_stock, wrapper: :horizontal_boolean
   = f.input :title
   = f.input :short_description, input_html: { rows: 3 }
-  = f.input :text, input_html: { rows: 3 }
-  = f.association :products, collection: Product.regular, input_html: { class: 'js-select2', multiple: true } 
+  = f.input :text, input_html: { rows: 3 }, label: 'Полное описание, условия'
+  = f.association :products,  collection: Product.regular,
+                              label: 'товары входящие в акцию',
+                              input_html: { class: 'js-select2', multiple: true }
   = f.input :price, input_html: { size: 5, type: :number }
-  = f.input :show_in_slider
-  = f.simple_fields_for :slide do |s|
-    = s.input :title
-    = s.input :text
-    = s.input :image, as: :file
+
+  / Блок с прикреплением изображений и ссылкой на кропинг
+  .row
+    .col-sm-offset-2.col-sm-10
+      .well
+        h4
+          ' Изображения товара
+          small
+            - if resource.product_images.any?
+              = link_to 'откропить изображения', crop_admin_promo_path(resource), class: 'js-form-crop-link' unless resource.new_record?
+            - else
+              span.js-form-crop-link добавьте изображения и откропьте их
+
+        .row
+          = f.simple_fields_for :product_images do |f_img|
+            .col-sm-3
+              .js-form-img-container
+                .js-form-img-placeholder
+                  - path = f_img.object.image? ? f_img.object.image.url(:catalog) : 'http://placehold.it/150x150'
+                  = image_tag path
+                = f_img.input :image, as: :file, label: false, input_html: { accept: "image/*" }
+                = f_img.link_to_remove 'удалить', class: 'text-danger'
+                hr
+
+          = f.link_to_add 'Добавить изображение', :product_images, class: 'btn btn-success'
+
+  .well
+    .row
+      .col-sm-offset-2.col-sm-10
+        h3 Слайд
+    = f.input :show_in_slider, wrapper: :horizontal_boolean
+    = f.simple_fields_for :slide do |s|
+      = s.input :title
+      = s.input :text
+      .row
+        .js-form-img-container.col-sm-offset-2.col-sm-10
+          .js-form-img-placeholder
+            - path = s.object.image? ? s.object.image.url(:preview) : 'http://placehold.it/150x150'
+            = image_tag path
+          = s.input :image, as: :file, label: false, input_html: { accept: "image/*" }
   
   div.col-sm-10.col-sm-offset-2
     |Cтоимость всех товаров акции по-отдельности: #{resource.promo_products_price}

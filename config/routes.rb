@@ -15,7 +15,11 @@ Rails.application.routes.draw do
         get 'crop'
       end
     end
-    resources :promos, except: [:show]
+    resources :promos, except: [:show] do
+      member do
+        get 'crop'
+      end
+    end
     resources :taxons,
               :taxonomies,
               :cases,

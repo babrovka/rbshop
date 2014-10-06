@@ -4,9 +4,9 @@ ru:
       product:
         in_stock: в наличии?
         sku: артикул
-        title: заголовок
+        title: название
         position: порядковый номер
-        latest: новинка
+        latest: новинка?
         short_description: краткое описание
         price: цена
         new_price: новая цена
@@ -27,4 +27,4 @@ ru:
         applying: применение
         same_taxon_products: товары из этой категории
         products: товары входящие в акцию
-        show_in_slider: отображать в слайдере
+        show_in_slider: отображать в слайдере?
