@@ -37,10 +37,21 @@ class Order < ActiveRecord::Base
       user.update_columns(bought_counter: total)
     end
   end
+  
+  def total_price
+    line_items.to_a.sum { |item| item.total_price }
+  end
 
   def count_total
-    total = self.line_items.map {|l| l.total_price.to_i}.sum
-    self.update_columns(total: total)
+    self.update_columns(total: total_price)
+  end
+  
+  def discounted_price  
+    if self.user
+      percents = 100-self.user.discount
+      discounted_price = self.total_price/100*percents
+      discounted_price
+    end
   end
   
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe User do
   
-  describe '#order' do
+  describe '#user' do
     let(:user) { create(:user) }
     let(:order) { create(:order, user: user) }
     let(:order_with_products1) { create(:order_with_products, user: user) }
@@ -27,6 +27,15 @@ describe User do
         user.reload
         orders_total_price = order1.total + order2.total 
         expect(user.bought_counter).to eq orders_total_price
+      end
+    end
+    
+    context 'discount' do
+      it "can be counted" do
+        user.bought_counter = 150000
+        user.save!
+        user.reload 
+        expect(user.discount).to eq 15
       end
     end
   end
