@@ -8,7 +8,7 @@ class window.app.MainSlider extends window.app.Scroller
     prev_btn: "<a href='#' class='main-slider__btn m-prev prev'><span class='icon-wrap fa fa-angle-left'></span><div class='js-preview-prev'></div></a>"
     shadow_left: ""
     shadow_right: ""
-    clock: 5000
+    clock: 6000
     anim_clock: 1500
 
   constructor : (el) ->
@@ -25,13 +25,19 @@ class window.app.MainSlider extends window.app.Scroller
     @.$previews = $("#{@.params.previews} > div")
     if @.$previews.length && @.$next_btn.length && @.$prev_btn.length
       @.add_previews_for_current_slide(0)
-      setInterval(=>
+      @_activate_auto_scroll() if @.$previews.length > 1
+
+
+  _activate_auto_scroll: ->
+    if @.$previews.length > 0
+      @.timer_id = setInterval(=>
         @.scroll_next()
       , @.params.clock)
 
   _init_events : ->
     if @.$next_btn.length
       @.$next_btn.on('click', (e) =>
+        clearInterval(@.timer_id)
         e.preventDefault()
         @.scroll_next()
       ).on('mouseenter', (e) -> $(@).closest('a').addClass('m-active')
@@ -40,6 +46,7 @@ class window.app.MainSlider extends window.app.Scroller
 
     if @.$prev_btn.length
       @.$prev_btn.on('click', (e) =>
+        clearInterval(@.timer_id)
         e.preventDefault()
         @.scroll_prev()
       ).on('mouseenter', (e) -> $(@).closest('a').addClass('m-active')
@@ -66,6 +73,10 @@ class window.app.MainSlider extends window.app.Scroller
     if @.$nav_container.length
       @.$next_btn = $(@.params.next_btn).appendTo(@.$nav_container)
       @.$prev_btn = $(@.params.prev_btn).appendTo(@.$nav_container)
+
+    if @.$items.length <= 1
+      @.$next_btn.hide()
+      @.$prev_btn.hide()
 
 
   scroll_next : (n = 1) ->
@@ -112,7 +123,8 @@ class window.app.MainSlider extends window.app.Scroller
       @.$items.not(@.$current_item).removeClass('m-current')
       @.add_previews_for_current_slide(@.current_pos())
       @._init_events()
-      @.$next_btn.addClass('m-active')
+      @._activate_auto_scroll()
+#      @.$next_btn.addClass('m-active')
     , @.params.anim_clock)
 
 
@@ -122,7 +134,8 @@ class window.app.MainSlider extends window.app.Scroller
       @.$items.not(@.$current_item).removeClass('m-current')
       @.add_previews_for_current_slide(@.current_pos())
       @._init_events()
-      @.$prev_btn.addClass('m-active')
+      @._activate_auto_scroll()
+#      @.$prev_btn.addClass('m-active')
     , @.params.anim_clock)
 
 
