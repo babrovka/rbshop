@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   # Regular users area
   devise_for :users, :controllers => {:registrations => 'registrations', :sessions => 'sessions'}
   get '/profile' => 'users#personal', as: :user_profile
+  put '/profile' => 'users#update', as: :user
   get '/orders' => 'users#orders', as: :user_orders
   # ===========================================================================
 

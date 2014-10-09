@@ -2,6 +2,10 @@ $el: '.login-page';
 
 #{$el}{ margin-bottom: 100px; }
 #{$el}__header{ margin-bottom: $font-size-base*2; }
+
+
+// блок со справочной информацией
+// обычно вставляется внизу страницы
 #{$el}__info{
   font-family: $font-family-proxima-nova-semibold;
   color: $color-gray-d;
@@ -12,4 +16,24 @@ $el: '.login-page';
     font-size: 16px;
     font-family: $font-family-proxima-nova-semibold;
   }
+}
+
+// обертка под левое меню на юзерских страницах
+#{$el}__menu{
+  @include border-radius(8px);
+  font-family: $font-family-proxima-nova-regular;
+  padding: $filter-gutter;
+  background: #fafafa;
+  margin-top: 100px;
+  font-weight: 100;
+}
+
+// оформление ссылок в меню
+// т.к.рисуется через стороннюю библиотеку,
+// приходится семантику использовать
+#{$el}__menu-link {
+  margin-bottom: $font-size-base*0.7;
+
+  > a { @include link-variant($color-blue); font-size: $font-size-base; }
+  &.m-active > a{ @include link-variant($color-red); @include link-without-border;}
 }

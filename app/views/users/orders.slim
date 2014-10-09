@@ -1,1 +1,5 @@
-= current_user.email
+= content_for :sidebar do
+  = render_navigation context: :user_profile
+
+.page.login-page
+  .h1.login-page__header История заказов

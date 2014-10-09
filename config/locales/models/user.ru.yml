@@ -6,3 +6,7 @@ ru:
         password_confirmation: повторите пароль
         current_password: текущий пароль
         email: 'эл.почта'
+        name: 'имя фамилия'
+        phone: 'телефон'
+        city: 'город'
+        address: 'адрес доставки'

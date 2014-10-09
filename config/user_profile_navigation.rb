@@ -2,13 +2,15 @@
 # Configures your navigation
 SimpleNavigation::Configuration.run do |navigation|
   navigation.auto_highlight = true
-  navigation.active_leaf_class = 'active-leaf'
+  navigation.active_leaf_class = 'm-active'
 
   navigation.items do |primary|
 
-    primary.item :orders, 'история заказов', user_orders_path
-    primary.item :profile, 'личные данные', user_profile_path
-    primary.item :password_change, 'пароль', edit_user_registration_path
+    primary.dom_class = 'login-page__menu'
+
+    primary.item :orders, 'История заказов', user_orders_path, class: 'login-page__menu-link'
+    primary.item :profile, 'Личные данные', user_profile_path, class: 'login-page__menu-link'
+    primary.item :password_change, 'Пароль', edit_user_registration_path, class: 'login-page__menu-link'
 
   end
   # Specify a custom renderer if needed.

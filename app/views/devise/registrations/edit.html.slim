@@ -1,25 +1,21 @@
-.page
-  .h1 Изменить пароль
+= content_for :sidebar do
+  = render_navigation context: :user_profile
+
+.page.login-page
+  .h1.login-page__header Изменить пароль
 
   = simple_form_for resource,
                     as: resource_name,
                     url: registration_path(resource_name),
                     html: { method: :put, class: 'form js-form-submitting' },
                     wrapper: :regular do |f|
-    .form-inputs
-      /= f.input :email, required: true, autofocus: true
-      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-        p
-          | Currently waiting confirmation for:
-          = resource.unconfirmed_email
-      = f.input :password, autocomplete: "off", hint: "новый пароль", required: true, input_html: { size: 40 }
-      = f.input :password_confirmation, required: true, input_html: { size: 40 }
-      = f.input :current_password, hint: "", required: true, input_html: { size: 40 }
-    .form-actions
-      = f.button :submit, "Update"
+    /= f.input :email, required: true, autofocus: true
+
+    = f.input :password, autocomplete: "off", hint: "новый пароль", required: true, input_html: { size: 40 }
+    = f.input :password_confirmation, required: true, input_html: { size: 40 }
+    = f.input :current_password, hint: "", required: true, input_html: { size: 40 }
+    .form__row.m-offset
       = link_to 'Изменить пароль', '#', class: 'btn m-primary js-form-submitter'
-  h3
-    | Cancel my account
-  p
-    | Unhappy?
-    = link_to "удалить учетную запись", registration_path(resource_name), data: { confirm: "Эта операция необратима. Вы уверены?" }, method: :delete
+
+  / область удалить учетку
+  /  = link_to "удалить учетную запись", registration_path(resource_name), data: { confirm: "Эта операция необратима. Вы уверены?" }, method: :delete
