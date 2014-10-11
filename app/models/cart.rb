@@ -8,10 +8,10 @@ class Cart < ActiveRecord::Base
   accepts_nested_attributes_for :line_items, allow_destroy: true
 
 
-  def add_product(product_id)
+  def add_product(product_id, qty=1)
     current_item = line_items.find_by_product_id(product_id)
     if current_item
-      current_item.quantity += 1
+      current_item.quantity += qty.to_i
     else
       current_item = line_items.build(product_id: product_id)
     end

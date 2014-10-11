@@ -20,11 +20,16 @@
         .price = resource.current_price
 
       .product__action
-        .counter.js-counter
-          = text_field_tag :count, 1, size: 3, maxlength: 3
-          = link_to '+', '#', class: 'counter__btn m-up js-counter-up'
-          = link_to '-', '#', class: 'counter__btn m-down js-counter-down'
-        = add_to_cart_btn resource
+        = form_tag(line_items_path(product_id: resource.id), remote: true, class: 'js-form-submitting' ) do
+          .counter.js-counter
+            = text_field_tag :count, 1, size: 3, maxlength: 3
+            = link_to '+', '#', class: 'counter__btn m-up js-counter-up'
+            = link_to '-', '#', class: 'counter__btn m-down js-counter-down'
+          = link_to '#', class: "btn m-primary js-form-submitter" do
+            span.fa.fa-shopping-cart
+            span в корзину
+
+        /= add_to_cart_btn resource
 
 
       .product__description
