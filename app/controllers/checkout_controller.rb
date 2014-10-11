@@ -9,6 +9,7 @@ class CheckoutController < ApplicationController
       redirect_to root_path, notice: 'Извините, ваша корзина пуста'
     else
       @order = Order.new
+      build_order_for_current_user
     end
   end
   
@@ -33,7 +34,7 @@ class CheckoutController < ApplicationController
   end
 
 
-  private
+private
   
   def send_mails
     OrderMailer.delay.notify_client(@order)
@@ -42,6 +43,15 @@ class CheckoutController < ApplicationController
 
   def order_params
     params.require(:order).permit(:name, :phone, :email, :address)
+  end
+
+  def build_order_for_current_user
+    if current_user
+      @order.name = current_user.name
+      @order.email = current_user.email
+      @order.phone = current_user.phone
+      @order.address = current_user.address
+    end
   end
 
 end
