@@ -42,5 +42,16 @@ $el: '.page';
       font-size: 11px;
     }
   }
+
+
+  // стили под страницу с текстовой информацией
+  &.m-article{
+    h2{ font-size: 42px; margin: 0; padding: 0 0 $font-size-base; }
+    h3{ font-size: 30px; margin: 0; padding: 0 0 $font-size-base; }
+    ul{ padding-bottom: $font-size-base; }
+    ul li{ list-style: disc; margin-left: $font-size-base*2; }
+    p { padding-bottom: $font-size-base; }
+    p + h3{ margin-top: $font-size-base; }
+  }
 }
 
