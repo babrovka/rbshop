@@ -30,8 +30,9 @@ class window.app.MainSlider extends window.app.Scroller
 
   _activate_auto_scroll: ->
     if @.$previews.length > 0
-      @.timer_id = setInterval(=>
+      @.timer_id = setTimeout(=>
         @.scroll_next()
+        clearTimeout(@.timer_id)
       , @.params.clock)
 
   _init_events : ->

@@ -8,10 +8,10 @@
   .user-bar
     ul.main-menu__root.js-main-menu
       - user = UserPresenter.new(current_user)
-      li.user-bar__title
+      li.user-bar__title.main-menu__item.m-user-name
         = link_to user.title, '#', class: 'link link-dashed user-bar__name-link'
-        ul.user-bar__submenu.main-menu__2level.js-main-menu-2level
-          li
+        ul.user-bar__submenu.main-menu__2level.m-user-name.js-main-menu-2level
+          li.main-menu__item-title
             ul
-              li= link_to 'личный кабинет', user_profile_path
-              li = link_to 'выйти', destroy_user_session_path
+              li.main-menu__item = link_to 'личный кабинет', user_profile_path
+              li.main-menu__item = link_to 'выйти', destroy_user_session_path

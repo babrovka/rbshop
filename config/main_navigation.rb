@@ -7,30 +7,30 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |taxonomies|
     taxonomies.dom_class = 'main-menu__root js-main-menu'
     Taxonomy.all.each do |taxonomy|
-      taxonomies.item "taxonomy-#{taxonomy.id}", taxonomy.title, poly_taxonomy_path(taxonomy) do |taxons|
+      taxonomies.item "taxonomy-#{taxonomy.id}", taxonomy.title, poly_taxonomy_path(taxonomy), class: 'main-menu__item' do |taxons|
 
         taxons.dom_class = 'main-menu__2level js-main-menu-2level'
 
         if taxonomy.taxons.by_age.roots.any?
-          taxons.item 'by_age', 'По возрасту', '#' do |age_taxon|
+          taxons.item 'by_age', 'По возрасту', '#', class: 'main-menu__item-title' do |age_taxon|
             taxonomy.taxons.by_age.roots.each do |taxon|
-              age_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon)
+              age_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon), class: 'main-menu__item'
             end
           end
         end
 
         if taxonomy.taxons.by_care_type.roots.any?
-          taxons.item 'by_care_type', 'По типу ухода', '#' do |care_taxon|
+          taxons.item 'by_care_type', 'По типу ухода', '#', class: 'main-menu__item-title' do |care_taxon|
             taxonomy.taxons.by_care_type.roots.each do |taxon|
-              care_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon)
+              care_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon), class: 'main-menu__item'
             end
           end
         end
 
         if taxonomy.taxons.by_product_type.roots.any?
-          taxons.item 'by_product_type', 'По типу средства', '#' do |product_taxon|
+          taxons.item 'by_product_type', 'По типу средства', '#', class: 'main-menu__item-title' do |product_taxon|
             taxonomy.taxons.by_product_type.roots.each do |taxon|
-              product_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon)
+              product_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon), class: 'main-menu__item'
               #
               # пока что не показываем второй уровень вложенности таксонов
               # product_taxon.item "taxon-#{taxon.id}", taxon.title, poly_taxon_path(taxon) do |subtaxons|
