@@ -2,8 +2,7 @@ $el: '.page';
 
 #{$el}{
   @include reset-float;
-//  overflow: hidden;
-
+  &:after{ content: ''; display: table; clear: both;}
   margin-top: 60px;
 
   > h1, > h2, > h3, > h4{ margin-bottom: .8em; }
