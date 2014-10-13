@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: shop_taxonomies
+#
+#  id              :integer          not null, primary key
+#  title           :string(255)
+#  slug            :string(255)
+#  seo_title       :string(255)
+#  seo_description :text
+#  seo_text        :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#
+
 require 'rails_helper'
 
 describe Taxonomy do

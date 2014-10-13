@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: shop_cases
+#
+#  id                 :integer          not null, primary key
+#  title              :string(255)
+#  text               :text
+#  short_description  :text
+#  image_file_name    :string(255)
+#  image_content_type :string(255)
+#  image_file_size    :integer
+#  image_updated_at   :datetime
+#  slug               :string(255)
+#  seo_url            :string(255)
+#  seo_title          :string(255)
+#  seo_description    :text
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
 class Case < ActiveRecord::Base
   def self.table_name_prefix
     'shop_'

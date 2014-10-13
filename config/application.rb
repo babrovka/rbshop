@@ -23,7 +23,7 @@ module Rbshop
     mail_conf_path = 'config/mail.yml'
     mail_config = File.exists?(mail_conf_path) ? YAML::load_file(mail_conf_path).symbolize_keys : {}
     
-    config.action_mailer.default_url_options = { host: "krasivopodano.ru" }
+    config.action_mailer.default_url_options = { host: 'krasivopodano.ru' }
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = mail_config
     
@@ -40,6 +40,18 @@ module Rbshop
     #   enable_starttls_auto: false,
     #   openssl_verify_mode: false 
     # }
-    
-  end
+
+    config.generators do |g|
+      g.test_framework :rspec,
+        fixtures: true,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false,
+        controller_specs: true,
+        request_specs: false
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
+
+
+end
 end

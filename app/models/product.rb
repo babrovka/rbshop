@@ -1,3 +1,44 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id                   :integer          not null, primary key
+#  title                :string(255)
+#  packing              :string(255)
+#  text                 :text
+#  ingredients          :text
+#  brand_id             :integer
+#  visible_professional :boolean          default(FALSE)
+#  visible_dealer1      :boolean          default(FALSE)
+#  visible_dealer2      :boolean          default(FALSE)
+#  visible_dealer3      :boolean          default(FALSE)
+#  price_professional   :decimal(8, 2)
+#  price_dealer1        :decimal(8, 2)
+#  price_dealer2        :decimal(8, 2)
+#  price_dealer3        :decimal(8, 2)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  short_description    :text
+#  product_category_id  :integer
+#  latest               :boolean
+#  slug                 :string(255)
+#  seo_title            :string(255)
+#  seo_description      :text
+#  seo_text             :text
+#  taxon_id             :integer
+#  position             :integer          default(0)
+#  sku                  :string(255)
+#  price                :integer          default(0)
+#  new_price            :integer
+#  applying             :string(255)
+#  in_stock             :boolean          default(TRUE)
+#  bought               :integer          default(0)
+#  product_type         :integer          default(0)
+#  promo_id             :integer
+#  promo_products_price :integer
+#  show_in_slider       :boolean          default(FALSE)
+#
+
 class Product < ActiveRecord::Base
   belongs_to :brand
   has_many :product_images

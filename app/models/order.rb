@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: shop_orders
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime
+#  updated_at :datetime
+#  user_id    :integer
+#  name       :string(255)
+#  email      :string(255)
+#  phone      :string(255)
+#  city       :string(255)
+#  address    :string(255)
+#  comment    :text
+#  status     :integer          default(0)
+#  pay_type   :integer
+#  total      :integer          default(0)
+#
+
 class Order < ActiveRecord::Base
   def self.table_name_prefix
     'shop_'

@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: shop_carts
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Cart < ActiveRecord::Base
   def self.table_name_prefix
     'shop_'

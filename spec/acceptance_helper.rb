@@ -62,10 +62,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.include Features::SelectDatesAndTimesHelper, type: :feature
-  config.include Features::SessionsHelper, type: :feature
   config.include Features::ScreenshotsHelper, type: :feature
-  config.include Features::ChosenHelper, type: :feature
   config.include FactoryGirl::Syntax::Methods, type: :feature
   config.include Rails.application.routes.url_helpers
 

@@ -30,6 +30,8 @@ group :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'test_after_commit'
+  # Automatically adds annotations to models
+  gem 'annotate'
 end
 
 group :development, :test do
@@ -63,6 +65,7 @@ gem 'faker'
 gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'has_scope'
+
 
 # Fast js animations
 gem 'velocityjs-rails'
