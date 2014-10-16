@@ -29,6 +29,8 @@ Rails.application.routes.draw do
         get 'statistics'
       end
     end
+
+    resources :hints, only: [:index, :update]
   end
   # ===========================================================================
 

@@ -110,10 +110,12 @@ namespace :data do
   task taxons_to_products: :environment do
     taxons = Taxon.all
     Product.all.each do |p|
-      p.taxons << taxons.sample
-      p.taxons << taxons.sample
+      rand(1..6).times do
+        p.taxons << taxons.sample
+      end
     end
   end
+
   
 
 end
