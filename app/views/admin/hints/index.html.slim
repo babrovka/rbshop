@@ -1,0 +1,27 @@
+.row
+  .col-sm-12
+    h1 Cписок подсказок
+
+
+
+.row
+  .col-sm-12
+    table.table.table-striped
+      thead
+        tr
+          th Описание
+          th Содержимое
+      tbody
+        - collection.each do |hint|
+          tr
+            td = t(hint.name, scope: 'views.admin.hints.names')
+            td
+              = simple_form_for [:admin, hint],
+                        html: {class: 'form-horizontal'},
+                        wrapper: :horizontal_form,
+                        wrapper_mappings: {} do |f|
+                = f.input :text
+                .col-sm-offset-2.col-sm-10
+                  = f.submit 'Обновить', class: 'btn btn-primary'
+
+

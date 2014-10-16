@@ -1,0 +1,12 @@
+ru:
+  views:
+    admin:
+      hints:
+        names:
+          brand_1: к бренду 1
+          brand_2: к бренду 2
+          brand_3: к бренду 3
+          by_care_type: по типу ухода
+          by_age: по возрасту
+
+
