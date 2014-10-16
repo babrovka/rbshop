@@ -6,7 +6,7 @@ check_for = (el) ->
   phone = $form.find('#order_phone').val()
   address = $form.find('#order_address').val()
 
-  if name.length >= 2 && email.length >= 5 && phone.length >= 7 && address.length >= 2
+  if name && email && phone && address && name.length >= 2 && email.length >= 5 && phone.length >= 7 && address.length >= 2
     $link.removeClass('m-disactive').addClass('m-active') if $link.hasClass('m-disactive')
   else
     $link.removeClass('m-active').addClass('m-disactive')
