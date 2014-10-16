@@ -6,7 +6,6 @@ FactoryGirl.define do
     seo_text { "taxonomy seo text #{generate :number}" }
     seo_description { "taxonomy seo description #{generate :number}" }
     slug { "taxonomy_#{generate :number}_slug" }
-
   end
 
 end

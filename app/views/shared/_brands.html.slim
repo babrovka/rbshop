@@ -1,7 +1,7 @@
 h3.text-orange Бренды
 
 .main-page__brands
-  = link_to products_path(brand_ids: 1), class: 'main-page__brand-info' do
+  = link_to products_path(brand_ids: Brand.first.id), class: 'main-page__brand-info', id: "spec-brand-link-#{Brand.first.id}" do
     = image_tag 'brands/alissi-bronte.png', id: 'brand1'
     p
       | Натуральная органическая косметика для самых избалованных искательниц совершенства, покорит Вашу душу и подарит совершенство Вашему лицу и телу. Окунитесь в мир роскоши и фантастических ощущений с Alissi Bronte.
@@ -10,7 +10,7 @@ h3.text-orange Бренды
         span Смотреть продукцию
         span.fa.fa-arrow-right
 
-  = link_to products_path(brand_ids: 2), class: 'main-page__brand-info' do
+  = link_to products_path(brand_ids: Brand.second.id), class: 'main-page__brand-info', id: "spec-brand-link-#{Brand.second.id}" do
     = image_tag 'brands/dr-belter.png', id: 'brand2'
     p
       | Для любителей строгости форм, точности формул и натуральных компонентов. По-немецки качественно и лаконично. Знакомьтесь, Dr.Belter. Willcommen!
@@ -19,7 +19,7 @@ h3.text-orange Бренды
         span Смотреть продукцию
         span.fa.fa-arrow-right
 
-  = link_to products_path(brand_ids: 3), class: 'main-page__brand-info' do
+  = link_to products_path(brand_ids: Brand.third.id), class: 'main-page__brand-info', id: "spec-brand-link-#{Brand.third.id}" do
     = image_tag 'brands/thalissi.png', id: 'brand3'
     p
       | Для любителей строгости форм, точности формул и натуральных компонентов. По-немецки качественно и лаконично. Знакомьтесь, Dr.Belter. Willcommen!
