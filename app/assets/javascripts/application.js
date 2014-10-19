@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/slider
+//= require jquery-ui/tooltip
 //= require underscore
 //= require velocity
 //= require_self
