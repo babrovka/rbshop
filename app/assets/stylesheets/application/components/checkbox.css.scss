@@ -2,7 +2,7 @@ $el: '.checkbox';
 
 // кастомный чекбокс
 #{$el}{
-  > span {display: inline; }
+  > span { @include inline-block(middle); }
   #{$el}__icon{ @include inline-block(text-bottom); }
 
   input[type='checkbox']{ display: none; }

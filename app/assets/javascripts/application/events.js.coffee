@@ -202,3 +202,22 @@ $ ->
   # ставим галочки при загрузке страницы
   $("input[type='checkbox']:checked").closest('label').find('.checkbox__icon').addClass('m-active')
 
+
+  # включаем тултипы
+  # особенно применяются как подсказки в фильтрах
+  $('.js-hint').tooltip(
+    position :
+      my : "left center",
+      at : "right+20 center",
+      using : (position, feedback) ->
+        $(this).css(position)
+        $("<div>")
+          .addClass("arrow")
+          .appendTo(this)
+    show : null
+    open : (event, ui) ->
+      ui.tooltip.animate({ left : ui.tooltip.position().left + 10 }, 60);
+    hide:
+      effect : "slideLeft",
+      delay : 10
+  )

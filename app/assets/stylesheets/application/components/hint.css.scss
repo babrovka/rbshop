@@ -1,0 +1,38 @@
+// Элемент подсказки
+// круглый значок с вопросиком или буквой i
+// и выскальзывающий текстовый блок
+//
+// на момент создания применяется
+// в фильтре у брендов и заголовком фильтров
+$el: '.hint';
+
+#{$el}{
+  @include inline-block(middle);
+  @include border-radius(50%);
+  background: $color-blue;
+  width: 13px;
+  height: 12px;
+  margin-left: 0.2em;
+  margin-top: -1em;
+
+  &.m-info{ @include sprites-sprite('hint-information'); }
+  &.m-help{ @include sprites-sprite('hint-help'); }
+}
+
+// кастомизация плагина jQuery-UI-tooltip
+.ui-widget-content.ui-tooltip {
+  @include border-radius(0);
+  @include box-shadow(none);
+  background: white;
+  border: 3px solid $color-orange;
+  width: 200px;
+  min-height: 50px;
+  height: auto;
+}
+
+.ui-tooltip-content {
+  color: $color-asphalt;
+  font-family: $font-family-conqueror;
+  font-size: $font-size-base;
+  padding: $font-size-base;
+}

@@ -34,11 +34,16 @@ class FilterPresenter
   def by_brands(f, *args)
     h.content_tag(:h5, 'По бренду') +
     h.content_tag(:ul, *args )do
-      Brand.all.map do |brand|
+      Brand.all.each_with_index.map do |brand, i|
         h.content_tag :li do
           f.label "brand_id_in_#{brand.id}" do
-            f.check_box( :brand_id_in, { multiple: true }, brand.id, nil) +
-            h.content_tag(:span, brand.title)
+            html = [f.check_box( :brand_id_in, { multiple: true }, brand.id, nil)]
+            html << h.content_tag(:span, brand.title)
+            # встраиваем подсказки.
+            # подсказки привязываются к айдишнику бренда,
+            # как бы тупо это не выглядело
+            html << hint("brand_#{i+1}")
+            html.join.html_safe
           end
         end
       end.flatten.compact.join.html_safe
@@ -52,7 +57,10 @@ class FilterPresenter
   #   - html параметры
   def taxons_title(type, *args)
     if allowed_taxons(type).present?
-      h.content_tag(:h5, h.t(type, scope: 'activerecord.attributes.taxon.taxon_types'), *args)
+      h.content_tag(:h5, *args) do
+        h.content_tag(:span, h.t(type, scope: 'activerecord.attributes.taxon.taxon_types')) +
+        hint(type, :help)
+      end
     end
   end
 
@@ -123,6 +131,22 @@ private
   # минимальная цена поиска для слайдера цены
   def products_min_price
     Product.minimum(:price)
+  end
+
+  # коллекция подсказок, которые применяются в фильтре
+  def hints
+    @hints ||= Hint.all
+  end
+
+  def hint(name, type=:info)
+    hint = hints.where(name: name.to_s).first
+    css_class = "m-#{type.to_s}"
+    title = hint.try(:text)
+    if hint && title
+      h.content_tag(:i, nil, class: "hint js-hint #{css_class}", title: title)
+    else
+      nil
+    end
   end
 
 end
