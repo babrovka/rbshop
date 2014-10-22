@@ -11,13 +11,13 @@
         /= link_to 'читать далее', '#', class: 'link link-dashed'
 
     .products__filter
-      .text-left.b-inline
+      .text-left.products__filter-item
         ' сортировка по
         = sort_link_to 'цене', :price, class: 'link m-simple'
         = sort_link_to 'продажам', :bought, class: 'link m-simple'
         /= sort_link_to 'популярности'
 
-      .text-right.b-inline
+      .text-right.products__filter-item
         ' товаров на странице
         - [20, 40, 60, 80, 100].each do |num|
           = link_to num, url_for(params.merge(per: num)), class: 'link'
