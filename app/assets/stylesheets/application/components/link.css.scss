@@ -27,6 +27,10 @@ $el: '.link';
   @include link-without-border;
 }
 
+#{$el}.m-dashed{
+  border-bottom: 1px dashed;
+}
+
 
 // ссылка,внутри которой находится картинка и текст по центру картинки выровнен
 #{$el}.m-img-box{
