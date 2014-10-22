@@ -91,12 +91,14 @@ private
   def collection
     # params[:brand_ids] ||= Brand.pluck(:id) unless params[:brand_ids].present?
     @products ||= filter.result(distinct: true)
+                        .order('products.position ASC')
                         .page(params[:page])
                         .per(params[:per] || 20)
   end
 
   def selected_taxon
-    @selected_taxon ||= @taxon || Taxon.where(id: params[:id]).first
+    @selected_taxon ||= @taxon || Taxon.where(id: params[:taxon]).first ||
+                                  Taxon.where(slug: params[:taxon]).first
   end
 
   def selected_taxonomy

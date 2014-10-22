@@ -80,7 +80,7 @@ Rails.application.routes.draw do
   # taxonomy
   get '/products/:id' => 'products#taxonomy', :as => :taxonomy
   #taxon
-  get '/:taxonomy/:id', to: 'products#taxon', :as => :taxon
+  get '/:taxonomy/:taxon', to: 'products#taxon', :as => :taxon
   # product
   get '/:id' => 'products#show', as: :product
   # ===========================================================================

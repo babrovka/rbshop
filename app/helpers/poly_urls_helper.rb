@@ -6,7 +6,7 @@ module PolyUrlsHelper
   # урл публичной страницы таксона
   def poly_taxon_path(taxon)
     if taxon.taxonomy
-      taxon_path(taxonomy: taxon.taxonomy, id: taxon.id)
+      taxon_path(taxonomy: taxon.taxonomy, taxon: taxon)
     else
       taxon_path('no_taxonomy', taxon)
     end
