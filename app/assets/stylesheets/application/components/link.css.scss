@@ -27,3 +27,15 @@ $el: '.link';
   @include link-without-border;
 }
 
+
+// ссылка,внутри которой находится картинка и текст по центру картинки выровнен
+#{$el}.m-img-box{
+  @include inline-block(top);
+  @include unstyled-link;
+  @include link-without-border;
+
+  padding: 0 0 1em;
+
+  // чтобы следующий элемент не имел отступа
+  + #{$el}{ margin-left: 0; padding-left: 0; }
+}

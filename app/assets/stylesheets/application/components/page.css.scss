@@ -15,7 +15,6 @@ $el: '.page';
 
 // определенные модификаторы, для специальных страниц
 #{$el} {
-
   // встречается на сранице корзины у блоков общей стоимости
   .m-page-cart-checkout{
     margin-top: 2*$font-size-base;
@@ -52,5 +51,49 @@ $el: '.page';
     p { padding-bottom: $font-size-base; }
     p + h3{ margin-top: $font-size-base; }
   }
+
+  // особые стили для страниц со статическим контентом
+  // дело в том, что там не стандартные шрифты
+  &.m-static{
+    h2{ margin-bottom: $font-size-base*3; }
+
+    h6, p{
+      padding-bottom: $font-size-base;
+      font-family: 'PT Sans', sans-serif;
+    }
+
+    h6{
+      font-weight: bold;
+      color: $color-asphalt;
+      &:before{ content: '— '; }
+    }
+
+    p{ color: $color-gray-d; line-height: 1.5; }
+    p + h6 { padding-top: $font-size-base*1.5; }
+  }
+
 }
 
+
+// особый элемент, если на странице нужно что-то в две колонки
+// и это не глобальный элемент как container
+#{$el}__column{
+  &.m-3-4, &.m-1-4{ @include inline-block(top); }
+
+  &.m-3-4{ width: 74.9%; padding: 0 $font-size-base*4 0 0; }
+  &.m-1-4{ width: 24.9%; }
+
+  // колонка с мета информацией к статье
+  &.m-static-meta{
+    h6{
+      font-family: $font-family-conqueror;
+      color: $color-orange;
+      font-size: 24px;
+      line-height: 1.2;
+      margin-bottom: 45px;
+      &:before{ content: ''; }
+    }
+
+    .link{ margin-bottom: 1.3em; }
+  }
+}

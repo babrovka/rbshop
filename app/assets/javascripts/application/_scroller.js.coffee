@@ -9,6 +9,7 @@ class window.app.Scroller
     shadow_right: "<span class='scroller__shadow m-right'></span>"
 
   constructor : (el) ->
+    console.log @.constructor.name
     @.$el = $(el)
     @.$container = @.$el.find(@.params.container)
     @.$items = @.$container.find(@.params.item)

@@ -1,3 +1,52 @@
+#class window.A
+#  channel: 'A'
+#
+#  constructor : (channel)->
+#    @channel = channel || @channel
+#    console.log "class A ==> #{@channel}"
+#    @.custom_constructor()
+#
+#  custom_constructor: ->
+#
+#
+#class window.B extends window.A
+#  custom_constructor : () ->
+#    console.log "class B ==> #{@channel}"
+#
+#
+#class window.C extends window.A
+#  custom_constructor : (channel) ->
+#    @channel = 'Cext'
+#    console.log "class C ==> #{@channel}"
+
+
+
+class window.A
+
+  @::params =
+    channel : 'A'
+
+  constructor: (channel)->
+    A::params['channel'] = channel || A::params['channel']
+    console.log "class A ==> #{@params.channel}"
+    @custom_constructor()
+
+  custom_constructor: ->
+
+
+
+class window.B extends window.A
+  custom_constructor: () ->
+    console.log "class B ==> #{@params.channel}"
+
+
+class window.C extends window.A
+  custom_constructor : () ->
+    C::params['channel'] = 'Cext'
+    console.log "class C ==> #{@params.channel}"
+
+
+
 $ ->
   new window.app.MainSlider('.js-main-slider')
 
@@ -221,3 +270,5 @@ $ ->
       effect : "slideLeft",
       delay : 10
   )
+
+
