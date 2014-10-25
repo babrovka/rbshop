@@ -15,7 +15,7 @@ $slider-height: 10px;
 .ui-widget-header{
   background: #24a45b;
   @include background-image(linear-gradient(bottom, #24a45b, #61d798));
-  @include box-shadow(0 2px 3px rgba(0,0,0,0.3));
+  @include box-shadow(0 2px 3px rgba(0,0,0,0.2));
   margin-top: -1px;
   border: 1px solid transparent;
   border-top-color: #2dc870;

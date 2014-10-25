@@ -30,10 +30,6 @@ class ProductsController < ApplicationController
   
   def taxon
     taxons = selected_taxon.self_and_descendants
-    logger.info '####'
-    logger.info filter.inspect
-    logger.info collection.to_sql
-    logger.info '####'
     @products = collection.includes(:taxons).where(:shop_taxons => {:id => taxons})
     seo_data(selected_taxon)
     render_responce
@@ -91,6 +87,7 @@ private
   def collection
     # params[:brand_ids] ||= Brand.pluck(:id) unless params[:brand_ids].present?
     @products ||= filter.result(distinct: true)
+                        .filtered_by_taxons(search_params[:taxons_id_in] || [])
                         .order('products.position ASC')
                         .page(params[:page])
                         .per(params[:per] || 20)

@@ -83,7 +83,6 @@ class FilterPresenter
     html << h.content_tag(:li) do
           h.content_tag(:span, 'от') +
           f.text_field(:new_price_or_price_gteq,
-                       type: :number,
                        class: 'js-price-slider-input-min',
                        'data-default' => products_min_price
           )
@@ -92,7 +91,6 @@ class FilterPresenter
     html << h.content_tag(:li) do
           h.content_tag(:span, 'до') +
           f.text_field( :new_price_or_price_lteq,
-                        type: :number,
                         class: 'js-price-slider-input-max',
                         'data-default' => products_max_price
           )

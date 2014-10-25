@@ -57,18 +57,15 @@ $el: '.page';
   &.m-static{
     h2{ margin-bottom: $font-size-base*3; }
 
-    h6, p{
-      padding-bottom: $font-size-base;
-      font-family: 'PT Sans', sans-serif;
-    }
+    h6, p{ padding-bottom: $font-size-base; }
 
     h6{
-      font-weight: bold;
       color: $color-asphalt;
+      font-family: $font-family-proxima-nova-semibold;
       &:before{ content: '— '; }
     }
 
-    p{ color: $color-gray-d; line-height: 1.5; }
+    p{ font-family: $font-family-proxima-nova-regular; font-weight: 100; color: $color-gray-d; line-height: 1.5; }
     p + h6 { padding-top: $font-size-base*1.5; }
   }
 

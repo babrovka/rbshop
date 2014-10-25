@@ -71,14 +71,20 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :slide, allow_destroy: true
 
   after_update :reprocess_images
-  
+
+
+  # строим особый SQL
+  # чтобы запросить только те товары
+  # которые имеют переданные таксоны
+  # не через ИЛИ,а через И
+  # на входе массив taxon_id
   def self.filtered_by_taxons(taxons)
     joins = []
     taxons.each_with_index.map do |taxon_id, i|
       joins << "INNER JOIN shop_product_taxons up#{i} ON products.id = up#{i}.product_id"
       joins << "INNER JOIN shop_taxons p#{i} ON p#{i}.id = up#{i}.taxon_id"
     end.flatten!
-    
+
     wheres = []
     taxons.each_with_index.map do |taxon_id, i|
       wheres << "p#{i}.id=#{taxon_id}"
@@ -86,6 +92,8 @@ class Product < ActiveRecord::Base
     end
     joins(joins.join(' ')).where(wheres.join(' '))
   end
+
+
 
   def reprocess_images
     self.product_images.each do |image|

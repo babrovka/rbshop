@@ -50,8 +50,9 @@ $height: 100px;
 // БЛОК С КОНТАКТАМИ
 #{$el}__contacts__phone{
   @include unstyled-link;
-  font-size: 32px;
+  font-family: $font-family-proxima-nova-semibold;
   color: $color-asphalt;
+  font-size: 32px;
 }
 
 
