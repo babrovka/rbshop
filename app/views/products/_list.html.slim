@@ -1,0 +1,18 @@
+.products
+  .products__filter
+    .text-left.products__filter-item
+      span сортировка по:
+      = sort_link_to 'цене', :price, class: 'link m-simple'
+      = sort_link_to 'продажам', :bought, class: 'link m-simple'
+    /= sort_link_to 'популярности'
+
+    .text-right.products__filter-item
+      span товаров на странице:
+      - [20, 40, 60, 80, 100].each do |num|
+        = link_to num, url_for(params.merge(per: num)), class: 'link m-dashed'
+
+
+  .products__list
+    /.products__item = render 'product', active: true
+    - collection.each do |product|
+      .products__item = render 'product', product: product

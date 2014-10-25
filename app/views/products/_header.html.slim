@@ -1,0 +1,7 @@
+.products
+  .products__page-header
+    h1 = current_category
+    small = "#{collection.total_count} шт"
+    - if meta_seo_text.present?
+      p = meta_seo_text
+        /= link_to 'читать далее', '#', class: 'link link-dashed'

@@ -96,4 +96,26 @@ $el: '.page';
 
     .link{ margin-bottom: 1.3em; }
   }
+
+  // ========================================================
+  //  области стилей для страницы с фильтром и товарами
+  //
+  &.m-sidebar, &.m-with-sidebar {
+    @include inline-block(top);
+  }
+
+  // сам фильтр
+  &.m-sidebar {
+    width: $sidebar-width;
+    padding-right: $font-size-base*2
+  }
+  // область справа от фильтра
+  &.m-main.m-with-sidebar, &.m-full-width.m-with-sidebar {
+    width: $container - $sidebar-width - 2*$grid-cutter;
+    padding-left: $font-size-base;
+  }
+  // область над фильтром, но с отступом в ширину фильтра
+  &.m-full-width.m-with-sidebar {
+    margin-left: $sidebar-width;
+  }
 }

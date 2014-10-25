@@ -1,33 +1,16 @@
-= content_for :sidebar do
-  = render 'shared/sidebar'
+/= content_for :sidebar do
+
 
 .page
-  .products
-    .products__page-header
-      h1 = current_category
-      small = "#{collection.total_count} шт"
-      - if meta_seo_text.present?
-        p = meta_seo_text
-        /= link_to 'читать далее', '#', class: 'link link-dashed'
+  .page__column.m-full-width.m-with-sidebar
+    = render 'products/header'
 
-    .products__filter
-      .text-left.products__filter-item
-        span сортировка по:
-        = sort_link_to 'цене', :price, class: 'link m-simple'
-        = sort_link_to 'продажам', :bought, class: 'link m-simple'
-        /= sort_link_to 'популярности'
+  .page__column.m-sidebar
+    = render 'shared/sidebar'
 
-      .text-right.products__filter-item
-        span товаров на странице:
-        - [20, 40, 60, 80, 100].each do |num|
-          = link_to num, url_for(params.merge(per: num)), class: 'link'
+  .page__column.m-main.m-with-sidebar
+    = render 'products/list'
 
 
-    .products__list
-      /.products__item = render 'product', active: true
-      - collection.each do |product|
-        .products__item = render 'product', product: product
-
-
-  .page__left.m-product-list
-    = paginate collection
+    .page.m-product-list
+      = paginate collection

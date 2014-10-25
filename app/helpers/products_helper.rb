@@ -2,16 +2,29 @@ module ProductsHelper
 
   # заглушка кнопки сортировки
   # имеет стрелочку, которая показывает сортировку
+  # title — заголовк ссылки
+  # type — по какому полю в БД сортировать
+  # args — обычные параметры как у всех link_to
   def sort_link_to title, type, *args
+    opts = args.extract_options!
+
     options = sorted_url_params(type)
     url = url_for(options)
 
+    # выставляем класс красной ссылки
+    # или подчеркнутного текста внутри неактивной ссылки
+    if request.original_url.include?(type.to_s)
+      # если уже активирована ссылка на сортировку
+      opts.has_key?(:class) ? opts[:class] += ' m-red' : opts[:class] = 'm-red'
+    else
+      text_class = 'm-dashed'
+    end
+
     # в зависимости от типа сортировки и текущей сортировки выставляем класс для стрелочки
     icon_class = sorted_direction.include?('asc') ? 'fa-caret-up' : 'fa-caret-down'
-    icon_class = '' unless request.original_url.include?(type.to_s)
 
-    link_to url, *args do
-      content_tag(:span, title) +
+    link_to url, opts do
+      content_tag(:span, title, class: text_class) +
       content_tag(:span, nil, class: "fa #{icon_class}")
     end
   end
