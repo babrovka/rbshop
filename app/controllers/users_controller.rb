@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def orders
+    @collection = current_user.orders.order('created_at DESC')
   end
 
   def update

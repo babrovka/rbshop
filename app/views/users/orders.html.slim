@@ -1,0 +1,26 @@
+.page.login-page
+  .page__column.m-full-width.m-with-sidebar
+    .h1.login-page__header История заказов
+
+  .page__column.m-sidebar
+    = render_navigation context: :user_profile
+
+  .page__column.m-main.m-with-sidebar
+    .orders
+      table.table
+        tr
+          th список товара
+          th стоимость
+          th статус
+          th дата заказа
+        tr
+          - @collection.each do |order|
+            th
+              - order.line_items.each do |line_item|
+                p
+                  ==' line_item.product.title
+                  ' кол-во
+                  = line_item.quantity
+            th = order.total
+            th = order.status
+            th = order.created_at.strftime('%d.%M.%Y')
