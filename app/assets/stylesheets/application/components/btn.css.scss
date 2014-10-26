@@ -1,11 +1,9 @@
 .btn{
   display: inline-block;
-  padding: 12px;
   text-align: center;
   font-size: 16px;
   cursor: pointer;
   font-family: $font-family-proxima-nova-semibold;
-  @include border-radius(5px);
   @include unstyled-link;
 
   .fa + span,
@@ -14,17 +12,22 @@
   }
 
   &.m-primary, &.m-active{
-    @include button-variant(white, $color-orange-d);
-    &:hover{ @include button-variant(white, darken($color-orange-d, 3%) ); }
+    @include img-button-variant(white, 'btn-m-primary');
   }
 
   &.m-disactive, &.m-disable{
-    @include button-variant(white, $color-gray);
+    @include img-button-variant(white, 'btn-m-disabled');
+    &:hover, &:active, &:focus, &:visited{ opacity: 1; }
   }
 
   &.m-small{
-    padding: 6px 10px;
+    @include img-button-variant(white, 'btn-m-primary', 'sm');
     font-size: 14px;
+
+    &.m-disactive, &.m-disable {
+      @include img-button-variant(white, 'btn-m-disabled', 'sm');
+      &:hover, &:active, &:focus, &:visited { opacity: 1; }
+    }
   }
 }
 

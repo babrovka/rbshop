@@ -12,9 +12,72 @@
   $color-bottom: darken($color-bg-bottom, 5%);
   @include background-image(linear-gradient(bottom, $color-bg-bottom, $color-bg-top));
   @include box-shadow(inset 0px 1px rgba(255, 255, 255, 0.3));
+  @include border-radius(5px);
+  padding: 12px;
   border: 1px solid darken($color-bottom, 5%);
   color: $txt-color;
 }
+
+// чтобы использовать кнопки-изображения
+// нужно придерживаться нескольких правил
+// пусть $sprite-name = 'btn-m-primary'
+// тогда
+//    левая граница называется btn-primary-$size-left-corner.png
+//    правая граница называется btn-primary-$size-right-corner.png
+//    основная часть называется btn-primary-$size-repeatable.png
+//
+// размеры изображений
+//    длина основной = 120px
+//    длина левых-правых углов = 5px
+//
+// $size =
+//    sm
+//    m
+//
+@mixin img-button-variant($txt-color, $sprite-name, $size: 'm') {
+  $left-corner-name: "#{$sprite-name}-#{$size}-left-corner";
+  $right-corner-name: "#{$sprite-name}-#{$size}-right-corner";
+  $repeatable-name: "#{$sprite-name}-#{$size}-repeatable";
+
+  $height: 0px;
+  $corner-width: 5px;
+
+  @if $size == 'm'{ $height: 48px; }
+  @else if $size == 'sm'{ $height: 28px; }
+
+
+  position: relative;
+  padding-left: $corner-width*2;
+  padding-right: $corner-width*2;
+  line-height: $height;
+
+  &:before, &:after {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    width: $corner-width;
+    height: $height;
+    top: 0;
+  }
+
+  &:before {
+    @include sprites-sprite($left-corner-name);
+    left: 0;
+//    margin-left: -$corner-width;
+  }
+  &:after {
+    @include sprites-sprite($right-corner-name);
+    right: 0;
+//    margin-right: -$corner-width;
+  }
+
+  @include sprites-sprite($repeatable-name);
+  background-repeat: repeat-x;
+  color: $txt-color;
+
+  &:hover, &:active, &:visited{ opacity: .85; }
+}
+
 
 
 @mixin link-variant($color, $active-color: mix(#000, $color, 10)){
