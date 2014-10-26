@@ -4,10 +4,10 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.auto_highlight = true
   navigation.active_leaf_class = 'active-leaf'
 
-  navigation.items do |taxonomies|
-    taxonomies.dom_class = 'main-menu__root js-main-menu'
+  navigation.items do |primary|
+    primary.dom_class = 'main-menu__root js-main-menu'
     Taxonomy.all.each do |taxonomy|
-      taxonomies.item "taxonomy-#{taxonomy.id}", taxonomy.title, poly_taxonomy_path(taxonomy), class: 'main-menu__item' do |taxons|
+      primary.item "taxonomy-#{taxonomy.id}", taxonomy.title, poly_taxonomy_path(taxonomy), class: 'main-menu__item' do |taxons|
 
         taxons.dom_class = 'main-menu__2level js-main-menu-2level'
 
@@ -46,6 +46,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
       end
     end
+
+    primary.item "promos", 'Акции', promos_path, class: 'main-menu__item'
   end
   # Specify a custom renderer if needed.
   # The default renderer is SimpleNavigation::Renderer::List which renders HTML lists.
