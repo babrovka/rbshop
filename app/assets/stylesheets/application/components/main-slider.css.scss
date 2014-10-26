@@ -5,6 +5,7 @@ $slider-offset-top: 155px;
 $slider-button-offset: -50%;
 
 #{$el}{
+  @include unstyled-link;
   height: $slider-height;
   margin-left: -$grid-cutter;
   margin-right: -$grid-cutter;
@@ -136,6 +137,7 @@ $slider-button-offset: -50%;
 
 // контейнер под слайдеры сдвигаем под самый верх сайта
 #{$el}__container{
+  @include unstyled-link;
   height: $slider-height;
   position: absolute;
   top: 0;
@@ -144,6 +146,7 @@ $slider-button-offset: -50%;
 
 // итем под слайд
 #{$el}__item {
+  @include unstyled-link;
   position: relative;
   padding: $slider-offset-top $grid-cutter*2 0;
   width: $container;
@@ -175,6 +178,7 @@ $slider-button-offset: -50%;
 
 // внутри расположен текст слайда
 #{$el}__txt-area{
+  @include unstyled-link;
   padding-top: 100px;
   height: 500px;
   position: relative;

@@ -71,7 +71,7 @@ Rails.application.routes.draw do
   # ===========================================================================
 
 
-  resources :promos, only: [:show]
+  resources :promos, only: [:show, :index]
 
   # Friendly urls area
   # products
