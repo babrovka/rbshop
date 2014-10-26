@@ -52,52 +52,18 @@ $el: '.page';
     p + h3{ margin-top: $font-size-base; }
   }
 
-  // особые стили для страниц со статическим контентом
-  // дело в том, что там не стандартные шрифты
-  &.m-static{
-    h2{ margin-bottom: $font-size-base*3; }
-
-    h6, p{ padding-bottom: $font-size-base; }
-
-    h6{
-      color: $color-asphalt;
-      font-family: $font-family-proxima-nova-semibold;
-      &:before{ content: '— '; }
-    }
-
-    p{ font-family: $font-family-proxima-nova-regular; font-weight: 100; color: $color-gray-d; line-height: 1.5; }
-    p + h6 { padding-top: $font-size-base*1.5; }
-  }
-
 }
 
 
 // особый элемент, если на странице нужно что-то в две колонки
 // и это не глобальный элемент как container
 #{$el}__column{
-  &.m-3-4, &.m-1-4{ @include inline-block(top); }
 
-  &.m-3-4{ width: 74.9%; padding: 0 $font-size-base*4 0 0; }
-  &.m-1-4{ width: 24.9%; }
-
-  // колонка с мета информацией к статье
-  &.m-static-meta{
-    h6{
-      font-family: $font-family-conqueror;
-      color: $color-orange;
-      font-size: 24px;
-      line-height: 1.2;
-      margin-bottom: 45px;
-      &:before{ content: ''; }
-    }
-
-    .link{ margin-bottom: 1.3em; }
-  }
 
   // ========================================================
   //  области стилей для страницы с фильтром и товарами
   //
-  &.m-sidebar, &.m-with-sidebar {
+  &.m-sidebar, &.m-with-sidebar, &.m-with-right-sidebar {
     @include inline-block(top);
   }
 
@@ -107,12 +73,71 @@ $el: '.page';
     padding-right: $font-size-base*2
   }
   // область справа от фильтра
-  &.m-main.m-with-sidebar, &.m-full-width.m-with-sidebar {
+  &.m-main.m-with-sidebar, &.m-full-width.m-with-sidebar, &.m-main.m-with-right-sidebar {
     width: $container - $sidebar-width - 2*$grid-cutter;
     padding-left: $font-size-base;
+  }
+  &.m-main.m-with-right-sidebar {
+    padding-left: 0;
+    padding-right: $font-size-base;
   }
   // область над фильтром, но с отступом в ширину фильтра
   &.m-full-width.m-with-sidebar {
     margin-left: $sidebar-width;
+  }
+  &.m-full-width.m-with-right-sidebar {
+    margin-right: $sidebar-width;
+  }
+}
+
+
+#{$el}, #{$el}__column{
+  // особые стили для страниц со статическим контентом
+  // дело в том, что там не стандартные шрифты
+  &.m-static {
+    h2 {
+      margin-bottom: $font-size-base*3;
+    }
+
+    h6, p {
+      padding-bottom: $font-size-base;
+    }
+
+    h6 {
+      color: $color-asphalt;
+      font-family: $font-family-proxima-nova-semibold;
+      &:before {
+        content: '— ';
+      }
+    }
+
+    p {
+      font-family: $font-family-proxima-nova-regular;
+      font-weight: 100;
+      color: $color-gray-d;
+      line-height: 1.5;
+    }
+    p + h6 {
+      padding-top: $font-size-base*1.5;
+    }
+  }
+
+  // колонка с мета информацией к статье
+  // обычно в правом сайдбаре находится
+  &.m-static-meta {
+    h6 {
+      font-family: $font-family-conqueror;
+      color: $color-orange;
+      font-size: 18px;
+      line-height: 1.2;
+      margin-bottom: 45px;
+      &:before {
+        content: '';
+      }
+    }
+
+    .link {
+      margin-bottom: 1.3em;
+    }
   }
 }
