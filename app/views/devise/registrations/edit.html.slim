@@ -2,20 +2,25 @@
   = render_navigation context: :user_profile
 
 .page.login-page
-  .h1.login-page__header Изменить пароль
+  .page__column.m-full-width.m-with-sidebar
+    .h1.login-page__header Изменить пароль
 
-  = simple_form_for resource,
-                    as: resource_name,
-                    url: registration_path(resource_name),
-                    html: { method: :put, class: 'form js-form-submitting' },
-                    wrapper: :regular do |f|
-    /= f.input :email, required: true, autofocus: true
+  .page__column.m-sidebar
+    = render_navigation context: :user_profile
 
-    = f.input :password, autocomplete: "off", hint: "новый пароль", required: true, input_html: { size: 40 }
-    = f.input :password_confirmation, required: true, input_html: { size: 40 }
-    = f.input :current_password, hint: "", required: true, input_html: { size: 40 }
-    .form__row.m-offset
-      = link_to 'Изменить пароль', '#', class: 'btn m-primary js-form-submitter'
+  .page__column.m-main.m-with-sidebar
+    = simple_form_for resource,
+                      as: resource_name,
+                      url: registration_path(resource_name),
+                      html: { method: :put, class: 'form js-form-submitting' },
+                      wrapper: :regular do |f|
+      /= f.input :email, required: true, autofocus: true
 
-  / область удалить учетку
-  /  = link_to "удалить учетную запись", registration_path(resource_name), data: { confirm: "Эта операция необратима. Вы уверены?" }, method: :delete
+      = f.input :password, autocomplete: "off", hint: "новый пароль", required: true, input_html: { size: 40 }
+      = f.input :password_confirmation, required: true, input_html: { size: 40 }
+      = f.input :current_password, hint: "", required: true, input_html: { size: 40 }
+      .form__row.m-offset
+        = link_to 'Изменить пароль', '#', class: 'btn m-primary js-form-submitter'
+
+    / область удалить учетку
+    /  = link_to "удалить учетную запись", registration_path(resource_name), data: { confirm: "Эта операция необратима. Вы уверены?" }, method: :delete
