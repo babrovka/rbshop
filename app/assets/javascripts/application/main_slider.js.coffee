@@ -12,7 +12,6 @@ class window.app.MainSlider extends window.app.Scroller
     anim_clock: 1500
 
   constructor : (el) ->
-    console.log @.constructor.name
     @.$el = $(el)
     @.$container = @.$el.find(@.params.container)
     @.$items = @.$container.find(@.params.item)

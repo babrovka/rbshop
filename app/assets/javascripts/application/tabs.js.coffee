@@ -77,7 +77,7 @@ class window.app.Tabs
   # иначе первый из объявленных
   _init_by_url: ->
     current_id = window.location.hash
-    console.log sent_id = @.ids[0]
+    sent_id = @.ids[0]
     if @.ids.indexOf(current_id) > -1
       sent_id = current_id
     $(document).trigger('tabs.active', [sent_id])

@@ -18,10 +18,6 @@ gem 'delayed_job_active_record'
 gem 'russian', '~> 0.6.0'
 gem 'enum_help'
 
-group :development do
-  # Automatically adds annotations to models
-  gem 'annotate'
-end
 
 group :test do
   gem 'shoulda-matchers'
@@ -30,17 +26,18 @@ group :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'test_after_commit'
-  # Automatically adds annotations to models
-  gem 'annotate'
 end
 
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0'
-  gem 'zeus', '0.15.1'
+  gem 'zeus', '0.15.2'
   gem 'capistrano'
   gem 'rvm-capistrano'
   gem 'pg'
+
+  # Automatically adds annotations to models
+  gem 'annotate'
 end
 
 group :production do

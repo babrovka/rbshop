@@ -199,7 +199,7 @@ $ ->
 
   # заготовка под окошко с кол-вом найденных товаров
   unless $('.js-filter-hint').length
-    $filter_hint = $("<div class='js-filter-hint filter__hint'><span></span><a href='#' class='link'>Показать</a></div>").appendTo('.js-filter-form').hide()
+    $filter_hint = $("<div class='js-filter-hint filter__hint spec-filter-hint'><span></span><a href='#' class='link'>Показать</a></div>").appendTo('.js-filter-form').hide()
 
   # клик по ссылке внутри блока подсказки подтверждает форму и грузит результаты
   $filter_hint.find('a').on('click', (e) ->
