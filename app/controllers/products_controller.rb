@@ -78,9 +78,9 @@ private
 
   # модифицируем параметры фильтрации перед построением самого ransack фильтра
   # здесь модифицируются все параметры, которые необходимо отразить визуально в фильтре
-  def modify_search_params
+  def modify_search_params  
     if params[:brand_ids].present?
-      search_params.merge!(brand_id_in: params[:brand_ids])
+      search_params.has_key?(:brand_id_in) ? search_params[:brand_id_in] << params[:brand_ids] : search_params[:brand_id_in] = [params[:brand_ids]]
     end
   end
 
