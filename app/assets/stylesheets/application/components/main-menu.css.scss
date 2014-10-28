@@ -42,8 +42,11 @@ $el: '.main-menu';
       color: $color-orange-d;
       font-family: $font-family-proxima-nova-semibold;
       line-height: $menu-height;
+    }
 
-      &:after{
+    // стрелочка у пункта
+    &.m-arrow {
+      > a:after {
         @include inline-block(middle);
         padding-left: .4em;
         content: '\f078';

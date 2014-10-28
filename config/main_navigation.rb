@@ -7,7 +7,10 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.dom_class = 'main-menu__root js-main-menu'
     Taxonomy.all.each do |taxonomy|
-      primary.item "taxonomy-#{taxonomy.id}", taxonomy.title, poly_taxonomy_path(taxonomy), class: 'main-menu__item' do |taxons|
+      item_class = 'main-menu__item'
+      item_class += ' m-arrow' if taxonomy.taxons.any?
+
+      primary.item "taxonomy-#{taxonomy.id}", taxonomy.title, poly_taxonomy_path(taxonomy), class: item_class do |taxons|
 
         taxons.dom_class = 'main-menu__2level js-main-menu-2level'
 

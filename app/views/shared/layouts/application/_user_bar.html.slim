@@ -7,9 +7,9 @@
 - else
   .user-bar
     ul.main-menu__root.js-main-menu
-      - user = UserPresenter.new(current_user)
-      li.user-bar__title.main-menu__item.m-user-name
-        = link_to user.title, '#', class: 'link link-dashed user-bar__name-link'
+      - user = UserPresenter.new(current_user, self)
+      li.user-bar__title.main-menu__item.m-user-name.m-arrow
+        = link_to user.title_html, '#', class: 'link link-dashed user-bar__name-link'
         ul.user-bar__submenu.main-menu__2level.m-user-name.js-main-menu-2level
           li.main-menu__item-title
             ul

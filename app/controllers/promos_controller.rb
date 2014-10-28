@@ -4,7 +4,7 @@ class PromosController < ApplicationController
                 :collection
 
   def index
-    Product.promos.order('position ASC')
+    Product.promo.order('position ASC')
   end
 
 

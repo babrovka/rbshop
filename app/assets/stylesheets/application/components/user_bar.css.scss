@@ -7,4 +7,13 @@ $el: '.user-bar';
 #{$el}__name-link{
   @include link-variant($color-blue);
   display: inline;
+
+  // каждое слово обрамлено в span
+  > span {
+    @include inline-block();
+    padding-right: 1em;
+
+    &::first-letter{ text-transform: uppercase; }
+    &:last-child{ padding-right: 0; }
+  }
 }
