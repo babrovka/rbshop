@@ -10,6 +10,12 @@ class Admin::TaxonsController < Admin::ApplicationController
   has_scope :ordered, :default => 'updated_at DESC'
 
   actions :all, except: [:show]
+  
+  def new
+    new! do |success|
+      success.html { resource.build_case }
+    end
+  end
 
   def build_resource_params
     [params.fetch(:taxon, {}).permit(
@@ -20,7 +26,11 @@ class Admin::TaxonsController < Admin::ApplicationController
          :seo_title,
          :seo_description,
          :seo_text,
-         :seo_url
+         :seo_url,
+         {case_attributes: [
+              :title,
+              '_destroy'
+          ]},
      )]
   end
 

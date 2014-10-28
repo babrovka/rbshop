@@ -17,6 +17,9 @@
   = f.input :seo_description
   = f.input :seo_text
   = f.input :seo_url
+  
+  = f.simple_fields_for :case do |c|
+    = c.input :title
 
   br
   br

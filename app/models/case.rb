@@ -23,6 +23,7 @@ class Case < ActiveRecord::Base
     'shop_'
   end
   
+  belongs_to :taxon
   has_and_belongs_to_many :products, join_table: "shop_cases_products"
   
   has_attached_file :image, styles: {medium: "940x380#", banner: "620x220#"}

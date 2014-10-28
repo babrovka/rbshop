@@ -27,6 +27,8 @@ class Taxon < ActiveRecord::Base
   belongs_to :taxonomy
   has_many :product_taxons
   has_many :products, through: :product_taxons
+  has_one :case
+  accepts_nested_attributes_for :case
 
   acts_as_nested_set
 

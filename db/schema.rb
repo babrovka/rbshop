@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028135659) do
+ActiveRecord::Schema.define(version: 20141028140400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -429,6 +429,7 @@ ActiveRecord::Schema.define(version: 20141028135659) do
     t.text     "seo_description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "taxon_id"
   end
 
   create_table "shop_cases_products", id: false, force: true do |t|
