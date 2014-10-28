@@ -27,67 +27,58 @@ feature 'User filters products by it attributes' do
 
 
   # Огромный шаблон поведения фильтра
-  shared_examples_for :filterable do |name, path_number|
+  shared_examples_for :filterable do
 
-    let(:path) do
-      [products_path,
-      taxonomy_path(taxonomy),
-      taxon_path(taxon: taxon_for_path, taxonomy: taxonomy)][path_number]
+    background do
+      # Делаем проверку на то, что таксоны
+      # не совпадают в тех колллекциях товаров,
+      # которые тестируем
+      expect(other_taxons.count).to be > 0
+      other_taxons.each do |other_taxon|
+        similar_taxons.each do |similar_taxon|
+          expect(similar_taxon).to_not eq other_taxon
+        end
+      end
+
+      visit path
     end
 
-    context "#{name}" do
-
-      background do
-        # Делаем проверку на то, что таксоны
-        # не совпадают в тех колллекциях товаров,
-        # которые тестируем
-        expect(other_taxons.count).to be > 0
-        other_taxons.each do |other_taxon|
-          similar_taxons.each do |similar_taxon|
-            expect(similar_taxon).to_not eq other_taxon
-          end
-        end
-
-        visit path
+    context 'With same taxons in products' do
+      scenario 'User sees products list with one selected taxon' do
+        # щелкаем по одному параметру фильтра
+        select_and_check_attr :taxons, similar_taxons.first.id, 2
       end
 
-      context 'With same taxons in products' do
-        scenario 'User sees products list with one selected taxon' do
-          # щелкаем по одному параметру фильтра
-          select_and_check_attr :taxons, similar_taxons.first.id, 2
-        end
-
-        scenario 'User sees products list with several selected taxons' do
-          select_and_check_attr :taxons, similar_taxons.first.id, 2
-          select_and_check_attr :taxons, similar_taxons.second.id, 2
-        end
-
-        after do
-          # после подгрузки страницы с фильтрацией,
-          # убеждаемся, что только нужные товары отфильтровались
-          expect(page).to have_content similar_product1.title
-          expect(page).to have_content similar_product2.title
-
-          expect(page).to_not have_content product3.title
-          expect(page).to_not have_content product4.title
-          expect(page).to_not have_content product5.title
-        end
+      scenario 'User sees products list with several selected taxons' do
+        select_and_check_attr :taxons, similar_taxons.first.id, 2
+        select_and_check_attr :taxons, similar_taxons.second.id, 2
       end
 
-      context 'With mismatched taxons in products' do
-        scenario 'User sees empty products list with several selected taxon' do
-          select_and_check_attr :taxons, similar_taxons.first.id, 2
-          select_and_check_attr :taxons, other_taxons.first.id, 0
+      after do
+        # после подгрузки страницы с фильтрацией,
+        # убеждаемся, что только нужные товары отфильтровались
+        expect(page).to have_content similar_product1.title
+        expect(page).to have_content similar_product2.title
 
-          expect(page).to_not have_content similar_product1.title
-          expect(page).to_not have_content similar_product2.title
-          expect(page).to_not have_content product3.title
-          expect(page).to_not have_content product4.title
-          expect(page).to_not have_content product5.title
-        end
+        expect(page).to_not have_content product3.title
+        expect(page).to_not have_content product4.title
+        expect(page).to_not have_content product5.title
       end
-
     end
+
+    context 'With mismatched taxons in products' do
+      scenario 'User sees empty products list with several selected taxon' do
+        select_and_check_attr :taxons, similar_taxons.first.id, 2
+        select_and_check_attr :taxons, other_taxons.first.id, 0
+
+        expect(page).to_not have_content similar_product1.title
+        expect(page).to_not have_content similar_product2.title
+        expect(page).to_not have_content product3.title
+        expect(page).to_not have_content product4.title
+        expect(page).to_not have_content product5.title
+      end
+    end
+
   end
 
   describe 'Filter with several same taxons', js: true do
@@ -131,15 +122,20 @@ feature 'User filters products by it attributes' do
       let!(:product4) { create(:product, brand: brands.sample, taxons: [other_taxons.sample]) }
       let!(:product5) { create(:product, brand: brands.sample, taxons: [other_taxons.sample]) }
 
-      it_should_behave_like :filterable, 'Page with all products', 0
-      it_should_behave_like :filterable, 'Taxonomy page', 1
-      it_should_behave_like :filterable, 'Taxon page', 2
-     
+      context 'Page with all products' do
+        let(:path) { products_path }
+
+        it_should_behave_like :filterable
+      end
+
       context 'Taxon page' do
-        describe 'Filter products by main menu taxons' do
+        let(:path) { taxon_path(taxon:taxon_for_path, taxonomy: taxonomy) }
+        it_should_behave_like :filterable
+
+        describe 'Filter products by taxons in main menu' do
           scenario 'Users sees only taxons products' do
-            visit taxon_path(taxon: taxon_for_path, taxonomy: taxonomy)
-           
+            visit path
+
             expect(page).to have_content similar_product1.title
             expect(page).to have_content similar_product2.title
             expect(page).to_not have_content product3.title
@@ -150,13 +146,16 @@ feature 'User filters products by it attributes' do
       end
 
       context 'Taxonomy page' do
-        describe 'Filter products by main menu taxonomy' do
+        describe 'Filter products by taxonomy in main menu' do
+          let(:path) { taxonomy_path(taxonomy) }
           let!(:another_taxonomy){ create(:taxonomy) }
           let!(:another_taxons){ [create(:taxon, :by_care_type), create(:taxon, :by_product_type)] }
           let!(:another_product) { create(:product, taxons: another_taxons) }
 
+          it_should_behave_like :filterable
+
           scenario 'Users sees only taxonomy taxons products' do
-            visit taxonomy_path(taxonomy)
+            visit path
 
             expect(page).to have_content similar_product1.title
             expect(page).to have_content similar_product2.title
@@ -168,11 +167,8 @@ feature 'User filters products by it attributes' do
           end
         end
       end
-            
+
     end
 
   end
-
-
-
 end

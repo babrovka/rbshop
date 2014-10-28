@@ -32,7 +32,6 @@ class ProductsController < ApplicationController
     taxons = selected_taxon.self_and_descendants.pluck(:id)
     taxon_id = selected_taxon.id
     search_params.has_key?(:taxons_id_in) ? search_params[:taxons_id_in] << taxon_id : search_params[:taxons_id_in] = [taxon_id]
-    puts search_params.inspect
     # search_params.merge!(taxons_id_in: selected_taxon)
     seo_data(selected_taxon)
     render_responce
