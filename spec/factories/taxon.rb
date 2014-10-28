@@ -1,11 +1,13 @@
 FactoryGirl.define do
+  sequence(:number) { |n| n }
   
-  factory :taxon do
-    title { "Taxon #{generate :number}" }
-    seo_title { "taxon seo title #{generate :number}" }
-    seo_text { "taxon seo text #{generate :number}" }
-    seo_description { "taxon seo description #{generate :number}" }
-    slug { "taxon_#{generate :number}_slug" }
+  factory :taxon, class: Taxon do
+    id { generate :number }
+    title { "Taxon #{id}" }
+    seo_title { "taxon seo title #{id}" }
+    seo_text { "taxon seo text #{id}" }
+    seo_description { "taxon seo description #{id}" }
+    slug { "taxon_#{id}_slug" }
 
     taxonomy
 

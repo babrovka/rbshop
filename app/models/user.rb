@@ -36,18 +36,12 @@ class User < ActiveRecord::Base
   
   def discount
     case self.bought_counter
-    when 30000
-      3 
     when 50000
-      5 
-    when 100000
       10
-    when 150000
-      15 
-    when 200000
-      20
+    when 100000
+      15
     else
-      0
+      5
     end
   end
   

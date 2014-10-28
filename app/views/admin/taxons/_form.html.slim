@@ -6,7 +6,7 @@
 
 
   = f.input :title
-  /= f.association :parent, collection: Taxon.without(resource), input_html: {class: 'js-select2'}
+  /= f.association :parent, collection: Taxon.allowed_parent.without(resource), input_html: {class: 'js-select2'}
   = f.association :parent, collection: nested_set_options(Taxon, resource){ |i| i.title }, input_html: {class: 'js-select2'}
   = f.association :taxonomy, input_html: {class: 'js-select2'}
   = f.input :taxon_type, as: :select,

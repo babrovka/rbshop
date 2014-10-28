@@ -119,7 +119,7 @@ feature 'User filters products by it attributes' do
       # а по последнему открыть страницу и тестировать работу там
       let!(:similar_taxons) do
         [create(:taxon, :by_care_type, taxonomy: taxonomy),
-        create(:taxon, :by_product_type, taxonomy: taxonomy),
+        create(:taxon, :by_care_type, taxonomy: taxonomy),
         create(:taxon, :by_product_type, taxonomy: taxonomy)]
       end
 
@@ -134,7 +134,41 @@ feature 'User filters products by it attributes' do
       it_should_behave_like :filterable, 'Page with all products', 0
       it_should_behave_like :filterable, 'Taxonomy page', 1
       it_should_behave_like :filterable, 'Taxon page', 2
+     
+      context 'Taxon page' do
+        describe 'Filter products by main menu taxons' do
+          scenario 'Users sees only taxons products' do
+            visit taxon_path(taxon: taxon_for_path, taxonomy: taxonomy)
+           
+            expect(page).to have_content similar_product1.title
+            expect(page).to have_content similar_product2.title
+            expect(page).to_not have_content product3.title
+            expect(page).to_not have_content product4.title
+            expect(page).to_not have_content product5.title
+          end
+        end
+      end
 
+      context 'Taxonomy page' do
+        describe 'Filter products by main menu taxonomy' do
+          let!(:another_taxonomy){ create(:taxonomy) }
+          let!(:another_taxons){ [create(:taxon, :by_care_type), create(:taxon, :by_product_type)] }
+          let!(:another_product) { create(:product, taxons: another_taxons) }
+
+          scenario 'Users sees only taxonomy taxons products' do
+            visit taxonomy_path(taxonomy)
+
+            expect(page).to have_content similar_product1.title
+            expect(page).to have_content similar_product2.title
+            expect(page).to have_content product3.title
+            expect(page).to have_content product4.title
+            expect(page).to have_content product5.title
+
+            expect(page).to_not have_content another_product.title
+          end
+        end
+      end
+            
     end
 
   end

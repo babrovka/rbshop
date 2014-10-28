@@ -40,6 +40,7 @@ class Taxon < ActiveRecord::Base
   scope :with_type, -> { where(taxon_type: nil) }
   scope :without, -> (id) { where.not(id: id) }
   scope :ordered, -> (field) {order(field)}
+  scope :allowed_parent, -> { where(depth: 0) }
   
   def should_generate_new_friendly_id?
     new_record? || slug.blank?
