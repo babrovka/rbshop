@@ -89,7 +89,6 @@ feature 'User filters products by it attributes' do
       # создаем мало товаров, чтобы быть точно уверенными,
       # что все они поместятся на одной странице в результатах выдачи
       # клеим к продуктам случайное количество таксонов
-
       let!(:brands) do
         3.times.map { create(:brand) }
       end
@@ -171,4 +170,51 @@ feature 'User filters products by it attributes' do
     end
 
   end
+
+  describe 'Filter with several brands', js: true do
+
+    let(:brand) { create(:brand) }
+    let(:another_brand) { create(:brand) }
+
+    let(:taxonomy) { create(:taxonomy) }
+
+    let!(:taxons) do
+      [create(:taxon, :by_care_type, taxonomy: taxonomy),
+       create(:taxon, :by_product_type, taxonomy: taxonomy)]
+    end
+
+    let!(:another_taxons) do
+      [create(:taxon, :by_care_type, taxonomy: taxonomy),
+       create(:taxon, :by_age, taxonomy: taxonomy)]
+    end
+
+    let!(:products) do
+      2.times.map{ create(:product, brand: brand, taxons: taxons) }
+    end
+
+    let!(:another_products) do
+      3.times.map { create(:product, brand: another_brand, taxons: [another_taxons.sample]) }
+    end
+
+    let(:path) { products_path }
+
+    scenario 'User sees products by several brands' do
+      visit path
+
+      select_and_check_attr :brand, brand.id, products.count
+      select_and_check_attr :brand, another_brand.id, products.count + another_products.count
+
+    end
+
+    scenario 'User sees products by several brands and one taxon' do
+      visit path
+
+      select_and_check_attr :brand, brand.id, products.count
+      select_and_check_attr :brand, another_brand.id, products.count + another_products.count
+
+      select_and_check_attr :taxons, taxons.first.id, products.count
+    end
+
+  end
+
 end

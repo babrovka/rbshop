@@ -1,7 +1,8 @@
 FactoryGirl.define do
   
   factory :brand do
-    title { "Brand #{generate :number}" }
+    id { generate :number }
+    title { "Brand #{id}" }
   end
 
 end
