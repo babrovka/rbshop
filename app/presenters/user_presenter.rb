@@ -3,11 +3,11 @@ UserPresenter = Struct.new(:user, :view_context) do
     titles = []
 
     # формируем Имя Ф.
-    titles << user.try(:first_name).try(:capitalize)
-    titles << "#{user.try(:last_name)[0].try(:capitalize)}."
+    titles << user.try(:first_name)
+    titles << "#{user.try(:last_name).try(:first)}."
 
     # формируем email, если имени нет
-    titles << user.email unless titles.count
+    titles = [user.email] unless titles.count > 2
 
     titles.flatten.map do |title|
       view_context.content_tag :span, title
