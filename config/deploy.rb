@@ -95,7 +95,7 @@ after "copy_mail_config", "public_system_symlink"
 
 before 'deploy:update_code', 'thinking_sphinx:stop'
 after 'deploy:update_code', 'thinking_sphinx:start'
-after 'deploy:update_code', 'thinking_sphinx:rebuil
+after 'deploy:update_code', 'thinking_sphinx:rebuild'
 
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
