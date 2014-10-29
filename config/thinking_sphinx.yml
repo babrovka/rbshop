@@ -1,2 +1,3 @@
 production:
   mysql41: 9307
+  min_infix_len: 3
