@@ -8,6 +8,10 @@ class Admin::OrdersController < Admin::ApplicationController
 
   actions :index, :edit, :update
   
+  def index
+     @orders = Order.search(params[:search])
+  end
+  
   def statistics
     @grouped_orders = collection.group_by(&:city)
   end
