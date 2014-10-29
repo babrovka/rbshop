@@ -1,5 +1,6 @@
 require 'rvm/capistrano'
 require 'bundler/capistrano'
+require 'thinking_sphinx/capistrano'
 load 'deploy/assets'
 require "delayed/recipes" 
 set :delayed_job_command, "bin/delayed_job"
@@ -91,6 +92,10 @@ before "deploy:assets:precompile", "copy_database_config"
 after "copy_database_config", "copy_secret_config"
 after "copy_secret_config", "copy_mail_config"
 after "copy_mail_config", "public_system_symlink"
+
+before 'deploy:update_code', 'thinking_sphinx:stop'
+after 'deploy:update_code', 'thinking_sphinx:start'
+after 'deploy:update_code', 'thinking_sphinx:rebuil
 
 after "deploy:stop",    "delayed_job:stop"
 after "deploy:start",   "delayed_job:start"
