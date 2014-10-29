@@ -12,7 +12,7 @@ class Admin::ProductsController < Admin::ApplicationController
   actions :all, except: [:show]
 
   def index
-    @products = apply_scopes(collection)
+    @products = Product.search(params[:search])
   end
 
 
