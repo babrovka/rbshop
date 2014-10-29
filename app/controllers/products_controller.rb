@@ -56,7 +56,7 @@ private
 
   # инстанс для поддержки гибкой фильтрации
   def filter
-    @q ||= Product.search(search_params)
+    @q ||= Product.ransack(search_params)
   end
 
   # подготовка параметров к фильтрации
