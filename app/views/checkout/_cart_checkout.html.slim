@@ -1,6 +1,16 @@
 .cart-checkout
-  small Итого к оплате:
-  span.cart-checkout__total-price.price = current_cart.total_price
+  - if current_user && current_user.discount
+    .cart-checkout__discount-amount
+      .cart-checkout__price-left
+        small = "СКИДКА #{current_user.discount}%"
+      .cart-checkout__price-right.price
+        = current_cart.total_price - current_cart.discounted_price
+
+
+  .cart-checkout__price-left
+    small Итого к оплате:
+  .cart-checkout__price-right
+    span.cart-checkout__total-price.price = current_cart.discounted_price
 
   .cart-checkout__btn
     = link_to checkout_path, class: 'btn m-primary' do

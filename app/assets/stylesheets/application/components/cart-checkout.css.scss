@@ -15,7 +15,7 @@ $el: '.cart-checkout';
     @include inline-block(middle);
   }
 
-  #{$el}__total-price{ padding-left: 1em; font-size: 28px; }
+  #{$el}__total-price{ font-size: 28px; }
 
   em{
     color: $color-gray;
@@ -29,3 +29,24 @@ $el: '.cart-checkout';
 #{$el}__btn{
   margin: $font-size-base 0 10px;
 }
+
+
+// область под скидку пользователю
+#{$el}__discount-amount{
+  font-size: 20px;
+  margin-bottom: 2*$font-size-base;
+
+  &, small {
+    font-family: $font-family-proxima-nova-regular;
+    color: $color-green-d;
+  }
+}
+
+// область описания перед ценой,
+// например «итого к оплате»
+#{$el}__price-left, #{$el}__price-right{
+  @include inline-block(middle);
+  width: 49.9%;
+}
+
+#{$el}__price-left{ text-align: right; padding-right: $font-size-base; }

@@ -22,7 +22,8 @@ class LineItemsController < ApplicationController
   end
 
   # увеличиваем кол-во товаров
-  def increase(qty=1)
+  def increase
+    qty = params[:qty] || 1
     @line_item = LineItem.find(params[:id])
     @line_item.quantity += qty
     @line_item.save
@@ -33,7 +34,8 @@ class LineItemsController < ApplicationController
   end
   
   # уменьшаем кол-во товаров
-  def decrease(qty=1)
+  def decrease
+    qty = params[:qty] || 1
     @line_item = LineItem.find(params[:id])
     if @line_item.quantity <= qty
       @line_item.quantity = 1

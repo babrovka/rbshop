@@ -1,3 +1,5 @@
 $('.js-main-menu-cart-widget').html("<%= j render 'shared/layouts/application/shopping_cart' %>");
 clearTimeout(window.ajax_timer_id);
-window.add_to_cart_popover.show();
+if(window.add_to_cart_popover) {
+  window.add_to_cart_popover.show();
+}
