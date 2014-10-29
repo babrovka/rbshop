@@ -9,7 +9,7 @@ class Admin::OrdersController < Admin::ApplicationController
   actions :index, :edit, :update
   
   def index
-     @orders = Order.search(params[:search])
+     @orders = Order.search(params[:search], :star => true)
   end
   
   def statistics
