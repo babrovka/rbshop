@@ -9,7 +9,9 @@ class Admin::OrdersController < Admin::ApplicationController
   actions :index, :edit, :update
   
   def index
-     @orders = Order.search(params[:search], :star => true)
+    @orders = Order.search(params[:search], star: true)
+    @orders = @orders.result(distinct: true) if @orders.is_a?(Ransack::Search)
+    @orders = apply_scopes(@orders)
   end
   
   def statistics

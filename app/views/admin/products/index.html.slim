@@ -1,16 +1,14 @@
 .row
-  .col-sm-12
+  .col-sm-6
     h1
       ' Cписок товаров
       small
         = link_to new_admin_product_path, class: 'btn btn-default' do
           span.fa.fa-plus
           span создать новый
-      small
-        = form_tag admin_products_path, :method => :get do
-          = text_field_tag :search, params[:search]
-          = submit_tag "Искать", :name => nil
 
+.row
+  = render 'admin/shared/search_form', path: admin_products_path
 
 
 .row

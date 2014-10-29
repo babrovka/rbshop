@@ -12,8 +12,11 @@ class Admin::ProductsController < Admin::ApplicationController
   actions :all, except: [:show]
 
   def index
+    # т.к.в деве и продакшене разные поисковые механизмы
+    # то приходится делать проверку на класс проверки
     @products = Product.search(params[:search], :star => true)
-    # @products = apply_scopes(collection)
+    @products = @products.result(distinct: true) if @products.is_a?(Ransack::Search)
+    @products = apply_scopes(@products)
   end
 
 
