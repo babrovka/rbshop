@@ -42,7 +42,7 @@ end
 
 group :production do
   gem 'mysql2'
-  gem 'thinking-sphinx', '~> 3.1.0'
+  # gem 'thinking-sphinx', '~> 3.1.0'
 end
 
 gem 'thin'
