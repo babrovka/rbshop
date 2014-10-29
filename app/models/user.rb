@@ -35,10 +35,9 @@ class User < ActiveRecord::Base
   has_many :orders
   
   def discount
-    case self.bought_counter
-    when 50000
+    if bought_counter == 50000
       10
-    when 100000
+    elsif bought_counter == 100000
       15
     else
       5
