@@ -27,6 +27,7 @@ class Order < ActiveRecord::Base
   after_save :buy_products_in_line_items
   after_save :count_total
   after_save :update_user_bought_counter
+  before_save :copy_user_info, :if => lambda {|order| order.user.present? }
   
   enum status: [ :not_paid, :paid, :ready_for_delivery, :delivered ]
   enum pay_type: [ :cash, :online ]
@@ -73,6 +74,10 @@ class Order < ActiveRecord::Base
     else
       self.total_price
     end
+  end
+  
+  def copy_user_info  
+    self.name = "#{self.user.first_name} #{self.user.last_name}"
   end
   
 end

@@ -61,6 +61,27 @@ describe Order do
       end
     end
     
+    context 'order info' do
+      
+      it "has user" do
+        order = FactoryGirl.create(:order)
+        user = FactoryGirl.create(:user)
+        order.user = user
+        order.save!
+        order.reload
+        name = "#{user.first_name} #{user.last_name}"
+        expect(order.name).to eq name
+      end
+      
+      it "hasn't user" do
+        order = FactoryGirl.create(:order)
+        order.save!
+        order.reload
+        name = nil
+        expect(order.name).to eq name
+      end
+    end
+    
   end
     
 end
