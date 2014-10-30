@@ -16,8 +16,8 @@ describe Cart do
     let(:user) { create(:user) }
     let(:cart) { create(:cart_with_products, user: user) }
     
-    context 'total_price' do
-      it "can be discounted" do
+    context 'discounted_price' do
+      it "with user" do
         user.bought_counter = rand(1.9999999999)
         user.save!
         user.reload 
@@ -28,7 +28,15 @@ describe Cart do
         
         expect(cart.discounted_price).to eq cart_discounted_price
       end
+      
+      it "without user" do
+        cart = FactoryGirl.create(:cart_with_products)
+        cart_total_price = cart.line_items.to_a.sum { |item| item.total_price }
+        expect(cart.discounted_price).to eq cart_total_price
+      end
     end
+    
+    
   end
     
 end

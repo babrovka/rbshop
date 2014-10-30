@@ -37,6 +37,8 @@ class Cart < ActiveRecord::Base
       percents = 100-self.user.discount
       discounted_price = self.total_price/100*percents
       discounted_price
+    else
+      self.total_price
     end
   end
 
