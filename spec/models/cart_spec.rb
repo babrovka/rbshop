@@ -18,7 +18,7 @@ describe Cart do
     
     context 'total_price' do
       it "can be discounted" do
-        user.bought_counter = 150000
+        user.bought_counter = rand(1.9999999999)
         user.save!
         user.reload 
         cart.reload
