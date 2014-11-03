@@ -55,23 +55,31 @@ $meta-width: 200px;
   @include border-radius(8px);
   position: absolute;
   width: $meta-width;
-  background: $color-gray-l;
   right: 0;
   top: 3*$font-size-base;
   font-family: $font-family-proxima-nova-semibold;
   font-size: 14px;
 
-  padding: $font-size-base*1.5 $font-size-base;
+  // коробка внутри которой рисуются доп.параметры
+  // имеет фон
+  // не рисуется, если пустая
+  #{$el}__meta-box{
+    padding: $font-size-base*1.5 $font-size-base;
+    background: $color-gray-l;
 
-  p{ color: $color-gray; padding-bottom: $font-size-base*0.4; }
-  b{ color: $color-gray-d; }
+    p { color: $color-gray; padding-bottom: $font-size-base*0.4; }
+    b { color: $color-gray-d; }
 
+    &:empty{ display: none; }
+
+  }
   // заголовок над мета информацией о товаре
   // во время создания это текст «товар в наличии»
   #{$el}__meta-title{
     color: $color-green-d;
     font-family: $font-family-proxima-nova-semibold;
     font-size: $font-size-base;
+    padding-left: $font-size-base;;
 
     position: absolute;
     top: -$font-size-base*2;

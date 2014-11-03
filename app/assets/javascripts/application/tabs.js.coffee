@@ -60,8 +60,8 @@ class window.app.Tabs
     @.ids = ids
     if ids.length
       for id in ids
-        el = $("a[href='#{id}']")
-        @.tabs.push(new window.app.Tab(el))
+        $el = $("a[href='#{id}']")
+        @.tabs.push(new window.app.Tab($el)) if $el[0]
 
   # управляет переключением табов
   _switch_tabs: (active_tab) ->

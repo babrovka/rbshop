@@ -22,7 +22,7 @@
       .product__action
         = form_tag(line_items_path(product_id: resource.id), remote: true, class: 'js-form-submitting' ) do
           .counter.js-counter
-            = text_field_tag :count, 1, size: 3, maxlength: 3
+            = text_field_tag :qty, 1, size: 3, maxlength: 3
             = link_to '+', '#', class: 'counter__btn m-up js-counter-up'
             = link_to '-', '#', class: 'counter__btn m-down js-counter-down'
           = link_to '#', class: "btn m-primary js-form-submitter" do
@@ -36,7 +36,7 @@
         .tabs
           .tabs__group
             = link_to 'описание', '#description', class: 'tabs__tab m-active'
-            = link_to 'ингридиенты', '#ingredients', class: 'tabs__tab'
+            = link_to 'товары акции', '#goods', class: 'tabs__tab'
             = link_to '#comments', class: 'tabs__tab' do
               span.fa.fa-comment
               span отзывы
@@ -45,8 +45,14 @@
             #description
               p = simple_format resource.text
             #comments = render 'shared/plugins/disqus_script'
-            #ingredients
-              p = resource.ingredients
+            #goods
+              - resource.products.each do |product|
+                p
+                  = link_to product_path(product) do
+                    - if product.product_images.any?
+                      = image_tag product.product_images.first.image.url(:product)
+                    = product.title
+
             #payment
               p = Faker::Lorem.sentence(100)
 
@@ -55,22 +61,3 @@
           .product__meta-title
             span.fa.fa-check-circle
             span Есть в наличии
-
-        = product_meta_tag resource.sku, 'Артикул'
-        = product_meta_tag resource.brand.try(:title), 'Бренд'
-        = product_meta_tag resource.packing, 'Объем'
-        = product_meta_tag resource.taxons.by_age.first.try(:title), 'Возраст'
-        = product_meta_tag resource.taxons.by_care_type.first.try(:title), 'Тип ухода'
-
-
-
-
-  - if @current_category.present?
-    h3.m-primary Товары из этой категории
-    = render 'shared/product_scroller', collection: @current_category
-  br
-  br
-  br
-  - if @related_products.present?
-    h3.m-primary С этим товаром берут
-    = render 'shared/product_scroller', collection: @related_products

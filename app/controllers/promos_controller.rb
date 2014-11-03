@@ -30,5 +30,9 @@ private
                       .per(params[:per] || 20)
   end
 
+  def resource
+    @promo ||= Product.promo.friendly.find(params[:id])
+  end
+
 
 end
