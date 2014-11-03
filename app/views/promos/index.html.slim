@@ -1,0 +1,13 @@
+/= content_for :sidebar do
+
+
+.page
+  .page__column
+    = render 'promos/header'
+
+  .page__column
+    = render 'promos/list'
+
+
+  .page__column.m-pagination
+    = paginate collection

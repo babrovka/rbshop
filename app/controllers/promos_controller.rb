@@ -4,11 +4,30 @@ class PromosController < ApplicationController
                 :collection
 
   def index
-    Product.promo.order('position ASC')
   end
 
 
   def show
+  end
+
+private
+
+  # инстанс для поддержки гибкой фильтрации
+  def filter
+    @q ||= Product.promo.ransack(search_params)
+  end
+
+  # подготовка параметров к фильтрации
+  def search_params
+    @search_params ||= params.fetch(:q, {}).permit(:s)
+  end
+
+  # коллеция акций
+  def collection
+    @promos ||= filter.result(distinct: true)
+                      .order('position ASC')
+                      .page(params[:page])
+                      .per(params[:per] || 20)
   end
 
 

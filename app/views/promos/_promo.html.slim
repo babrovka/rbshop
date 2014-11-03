@@ -1,0 +1,27 @@
+- active ||= false
+- css_class = active ? 'm-active' : ''
+.card class=css_class
+  - if resource.discount?
+    .card__badge.m-green скидка
+
+  = link_to promo_path(resource), class: 'card__img' do
+    - if resource.product_images.any?
+      = image_tag resource.product_images.first.image.url(:catalog)
+    - else
+      = image_tag 'noimage.png'
+
+  h3 = link_to resource.title, product_path(resource)
+  small = resource.short_description.try(:truncate, 50)
+
+  .card__footer
+    .card__rating
+    small = "объем: #{resource.packing}"
+    hr
+    .card__price.m-new
+      .price = resource.current_price
+    - if resource.discount?
+      .card__price.m-old = resource.price
+
+    .js-spinner-container = add_to_cart_btn resource, 'card__to-cart'
+    /= link_to 'добавить к сравнению', '#', class: 'link m-dashed card__compare'
+
