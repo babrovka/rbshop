@@ -8,7 +8,7 @@ $el: '.tabs';
 
 // область под кнопки-табы
 #{$el}__group{
-  margin-bottom: $font-size-base;
+  margin-bottom: $font-size-base*2;
 }
 
 // сам таб-кнопка

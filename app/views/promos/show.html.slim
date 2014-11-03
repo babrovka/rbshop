@@ -46,12 +46,13 @@
               p = simple_format resource.text
             #comments = render 'shared/plugins/disqus_script'
             #goods
-              - resource.products.each do |product|
-                p
-                  = link_to product_path(product) do
-                    - if product.product_images.any?
-                      = image_tag product.product_images.first.image.url(:product)
-                    = product.title
+              .products-list
+                - resource.products.each do |product|
+                  .products-list__item
+                    = link_to product_path(product), class: 'products-list__item-link' do
+                      - if product.product_images.any?
+                        = image_tag product.product_images.first.image.url(:ico), class: 'products-list__item-img'
+                      .products-list__item-title = product.title
 
             #payment
               p = Faker::Lorem.sentence(100)
