@@ -7,6 +7,8 @@ ru:
         current_password: текущий пароль
         email: 'эл.почта'
         name: 'имя фамилия'
+        first_name: 'имя'
+        last_name: 'фамилия'
         phone: 'телефон'
         city: 'город'
         address: 'адрес доставки'

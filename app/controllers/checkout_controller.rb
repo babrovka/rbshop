@@ -47,7 +47,8 @@ private
 
   def build_order_for_current_user
     if current_user
-      @order.name = current_user.name
+      @order.user = current_user
+      @order.copy_user_info
       @order.email = current_user.email
       @order.phone = current_user.phone
       @order.address = current_user.address

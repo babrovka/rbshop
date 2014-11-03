@@ -10,8 +10,9 @@
     = simple_form_for current_user,
                       html: { method: :put, class: 'form js-form-submitting' },
                       wrapper: :regular do |f|
-      = f.input :name, autofocus: true, input_html: { size: 40 }
-      = f.input :phone, input_html: { size: 40 }
+      = f.input :first_name, autofocus: true, input_html: { size: 34 }
+      = f.input :last_name, autofocus: true, input_html: { size: 34 }
+      = f.input :phone, input_html: { size: 16 }
       = f.input :city, input_html: { size: 40 }
       = f.input :address, as: :text, input_html: { rows: 3, cols: 40 }
 
