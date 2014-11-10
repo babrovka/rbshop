@@ -79,5 +79,9 @@ class Order < ActiveRecord::Base
   def copy_user_info  
     self.name = "#{self.user.first_name} #{self.user.last_name}"
   end
+
+  def num
+    id.to_s
+  end
   
 end

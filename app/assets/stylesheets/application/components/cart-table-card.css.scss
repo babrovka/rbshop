@@ -26,7 +26,7 @@ $el: '.cart-table-card';
 
   p{ margin-bottom: 10px; line-height: 1.5}
 
-  small {
+  small, .small {
     font-family: $font-family-proxima-nova-semibold;
     color: $color-gray-d;
     margin-bottom: $font-size-base;
@@ -35,6 +35,24 @@ $el: '.cart-table-card';
     text-transform: uppercase;
   }
 
+}
+
+// часть компонента для отрисовки «количества» продукции
+// содержит цифру и буку х
+#{$el}__qty{
+  font-family: $font-family-proxima-nova-semibold;
+  color: $color-asphalt;
+  margin-bottom: $font-size-base;
+  font-size: $font-size-base;
+  text-transform: uppercase;
+
+  &:before{
+    font-family: $font-family-proxima-nova-semibold;
+    color: $color-gray-d;
+    content: 'x';
+    font-size: 9px;
+    padding-right: .3em;
+  }
 }
 
 #{$el}__remove-btn{

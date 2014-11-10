@@ -1,0 +1,13 @@
+$el: '.order';
+
+#{$el}__status{
+  font-family: $font-family-proxima-nova-semibold;
+  color: $color-gray-d;
+  font-size: 11px;
+  text-transform: uppercase;
+
+  .fa{ padding-right: .3em; font-size: $font-size-base; }
+  .fa.m-in-process{ color: $color-blue; }
+  .fa.m-delievered{ color: $color-green-d; }
+  .fa.m-cancelled{ color: $color-red; }
+}

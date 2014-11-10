@@ -7,20 +7,35 @@
 
   .page__column.m-main.m-with-sidebar
     .orders
-      table.table
+
+      table.cart-table
         tr
-          th список товара
-          th стоимость
-          th статус
+          th номер
           th дата заказа
-        tr
-          - @collection.each do |order|
-            th
-              - order.line_items.each do |line_item|
-                p
-                  ==' line_item.product.title
-                  ' кол-во
-                  = line_item.quantity
-            th = order.total
-            th = order.status
-            th = order.created_at.strftime('%d.%M.%Y')
+          th товары
+          th сумма
+          th статус
+
+        - @collection.each do |order|
+          tr.cart-table-card
+            td
+              small = order.num
+            td
+              small = order.created_at.strftime('%d %B %Y')
+            td
+              table
+                - order.line_items.each do |line_item|
+                  tr
+                    td
+                      h3 = link_to line_item.product.title, product_path(line_item.product)
+                      p = line_item.product.short_description.truncate(50)
+
+                    td
+                      .cart-table-card__qty = line_item.quantity
+            td
+              .price.m-gray = order.total
+            td
+              - d_order = OrderStatusPresenter.new(order, self)
+              = d_order.status_html
+              /= t(order.status, scope: 'enums.order.status')
+

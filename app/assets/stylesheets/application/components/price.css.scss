@@ -4,4 +4,7 @@ $el: '.price';
   font-family: $font-family-proxima-nova-extrabold;
   line-height: 1;
   &:after{ padding-left: .5em; }
+
+  // серая цена, не очень броская
+  &.m-gray{ color: $color-gray-d; }
 }
