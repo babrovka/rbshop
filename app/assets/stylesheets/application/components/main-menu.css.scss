@@ -26,14 +26,21 @@ $el: '.main-menu';
 // рутовый уровень меню
 #{$el}__root{
   > #{$el}__item {
+    $sprite-height: 33px;
     @include inline-block(middle);
+
+    line-height: $sprite-height - 5px; // вычитаем,потому что спрайт снизу имеет пустоту для тени, относительно которой шрифт не должен равняться
+    height: $sprite-height;
+    margin-top: ($menu-height - $sprite-height)/2;
+    text-align: center;
+
     + #{$el}__item { margin-left: $font-size-base*2; }
 
     // особый стиль под заголовок имени пользователя
     // у которого тоже есть выпадающее меню
-    &.m-user-name > a{
-      color: $color-blue;
-      border-style: dashed;
+    &.m-user-name{
+      > a { color: $color-blue; border-style: dashed; }
+      &.selected > a { color: white; border-bottom-color: transparent;}
     }
 
     // только первый уровень ссылок
@@ -41,8 +48,29 @@ $el: '.main-menu';
       @include unstyled-link;
       color: $color-orange-d;
       font-family: $font-family-proxima-nova-semibold;
-      line-height: $menu-height;
+      display: inline-block;
+      padding-top: .4em;
+      line-height: 1.2;
     }
+
+    // размеры кнопок в кол-ве символов,
+    // определяется с помощью js
+    &.m-sm  { width: 72px; }
+    &.m-m   { width: 102px; }
+    &.m-l   { width: 129px; }
+    &.m-xl  { width: 172px; }
+
+    // на пункт меню навели мышку
+    &.m-sm.m-active { @include sprites-sprite('btn-menu-sm'); }
+    &.m-m.m-active  { @include sprites-sprite('btn-menu-m'); }
+    &.m-l.m-active  { @include sprites-sprite('btn-menu-l'); }
+    &.m-xl.m-active { @include sprites-sprite('btn-menu-xl'); }
+
+    // на пункт меню навели мышку
+    &.m-sm.selected { @include sprites-sprite('btn-menu-sm-active'); > a { color: white; } }
+    &.m-m.selected { @include sprites-sprite('btn-menu-m-active'); }
+    &.m-l.selected { @include sprites-sprite('btn-menu-l-active'); }
+    &.m-xl.selected { @include sprites-sprite('btn-menu-xl-active'); }
 
     // стрелочка у пункта
     &.m-arrow {
@@ -69,6 +97,17 @@ $el: '.main-menu';
   cursor: pointer;
 }
 
+// заглушка между пунктом меню и подпунктами под стрелочкой
+// должна вставляться перед ссылкой,тогда верно позиционируется
+#{$el}__block2 {
+  top: $menu-height - 15px;
+  height: 15px;
+  position: absolute;
+  width: 160px;
+  display: none;
+  cursor: pointer;
+}
+
 
 // выпадающий уровень меню
 #{$el}__2level{
@@ -78,6 +117,12 @@ $el: '.main-menu';
   position: absolute;
   opacity: 0;
   visibility: hidden;
+
+  // сбрасываем стили от главного элемента,
+  // они были применены, чтобы фон у пунктов отрисовывался
+  line-height: 1.2;
+  text-align: left;
+
   @include transform(translateY(-100px));
   @include transition(transform .2s ease-in-out, opacity .05s ease-in-out);
 
@@ -135,26 +180,17 @@ $el: '.main-menu';
 }
 
 #{$el}__root > #{$el}__item.m-active{
-  #{$el}__block{ @include inline-block(top); }
+  #{$el}__block, #{$el}__block2 { @include inline-block(top); }
 
   #{$el}__2level{
     display: block;
     visibility: visible;
     opacity: .99;
 
-    @include transform(translateY(-1px));
+    @include transform(translateY(10px));
     @include transition(transform .1s ease-in-out, opacity .3s ease-in-out);
   }
 
   // пустое меню не показываем
   #{$el}__2level:empty{ background: transparent; }
-}
-
-
-.js-dropdown-menu{
-
-}
-
-.js-dropdown-menu__2level{
-
 }

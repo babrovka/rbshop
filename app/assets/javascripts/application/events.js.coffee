@@ -1,52 +1,3 @@
-#class window.A
-#  channel: 'A'
-#
-#  constructor : (channel)->
-#    @channel = channel || @channel
-#    console.log "class A ==> #{@channel}"
-#    @.custom_constructor()
-#
-#  custom_constructor: ->
-#
-#
-#class window.B extends window.A
-#  custom_constructor : () ->
-#    console.log "class B ==> #{@channel}"
-#
-#
-#class window.C extends window.A
-#  custom_constructor : (channel) ->
-#    @channel = 'Cext'
-#    console.log "class C ==> #{@channel}"
-
-
-
-class window.A
-
-  @::params =
-    channel : 'A'
-
-  constructor: (channel)->
-    A::params['channel'] = channel || A::params['channel']
-    console.log "class A ==> #{@params.channel}"
-    @custom_constructor()
-
-  custom_constructor: ->
-
-
-
-class window.B extends window.A
-  custom_constructor: () ->
-    console.log "class B ==> #{@params.channel}"
-
-
-class window.C extends window.A
-  custom_constructor : () ->
-    C::params['channel'] = 'Cext'
-    console.log "class C ==> #{@params.channel}"
-
-
-
 $ ->
   new window.app.MainSlider('.js-main-slider')
 
@@ -103,15 +54,31 @@ $ ->
   )
 
 
-  $('.js-main-menu-2level:empty').remove()
 
   # главное меню
+  $('<div class="main-menu__block2"></div>').insertBefore('.js-main-menu > li > a')
   $('<div class="main-menu__block"></div>').insertAfter('.js-main-menu > li > a')
   $('.js-main-menu > li').mouseenter( ->
     $(@).closest('li').addClass('m-active')
   ).mouseleave( ->
     $(@).closest('li').removeClass('m-active')
   )
+
+  # выставляем классы по длине символов в главном меню
+  $.each($('.js-main-menu > li'), (i, elem) ->
+    item_length = $(elem).find('> a').text().length
+    item_class = if item_length <= 5
+                    'm-sm'
+                  else if item_length > 5 && item_length <=8
+                    'm-m'
+                  else if item_length > 8 && item_length <= 11
+                    'm-l'
+                  else if item_length > 11 && item_length <= 23
+                    'm-xl'
+    $(elem).addClass item_class
+  )
+
+  $('.js-main-menu-2level:empty').remove()
 
 
   # вставляем спиннер для отображения процесса загрузки

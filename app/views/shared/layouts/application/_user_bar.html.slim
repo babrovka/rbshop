@@ -8,8 +8,13 @@
   .user-bar
     ul.main-menu__root.js-main-menu
       - user = UserPresenter.new(current_user, self)
-      li.user-bar__title.main-menu__item.m-user-name.m-arrow
-        = link_to user.title_html, '#', class: 'link link-dashed user-bar__name-link'
+      - is_orders = current_page?(user_orders_path)
+      - is_profile = current_page?(user_profile_path)
+      - is_password = current_page?(edit_user_registration_path)
+      - active_class = 'selected' if is_orders || is_profile || is_password
+      li.user-bar__title.main-menu__item.m-user-name.m-arrow class=active_class
+        = link_to user.title_html, '#', class: "link link-dashed user-bar__name-link"
+
         ul.user-bar__submenu.main-menu__2level.m-user-name.js-main-menu-2level
           li.main-menu__item-title
             ul
