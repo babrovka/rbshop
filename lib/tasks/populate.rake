@@ -116,6 +116,12 @@ namespace :data do
     end
   end
 
+
+  task hints: :environment do
+    %w(brand_1 brand_2 brand_3 by_product_type by_care_type by_age).each do |name|
+      Hint.where(name: name).first_or_create
+    end
+  end 
   
 
 end

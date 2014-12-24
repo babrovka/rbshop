@@ -19,4 +19,5 @@ if Rails.env.development?
     25.times { FactoryGirl.create(:product, brand: Brand.all.sample) }
   end
   Rake::Task['data:taxons_to_products'].invoke
+  Rake::Task['data:hints'].invoke
 end

@@ -15,8 +15,8 @@ $el: '.main-menu';
   @include inline-block(middle);
 }
 
-#{$el}__left.m-menu{ width: 830px;}
-#{$el}__right.m-user-bar{ width: 220px;}
+#{$el}__left.m-menu{ width: 850px; height: 100%; }
+#{$el}__right.m-user-bar{ width: 200px;}
 #{$el}__right.m-cart{ width: 150px;}
 
 #{$el}__left { padding: 0 $grid-cutter 0;}
@@ -68,9 +68,9 @@ $el: '.main-menu';
 
     // на пункт меню навели мышку
     &.m-sm.selected { @include sprites-sprite('btn-menu-sm-active'); > a { color: white; } }
-    &.m-m.selected { @include sprites-sprite('btn-menu-m-active'); }
-    &.m-l.selected { @include sprites-sprite('btn-menu-l-active'); }
-    &.m-xl.selected { @include sprites-sprite('btn-menu-xl-active'); }
+    &.m-m.selected { @include sprites-sprite('btn-menu-m-active'); > a { color: white; }}
+    &.m-l.selected { @include sprites-sprite('btn-menu-l-active'); > a { color: white; }}
+    &.m-xl.selected { @include sprites-sprite('btn-menu-xl-active'); > a { color: white; }}
 
     // стрелочка у пункта
     &.m-arrow {
