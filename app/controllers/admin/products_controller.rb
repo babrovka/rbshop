@@ -7,7 +7,7 @@ class Admin::ProductsController < Admin::ApplicationController
   
   has_scope :page, default: 1, only: :index
   has_scope :per, default: 15, only: :index
-  has_scope :ordered, :default => 'updated_at DESC'
+  # has_scope :ordered, :default => 'updated_at DESC'
 
   actions :all, except: [:show]
 
