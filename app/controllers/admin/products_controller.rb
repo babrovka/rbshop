@@ -19,6 +19,11 @@ class Admin::ProductsController < Admin::ApplicationController
     @products = apply_scopes(@products)
   end
 
+  def edit
+    session[:redirect_to_path] = request.referer
+    edit!
+  end
+
 
   def crop
   end
@@ -29,6 +34,12 @@ class Admin::ProductsController < Admin::ApplicationController
   end
   
 private
+
+  def collection_url
+    path = session[:redirect_to_path]
+    session[:redirect_to_path] = nil
+    path || admin_products_path
+  end
   
   def collection
     @products ||= end_of_association_chain.regular
