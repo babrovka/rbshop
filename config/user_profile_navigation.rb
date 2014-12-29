@@ -10,7 +10,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :orders, 'История заказов', user_orders_path, class: 'login-page__menu-link'
     primary.item :profile, 'Личные данные', user_profile_path, class: 'login-page__menu-link'
-    primary.item :password_change, 'Пароль', edit_user_registration_path, class: 'login-page__menu-link'
+    primary.item :profile, 'Мои бонусы', user_bonus_path, class: 'login-page__menu-link'
+    primary.item :password_change, 'Сменить пароль', edit_user_registration_path, class: 'login-page__menu-link'
 
   end
   # Specify a custom renderer if needed.

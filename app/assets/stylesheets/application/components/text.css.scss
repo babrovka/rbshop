@@ -2,6 +2,7 @@
 
 .text-orange{ color: $color-orange; }
 .text-red{ color: $color-red; }
+.text-green{ color: $color-green-d; }
 
 .text-phone{
   @include unstyled-link;
@@ -23,4 +24,8 @@
   font-family: 'PT Serif';
   font-size: 16px;
   font-style: italic;
+}
+
+.text-serif{
+  font-family: $font-family-proxima-nova-semibold;
 }

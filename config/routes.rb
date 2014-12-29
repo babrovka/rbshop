@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get '/profile' => 'users#personal', as: :user_profile
   put '/profile' => 'users#update', as: :user
   get '/orders' => 'users#orders', as: :user_orders
+  get '/bonus' => 'users#bonus', as: :user_bonus
   # ===========================================================================
 
   # Корзина и оформление заказа

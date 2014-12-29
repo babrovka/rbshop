@@ -1,0 +1,16 @@
+.page.login-page
+  .page__column.m-full-width.m-with-sidebar
+    .h1.login-page__header Мои бонусы
+
+  .page__column.m-sidebar
+    = render_navigation context: :user_profile
+
+
+  .page__column.m-main.m-with-sidebar
+    p
+      ' Куплено на сумму
+      span.price = @bonus_volume
+    br
+    p
+      ' Ваш процент скидки равен
+      span.text-green.text-serif = "#{@bonus_percentage}%"
