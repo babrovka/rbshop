@@ -34,16 +34,14 @@ group :development, :test do
   gem 'zeus', '0.15.2'
   gem 'capistrano'
   gem 'rvm-capistrano'
-  gem 'pg'
+
 
   # Automatically adds annotations to models
   gem 'annotate'
 end
 
-group :production do
-  gem 'mysql2'
-  gem 'thinking-sphinx', '~> 3.1.0'
-end
+gem 'mysql2'
+# gem 'thinking-sphinx', '~> 3.1.0'
 
 gem 'thin'
 
@@ -69,7 +67,7 @@ gem 'has_scope'
 gem 'velocityjs-rails'
 
 gem 'populator'
-gem 'ransack'
+
 
 gem 'jquery-ui-rails'
 
@@ -77,3 +75,5 @@ gem 'jquery-ui-rails'
 gem 'papercrop'
 
 gem 'high_voltage', '~> 2.2.1'
+
+gem 'ransack'

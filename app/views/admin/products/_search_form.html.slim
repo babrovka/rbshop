@@ -1,0 +1,9 @@
+br
+= form_for @query, url: admin_products_path, html: {method: :get} do |f|
+  .form-group
+    .col-sm-6 = f.text_field :title_cont, class: 'form-control', placeholder: 'Поисковый запрос...'
+    .col-sm-2 = submit_tag "Найти", name: nil, class: 'btn btn-primary'
+br
+br
+br
+br

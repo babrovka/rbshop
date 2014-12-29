@@ -14,8 +14,8 @@ class Admin::ProductsController < Admin::ApplicationController
   def index
     # т.к.в деве и продакшене разные поисковые механизмы
     # то приходится делать проверку на класс проверки
-    @products = Product.search(params[:search], :star => true)
-    @products = @products.result(distinct: true) if @products.is_a?(Ransack::Search)
+    @query = Product.ransack(params[:q])
+    @products = @query.result(distinct: true)
     @products = apply_scopes(@products)
   end
 
