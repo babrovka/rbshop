@@ -1,5 +1,9 @@
 $el: '.main-menu';
 
+$cart-widget-width: 130px;
+$user-bar-width: 200px;
+$menu-width: $container - $cart-widget-width - $user-bar-width;
+
 #{$el}{
   @include box-shadow(0 16px 30px -25px);
   height: $menu-height;
@@ -15,11 +19,11 @@ $el: '.main-menu';
   @include inline-block(middle);
 }
 
-#{$el}__left.m-menu{ width: 850px; height: 100%; }
-#{$el}__right.m-user-bar{ width: 200px;}
-#{$el}__right.m-cart{ width: 150px;}
+#{$el}__left.m-menu{ width: $menu-width; height: 100%; }
+#{$el}__right.m-user-bar{ width: $user-bar-width;}
+#{$el}__right.m-cart{ width: $cart-widget-width;}
 
-#{$el}__left { padding: 0 $grid-cutter 0;}
+#{$el}__left { padding: 0 0 0 $grid-cutter/2;}
 #{$el}__right{ padding-right: $grid-cutter; }
 
 
@@ -113,7 +117,7 @@ $el: '.main-menu';
 #{$el}__2level{
   background: $color-logo;
   padding: $font-size-base*2 $font-size-base*3;
-  margin-left: -$grid-cutter;
+  margin-left: -$grid-cutter/2;
   position: absolute;
   opacity: 0;
   visibility: hidden;
