@@ -14,7 +14,7 @@
       tbody
         - collection.each do |hint|
           tr
-            td = t(hint.name, scope: 'views.admin.hints.names')
+            td.col-sm-2 = t(hint.name, scope: 'views.admin.hints.names')
             td
               = simple_form_for [:admin, hint],
                         html: {class: 'form-horizontal'},

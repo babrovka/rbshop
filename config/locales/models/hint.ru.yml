@@ -1,0 +1,5 @@
+ru:
+  activerecord:
+    attributes:
+      hint:
+        text: текст подсказки
