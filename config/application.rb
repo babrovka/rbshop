@@ -23,7 +23,7 @@ module Rbshop
     mail_conf_path = 'config/mail.yml'
     mail_config = File.exists?(mail_conf_path) ? YAML::load_file(mail_conf_path).symbolize_keys : {}
     
-    config.action_mailer.default_url_options = { host: 'krasivopodano.ru' }
+    config.action_mailer.default_url_options = { host: 'rbdis.ru' }
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = mail_config
     
