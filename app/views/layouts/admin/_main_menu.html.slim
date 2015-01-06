@@ -34,8 +34,8 @@ nav.navbar.navbar-default role="navigation"
           | категоризатор
           span.caret
         ul.dropdown-menu
-          li = link_to 'список таксономий', admin_taxonomies_path
-          li = link_to 'список таксонов', admin_taxons_path
+          li = link_to 'список категорий', admin_taxonomies_path
+          li = link_to 'список подкатегорий', admin_taxons_path
 
 
       li.dropdown
@@ -47,7 +47,7 @@ nav.navbar.navbar-default role="navigation"
           li = link_to 'статистика по городам', statistics_admin_orders_path
 
 
-      li = link_to 'случаи применения', admin_cases_path
+      /li = link_to 'случаи применения', admin_cases_path
       li = link_to 'подсказки', admin_hints_path
 
 
