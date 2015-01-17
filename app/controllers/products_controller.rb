@@ -79,7 +79,7 @@ private
   # здесь модифицируются все параметры, которые необходимо отразить визуально в фильтре
   def modify_search_params  
     if params[:brand_ids].present?
-      if has_key?(:brand_id_in)
+      if params.has_key?(:brand_id_in)
         search_params[:brand_id_in] << params[:brand_ids]
         search_params[:brand_id_in].flatten
       else
