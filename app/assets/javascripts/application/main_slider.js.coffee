@@ -8,7 +8,7 @@ class window.app.MainSlider extends window.app.Scroller
     prev_btn: "<a href='#' class='main-slider__btn m-prev prev'><span class='icon-wrap fa fa-angle-left'></span><div class='js-preview-prev'></div></a>"
     shadow_left: ""
     shadow_right: ""
-    clock: 6000
+    clock: 10000
     anim_clock: 1500
 
   constructor : (el) ->
@@ -25,7 +25,7 @@ class window.app.MainSlider extends window.app.Scroller
     @.$previews = $("#{@.params.previews} > div")
     if @.$previews.length && @.$next_btn.length && @.$prev_btn.length
       @.add_previews_for_current_slide(0)
-      @_activate_auto_scroll() if @.$previews.length > 1
+#      @_activate_auto_scroll() if @.$previews.length > 1
 
 
   _activate_auto_scroll: ->
@@ -145,8 +145,8 @@ class window.app.MainSlider extends window.app.Scroller
     prev_id = @.calculate_pos(-1)
     next_id = @.calculate_pos(1)
 
-    $preview_prev = @.$previews.eq(prev_id)
-    $preview_next = @.$previews.eq(next_id)
+    $preview_prev = @.$previews.eq(prev_id).html()
+    $preview_next = @.$previews.eq(next_id).html()
 
     @.$next_btn.find('.js-preview-next').html($preview_next)
     @.$prev_btn.find('.js-preview-prev').html($preview_prev)
