@@ -7,7 +7,8 @@ header.header class=css_class
       = image_tag 'rbshop-logo.png', alt: 'интернет-магазин профессиональной косметики'
 
     small Интернет-магазин проф косметики
-  .header__search = render 'shared/search_form'
+  .header__search
+    /= render 'shared/search_form'
   .header__links
     = link_to 'Как купить?', page_path('payments'), class: 'link'
     /= link_to 'Отзывы', '#', class: 'link'

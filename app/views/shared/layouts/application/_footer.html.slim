@@ -4,7 +4,8 @@ footer.footer
     = link_to root_path, class: 'footer__logo' do
       = image_tag 'rbshop-logo.png', alt: 'интернет-магазин профессиональной косметики'
     p Интернет-магазин профессиональной косметики Alissi bronte, Dr. Belter, Thalissi
-    .footer__search = render 'shared/search_form'
+    .footer__search
+      /= render 'shared/search_form'
   hr
   .footer__left-block
     = render 'shared/layouts/application/footer_menu'
