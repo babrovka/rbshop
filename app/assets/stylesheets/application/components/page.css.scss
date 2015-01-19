@@ -83,42 +83,20 @@ $el: '.page';
 #{$el}, #{$el}__column{
   // стили под страницу с текстовой информацией
   &.m-article {
+    h1, h2, h3 {
+      font-family: $font-family-conqueror;
+    }
+
     h2 {
       font-size: 42px;
       margin: 0;
-      padding: 0 0 $font-size-base;
+      padding: 0 0 $font-size-base*3;
     }
     h3 {
       font-size: 30px;
       margin: 0;
-      padding: 0 0 $font-size-base;
+      padding: 0 0 $font-size-base*2;
     }
-    ul {
-      padding-bottom: $font-size-base;
-    }
-    ul li {
-      list-style: disc;
-      margin-left: $font-size-base*2;
-      font-family: $font-family-proxima-nova-regular;
-      font-weight: 100;
-    }
-    p {
-      font-family: $font-family-proxima-nova-regular;
-      font-weight: 100;
-      padding-bottom: $font-size-base;
-    }
-    p + h3 {
-      margin-top: $font-size-base;
-    }
-  }
-
-  // особые стили для страниц со статическим контентом
-  // дело в том, что там не стандартные шрифты
-  &.m-static {
-    h2 {
-      margin-bottom: $font-size-base*3;
-    }
-
     h6, p {
       padding-bottom: $font-size-base;
     }
@@ -126,19 +104,25 @@ $el: '.page';
     h6 {
       color: $color-asphalt;
       font-family: $font-family-proxima-nova-semibold;
-      &:before {
-        content: '— ';
-      }
     }
-
-    p {
+    ul li {
+      list-style: none;
       font-family: $font-family-proxima-nova-regular;
       font-weight: 100;
       color: $color-gray-d;
       line-height: 1.5;
+      padding-left: 0;
+      margin-left: 0;
+    }
+    p {
+      font-family: $font-family-proxima-nova-regular;
+      font-weight: 100;
+      color: $color-gray-d;
+      padding-bottom: $font-size-base;
+      line-height: 1.5;
     }
     p + h6 {
-      padding-top: $font-size-base*1.5;
+      margin-top: $font-size-base;
     }
   }
 
@@ -158,6 +142,13 @@ $el: '.page';
 
     .link {
       margin-bottom: 1.3em;
+    }
+  }
+
+  // модификатор для страницы вопросов-ответов
+  &.m-faq{
+    h6:before {
+      content: '— ';
     }
   }
 }

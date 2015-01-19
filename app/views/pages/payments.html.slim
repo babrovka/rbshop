@@ -1,8 +1,8 @@
-.page.m-article.m-static
+.page.m-article
   .page__column.m-full-width.m-with-right-sidebar
     h2 Оплата
 
-  .page__column.m-main-.m-with-right-sidebar
+  .page__column.m-main.m-with-right-sidebar
     ul
       li Наличными при получении в магазине или курьеру
       li Банковским переводом
@@ -46,3 +46,15 @@
       | Чтобы получить заказ, необходимо предъявить курьеру паспорт РФ на имя получателя, указанного при оплате (в случае доставки на дом). Никакие другие документы не принимаются.
       | Кроме того, для получения заказа самовывозом необходимо знать его номер.
       | По запросу предоставляются документы о покупке: товарный чек и гарантийный талон.
+
+  .page__column.m-sidebar.m-static-meta
+    h6
+      | Полезная информация
+      br
+      | о доставке и оплате
+    = link_to page_path('delivery'), class: 'link m-img-box', title: 'Информация о доставке' do
+      = image_tag 'http://placehold.it/270x180'
+
+
+    = link_to page_path('returns'), class: 'link m-img-box', title: 'Возврат товара' do
+      = image_tag 'http://placehold.it/270x180'
