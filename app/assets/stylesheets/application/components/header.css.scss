@@ -44,6 +44,7 @@ $height: 100px;
 
 // ССЫЛКИ КОРОТКОГО МЕНЮ
 #{$el}__links{
+  text-align: right;
   .link + .link{ margin-left: 20px; }
 }
 
