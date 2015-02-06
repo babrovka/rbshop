@@ -21,7 +21,7 @@ class OrderMailer < ActionMailer::Base
   def notify_admin(order)
     @order = order
 
-    mail to: %w(babrovka@gmail.com justvitalius@gmail.com),
+    mail to: %w(justvitalius@gmail.com),
          subject: 'Уведомление о новом заказе'
   end
 end
