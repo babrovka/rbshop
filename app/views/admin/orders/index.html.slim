@@ -21,9 +21,9 @@
           th Тип оплаты
           th
       tbody
-        - collection.each_with_index do |order, i|
+        - collection.each do |order|
           tr.js-item-row
-            td = number_in_list i
+            td = order.id
             td = order.created_at.strftime('%d.%m.%Y, %H:%M')
             td = order.name
             td = order.phone
