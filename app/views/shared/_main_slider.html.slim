@@ -1,7 +1,7 @@
 .main-slider.js-main-slider
   .main-slider__container.js-main-slider-container
     - slides.each do |slide|
-      = link_to promo_path(slide), class: 'main-slider__item js-main-slider-item', data: { slide_id: slide.id}
+      = link_to promo_path(slide.product), class: 'main-slider__item js-main-slider-item', data: { slide_id: slide.id}
         /.main-slider__item.js-main-slider-item data-slide-id=slide.id
         = image_tag slide.image.url(:slide)
         .main-slider__item-bg
