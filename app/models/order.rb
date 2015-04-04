@@ -29,7 +29,7 @@ class Order < ActiveRecord::Base
   after_save :update_user_bought_counter
   before_save :copy_user_info, :if => lambda {|order| order.user.present? }
   
-  enum status: [ :not_paid, :paid, :ready_for_delivery, :delivered ]
+  enum status: [ :not_paid, :paid, :ready_for_delivery, :delivered, :canceled ]
   enum pay_type: [ :cash, :online ]
   
   default_scope { order('updated_at DESC') } 

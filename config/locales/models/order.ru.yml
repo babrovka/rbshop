@@ -6,6 +6,7 @@ ru:
         paid: оплачен
         ready_for_delivery: ждет отправки 
         delivered: доставлен
+        canceled: отменен
       pay_type:
         cash: наличными
         online: онлайн
