@@ -29,17 +29,6 @@ html
         .main-menu__right.m-cart.js-main-menu-cart-widget = render 'shared/layouts/application/shopping_cart'
 
 
-      / область сайдбара
-      /- if content_for? :sidebar
-      /  - sidebar = true
-      /  .container__column.m-sidebar = yield :sidebar
-
-      / область основного контента
-      / если есть сайдбар, то выставляем модификатор специальный
-      /.container__column.m-main class="#{'m-with-sidebar' if sidebar}"
-      /  - if content_for? :body_content
-      /    = yield :body_content
-      /  - else
       = yield
 
       / область поповеров
@@ -49,6 +38,6 @@ html
 
       = render 'shared/layouts/application/footer'
 
-
+    / консультант требует денег и пока выключен
     = render 'shared/consultant'
 

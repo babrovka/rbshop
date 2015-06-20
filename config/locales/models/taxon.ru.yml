@@ -8,7 +8,7 @@ ru:
         taxon_type: тип таксона
         seo_title: SEO title
         seo_description: SEO description
-        seo_text: текст для случая применения
+        seo_text: SEO текст для случая применения
         seo_url: SEO url
         taxon_types:
           by_product_type: По типу средства

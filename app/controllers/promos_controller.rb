@@ -14,7 +14,7 @@ private
 
   # инстанс для поддержки гибкой фильтрации
   def filter
-    @q ||= Product.promo.ransack(search_params)
+    @q ||= Product.promo.in_stock.ransack(search_params)
   end
 
   # подготовка параметров к фильтрации

@@ -40,15 +40,15 @@
             = link_to '#comments', class: 'tabs__tab' do
               span.fa.fa-comment
               span отзывы
-            = link_to 'оплата', '#payment', class: 'tabs__tab'
+            = link_to 'применение', '#applying', class: 'tabs__tab'
           .tabs__content
             #description
               p = simple_format resource.text
             #comments = render 'shared/plugins/disqus_script'
             #ingredients
               p = resource.ingredients
-            #payment
-              p = Faker::Lorem.sentence(100)
+            #applying
+              p = resource.applying
 
       .product__meta
         - if resource.in_stock?

@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   def index
     # для активации инверсной шапки на странице
     @extra_header = true
-    @extra_products = Product.limit 10
+    @extra_products = Product.in_stock.important.limit 10
     @slides = Slide.for_allowed_products
   end
 

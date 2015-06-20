@@ -32,6 +32,12 @@ class Admin::ProductsController < Admin::ApplicationController
   def statistics
      @products = collection.order('bought DESC')
   end
+
+  def destroy
+    super do |format|
+      format.html { redirect_to collection_url }
+    end
+  end
   
 private
 

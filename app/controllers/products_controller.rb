@@ -17,8 +17,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @related_products = resource.related_products
-    @current_category = resource.same_taxon_products
+    @related_products = resource.related_products.in_stock
+    @current_category = resource.same_taxon_products.in_stock
   end
   
   def taxonomy
@@ -56,7 +56,7 @@ private
 
   # инстанс для поддержки гибкой фильтрации
   def filter
-    @q ||= Product.ransack(search_params)
+    @q ||= Product.in_stock.ransack(search_params)
   end
 
   # подготовка параметров к фильтрации

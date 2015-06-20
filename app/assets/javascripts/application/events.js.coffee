@@ -8,7 +8,7 @@ $ ->
   window.add_to_cart_popover.hide()
 
   # активируем кнопки-табы на страницах с товаром
-  @.tabs = new window.app.Tabs(['#description', '#payment', '#ingredients', '#comments', '#goods'])
+  @.tabs = new window.app.Tabs(['#description', '#payment', '#ingredients', '#comments', '#goods', '#applying'])
 
   # активируем слайдеры товаров
   _.each($('.js-scroller'), (el) -> new window.app.Scroller(el))

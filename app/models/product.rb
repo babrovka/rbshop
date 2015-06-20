@@ -63,6 +63,7 @@ class Product < ActiveRecord::Base
   after_save :count_separate_product_price, :if => lambda {|product| product.product_type == 'promo' }
   
   scope :in_stock, -> { where(in_stock: true) }
+  scope :important, -> { where('latest = TRUE OR product_type = 1') }
   scope :ordered, -> (field) {order(field)}
   
   enum product_type: [ :regular, :promo ]
