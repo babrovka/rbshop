@@ -1,7 +1,7 @@
 $el: '.main-menu';
 
 $cart-widget-width: 130px;
-$user-bar-width: 200px;
+$user-bar-width: 180px;
 $menu-width: $container - $cart-widget-width - $user-bar-width;
 
 #{$el}{
@@ -21,7 +21,7 @@ $menu-width: $container - $cart-widget-width - $user-bar-width;
 }
 
 #{$el}__left.m-menu{ width: $menu-width; height: 100%; }
-#{$el}__right.m-user-bar{ width: $user-bar-width;}
+#{$el}__right.m-user-bar{ width: $user-bar-width; padding-right: 10px; }
 #{$el}__right.m-cart{ width: $cart-widget-width;}
 
 #{$el}__left { padding: 0 0 0 $grid-cutter/2;}
@@ -39,7 +39,8 @@ $menu-width: $container - $cart-widget-width - $user-bar-width;
     margin-top: ($menu-height - $sprite-height)/2;
     text-align: center;
 
-    + #{$el}__item { margin-left: $font-size-base*2; }
+    // выключаем левый отступ в меню, потому что не вмещается
+    // + #{$el}__item { margin-left: $font-size-base*2; }
 
     // особый стиль под заголовок имени пользователя
     // у которого тоже есть выпадающее меню
