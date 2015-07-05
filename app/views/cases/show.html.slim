@@ -1,0 +1,14 @@
+.page.m-glue
+  .page__column.m-full-width
+    = render 'cases/header'
+
+  .page__column.m-sidebar
+    .case-page__menu
+      = render_navigation context: :cases, expand_all: true
+
+  .page__column.m-main.m-with-sidebar
+    = render 'cases/products'
+
+
+    .page.m-product-list
+      = paginate products

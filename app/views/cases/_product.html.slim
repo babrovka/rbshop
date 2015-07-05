@@ -4,13 +4,13 @@
   - if resource.discount?
     .card__badge.m-green скидка
 
-  = link_to promo_path(resource), class: 'card__img' do
+  = link_to product_path(resource), class: 'card__img' do
     - if resource.product_images.any?
       = image_tag resource.product_images.first.image.url(:catalog)
     - else
       = image_tag 'noimage.png'
 
-  h3 = link_to resource.title, promo_path(resource)
+  h3 = link_to resource.title, product_path(resource)
   small = resource.short_description.try(:truncate, 50)
 
   .card__footer

@@ -51,6 +51,11 @@
   padding-right: $corner-width*2;
   line-height: $height;
 
+  // текст ограничиваем по длине и ставим многоточие в конце
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   &:before, &:after {
     position: absolute;
     content: '';

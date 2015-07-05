@@ -1,0 +1,11 @@
+.case-page
+  .case-page__promo
+    = image_tag resource.image.url(:medium)
+    .case-page__promo-overlay
+    h1 = resource.title
+    p = resource.text
+
+.page__column.m-full-width.m-with-sidebar
+  .products
+    .products__page-header
+      h1 Подходящие товары

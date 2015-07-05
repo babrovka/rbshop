@@ -1,0 +1,81 @@
+$el: '.plain-menu';
+
+#{$el}{
+  @include border-radius(8px);
+  font-family: $font-family-proxima-nova-regular;
+  background: #fafafa;
+  font-weight: 100;
+}
+
+#{$el}__item {
+  $btn-gutter: 10px;
+  $btn-font-size: $font-size-base;
+
+  border-bottom: 1px solid $color-gray;
+  font-family: $font-family-proxima-nova-regular;
+  font-weight: 100;
+
+  position: relative;
+
+  & a{
+    padding: $filter-gutter;
+    color: $color-gray-d;
+    text-decoration: none;
+    display: block;
+  }
+
+  &:last-child {
+    border: none;
+  }
+
+  &:hover {
+    background: darken(#fafafa, 10%);
+    transition: background .2s;
+  }
+
+  &.m-active {
+    border-bottom: none;
+    background: none;
+    margin-top: -1px; // чтобы не было видно бордера у верхнего меню
+
+    a {
+      @include img-button-variant(white, 'btn-m-primary');
+      margin-left: -$btn-gutter;
+      margin-right: -$btn-gutter;
+      padding: 0;
+      padding-left: $btn-gutter + $filter-gutter;
+      padding-right: $btn-gutter + $filter-gutter + $btn-font-size/2; // чтобы текст не наезжал на иконку стрелки
+    }
+
+    // разные размеры текста внутри кнопки,чтобы он помещался в длину кнопки
+    &.m-m {
+      font-size: 14px;
+    }
+    &.m-s{
+      font-size: 13px;
+    }
+    &.m-xs {
+      font-size: 12px;
+    }
+  }
+
+
+
+  // стрелка в пункте меню
+  #{$el}__item-icon {
+    position: absolute;
+    right: $filter-gutter;
+    top: 50%;
+    margin-top: -$btn-font-size/2;
+    font-size: $btn-font-size;
+  }
+
+  // у активной кнопки и простых кнопок,
+  // стрелка должна быть на одной линии
+  &.m-active{
+    #{$el}__item-icon {
+      right: $filter-gutter + $btn-gutter;
+    }
+  }
+
+}

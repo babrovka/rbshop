@@ -51,6 +51,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item "promos", 'Акции', promos_path, class: 'main-menu__item'
+    primary.item "cases", 'Случаи применения', cases_path, class: 'main-menu__item', highlights_on: %r{cases}
   end
   # Specify a custom renderer if needed.
   # The default renderer is SimpleNavigation::Renderer::List which renders HTML lists.

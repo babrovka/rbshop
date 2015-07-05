@@ -78,6 +78,23 @@ $ ->
     $(elem).addClass item_class
   )
 
+  # выставляем классы по длине символов в меню на странице случаев применения
+  $.each($('.js-cases-menu > li'), (i, elem) ->
+    item_length = $(elem).find('> a').text().length
+    item_class = if item_length <= 20
+      ''
+    else  if item_length > 20 && item_length <= 24
+      'm-m'
+    else if item_length > 24 && item_length <= 28
+      'm-s'
+    else if item_length > 28
+      'm-xs'
+    else
+      'm-xs'
+    console.log(item_length);
+    $(elem).addClass item_class
+  )
+
   $('.js-main-menu-2level:empty').remove()
 
 

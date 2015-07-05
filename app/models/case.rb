@@ -26,7 +26,7 @@ class Case < ActiveRecord::Base
   belongs_to :taxon
   has_and_belongs_to_many :products, join_table: "shop_cases_products"
   
-  has_attached_file :image, styles: {medium: "940x380#", banner: "620x220#"}
+  has_attached_file :image, styles: {medium: "1200x380#", banner: "620x220#"}
   do_not_validate_attachment_file_type :image
   
   scope :ordered, -> (field) {order(field)}

@@ -21,7 +21,7 @@ module ProductsHelper
     end
 
     # в зависимости от типа сортировки и текущей сортировки выставляем класс для стрелочки
-    icon_class = sorted_direction.include?('asc') ? 'fa-caret-up' : 'fa-caret-down'
+    icon_class = sorted_direction.include?('asc') ? 'fa-caret-down' : 'fa-caret-up'
 
     link_to url, opts do
       content_tag(:span, title, class: text_class) +

@@ -1,0 +1,59 @@
+$el: '.case-page';
+
+#{$el}{
+  margin-left: -$grid-cutter;
+}
+
+#{$el}__promo{
+  height: 380px;
+  position: relative;
+  width: 1200px;
+
+  padding-top: $grid-cutter * 2;
+  padding-left: $sidebar-width + $grid-cutter;
+  padding-right: $grid-cutter;
+  margin-bottom: $grid-cutter * 2;
+
+  overflow: hidden;
+
+  h1 {
+    font-size: 46px;
+    line-height: 1.2;
+    color: white;
+    padding-bottom: $font-size-base;
+  }
+
+  p {
+    font-family: $font-family-conqueror;
+    font-weight: 100;
+    font-size: 16px;
+    color: white;
+    line-height: 1.6;
+  }
+
+
+  // картинку на задний фон
+  img{
+    position: absolute;
+    z-index: -2;
+    right: 0;
+    top: 0;
+  }
+}
+
+
+// затемнение картинки, чтобы белый шрифт читать
+#{$el}__promo-overlay{
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+#{$el}__menu{
+  margin-top: $grid-cutter * 2 - 5px; // просто для красоты вычитаю 2px
+}

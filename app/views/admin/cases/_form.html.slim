@@ -5,8 +5,11 @@
                       ) do |f|
 
   = f.input :title
-  = f.input :text
+  = f.input :text, input_html: { rows: 10 }
   = f.input :short_description
+  br
+  .col-sm-10.col-sm-offset-2
+    .label.label-warning Рекомендуемые размеры изображения 1200x380 пикс
   = f.input :image
   = f.association :products, input_html: { class: 'js-select2', multiple: true }
   = f.input :seo_url
