@@ -10,6 +10,7 @@ $menu-width: $container - $cart-widget-width - $user-bar-width;
   width: $container;
   margin-left: -$grid-cutter;
   background: #f2f2f2;
+  box-shadow: 0 7px 10px -8px;
 
   position: relative;
   z-index: 1;

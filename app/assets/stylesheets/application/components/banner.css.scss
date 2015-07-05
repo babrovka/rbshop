@@ -1,0 +1,12 @@
+.banner{
+  font-family: proxima_nova_semibold;
+  text-transform: uppercase;
+  background: $color-green-d;
+  margin-left: -$grid-cutter;
+  margin-right: -$grid-cutter;
+  line-height: 2.7;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  z-index: 0;
+}
