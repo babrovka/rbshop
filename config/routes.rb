@@ -66,7 +66,7 @@ Rails.application.routes.draw do
 
   # Simple pages
   root 'pages#index'
-  %w(faq payments delivery returns).each do |page|
+  %w(faq payments delivery returns how-to-buy).each do |page|
     get page => 'high_voltage/pages#show', id: page
   end
   # ===========================================================================

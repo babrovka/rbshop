@@ -38,6 +38,7 @@ $menu-width: $container - $cart-widget-width - $user-bar-width;
     height: $sprite-height;
     margin-top: ($menu-height - $sprite-height)/2;
     text-align: center;
+    cursor: pointer;
 
     // выключаем левый отступ в меню, потому что не вмещается
     // + #{$el}__item { margin-left: $font-size-base*2; }
@@ -98,7 +99,7 @@ $menu-width: $container - $cart-widget-width - $user-bar-width;
 #{$el}__block{
   height: $menu-height;
   position: absolute;
-  width: 5%;
+  width: 30px;
   display: none;
   cursor: pointer;
 }
@@ -178,6 +179,7 @@ $menu-width: $container - $cart-widget-width - $user-bar-width;
       a {
         @include link-variant($color-asphalt, white);
         display: inline;
+        cursor: pointer;
         font-family: $font-family-proxima-nova-semibold;
         font-size: $font-size-base;
       }
@@ -192,6 +194,7 @@ $menu-width: $container - $cart-widget-width - $user-bar-width;
     display: block;
     visibility: visible;
     opacity: .99;
+    cursor: default;
 
     @include transform(translateY(10px));
     @include transition(transform .1s ease-in-out, opacity .3s ease-in-out);

@@ -16,6 +16,7 @@
   padding: 12px;
   border: 1px solid darken($color-bottom, 5%);
   color: $txt-color;
+  cursor: pointer;
 }
 
 // чтобы использовать кнопки-изображения
@@ -47,14 +48,15 @@
 
 
   position: relative;
-  padding-left: $corner-width*2;
-  padding-right: $corner-width*2;
+  padding-left: $corner-width*2 - 1px;
+  padding-right: $corner-width*2 - 1px;
   line-height: $height;
 
   // текст ограничиваем по длине и ставим многоточие в конце
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 
   &:before, &:after {
     position: absolute;
@@ -90,6 +92,7 @@
   @include unstyled-link;
   color: $color;
   border-bottom: 1px solid $color;
+  cursor: pointer;
 
   &:active, &:focus, &:hover, &.m-active{
     color: $active-color;

@@ -23,6 +23,7 @@
   &.m-small{
     @include img-button-variant(white, 'btn-m-primary', 'sm');
     font-size: 14px;
+    cursor: pointer;
 
     &.m-disactive, &.m-disable {
       @include img-button-variant(white, 'btn-m-disabled', 'sm');

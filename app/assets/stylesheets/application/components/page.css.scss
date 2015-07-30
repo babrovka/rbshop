@@ -110,8 +110,21 @@ $el: '.page';
       color: $color-asphalt;
       font-family: $font-family-proxima-nova-semibold;
     }
-    ul li {
-      list-style: none;
+
+    ol{
+      list-style-type: decimal;
+    }
+
+    ul {
+      list-style-type: circle;
+    }
+
+    ol, ul{
+      padding-left: 20px;
+      padding-bottom: $font-size-base;
+    }
+
+    ul li, ol li {
       font-family: $font-family-proxima-nova-regular;
       font-weight: 100;
       color: $color-gray-d;

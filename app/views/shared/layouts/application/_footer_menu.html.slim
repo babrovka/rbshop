@@ -2,12 +2,14 @@
   .footer__menu__item
     ul
       .footer__menu__header Каталог красоты
-      li = link_to 'Для лица', '#', class: 'link'
-      li = link_to 'Для тела', '#', class: 'link'
-      li = link_to 'Для губ', '#', class: 'link'
-      li = link_to 'Для глаз', '#', class: 'link'
-      li = link_to 'Для мужчин', '#', class: 'link'
-      li = link_to 'Для загара', '#', class: 'link'
+      - Taxonomy.all.each do |taxonomy|
+        li = link_to taxonomy.title, poly_taxonomy_path(taxonomy), class: 'link'
+      /li = link_to 'Для лица', '', class: 'link'
+      /li = link_to 'Для тела', '#', class: 'link'
+      /li = link_to 'Для губ', '#', class: 'link'
+      /li = link_to 'Для глаз', '#', class: 'link'
+      /li = link_to 'Для мужчин', '#', class: 'link'
+      /li = link_to 'Для загара', '#', class: 'link'
 
 
   /.footer__menu__item
