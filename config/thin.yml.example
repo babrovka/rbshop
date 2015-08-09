@@ -1,0 +1,8 @@
+user: babrovka
+socket: /home/babrovka/projects/rbshop/production.sock
+timeout: 90
+pid: /home/babrovka/projects/rbshop/shared/thin.pid
+log: /home/babrovka/projects/rbshop/shared/log/thin.log
+chdir: /home/babrovka/projects/rbshop/current
+environment: production
+daemonize: true

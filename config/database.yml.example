@@ -1,0 +1,4 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: rbshop_dev

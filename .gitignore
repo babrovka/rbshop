@@ -7,6 +7,12 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore configs
+config/database.yml
+config/mail.yml
+config/secrets.yml
+config/thin.yml
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
