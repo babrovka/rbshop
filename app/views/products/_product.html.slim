@@ -15,7 +15,7 @@
 
   .card__footer
     .card__rating
-    small = "объем: #{truncate product.packing, length: 20}"
+    small = truncate product.packing, length: 20
     hr
     .card__price.m-new
       .price = product.current_price
